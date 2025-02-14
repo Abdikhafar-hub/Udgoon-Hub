@@ -24,7 +24,7 @@ const Contact = () => {
             </HStack>
             <HStack>
               <Icon as={FaEnvelope} color="black" />
-              <Text>yarefarm@gmail.com</Text>
+              <Text>udgoonhub@gmail.com</Text>
             </HStack>
             <HStack>
               <Icon as={FaPhone} color="black" />
