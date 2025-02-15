@@ -15,7 +15,7 @@ function CartQuantity({ quantity = 1 }) {
         >
           -
         </Button>
-        <Text>{count}</Text> {/* ✅ Make sure this is NOT an object */}
+        <Text>{count}</Text> 
         <Button w="30px" h="30px" onClick={() => setCount(count + 1)}>
           +
         </Button>

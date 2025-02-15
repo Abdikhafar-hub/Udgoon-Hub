@@ -4,7 +4,6 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  Button,
   HStack,
   Icon,
   VStack,
@@ -12,151 +11,139 @@ import {
   ListItem,
   ListIcon,
   List,
+  Link,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { motion } from "framer-motion";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaEnvelope,
+  FaLinkedin,
+} from "react-icons/fa";
 import { PhoneIcon } from "@chakra-ui/icons";
 import { TbTruckDelivery, TbRefresh, TbHelp } from "react-icons/tb";
 import { MdGpsFixed } from "react-icons/md";
-import { FaCookie, FaPinterest, FaSnapchat } from "react-icons/fa";
-const ListHeader = ({ children }) => {
-  return (
-    <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
-      {children}
-    </Text>
-  );
-};
+
+
+// Animation wrapper
+const MotionBox = motion(Box);
+
+// Social media icons with smooth animations
+const socialLinks = [
+  { icon: FaFacebook, link: "https://web.facebook.com/abdikhafar.issack.9", color: "blue.500" },
+  { icon: FaTwitter, link: "https://x.com/AbdikhafarI", color: "cyan.400" },
+  { icon: FaInstagram, link: "https://www.instagram.com/abdikhafar_issack/", color: "pink.400" },
+  { icon: FaLinkedin, link: "https://www.linkedin.com/in/abdikhafar-issack/", color: "blue.600" },
+  { icon: FaEnvelope, link: "mailto:abdikhafarissack@gmail.com", color: "gray.300" },
+];
+
+const ListHeader = ({ children }) => (
+  <Text fontWeight="600" fontSize="lg" mb={2} color="white">
+    {children}
+  </Text>
+);
+
 export default function Footer() {
   return (
-    <Box>
+    <Box bgGradient="linear(to-r, blackAlpha.900, gray.800)" color="white">
       <Container as={Stack} maxW={"6xl"} py={10}>
-        <SimpleGrid
-          templateColumns={{ sm: "1fr 1fr", md: "1fr 1fr" }}
-          spacing={8}
-        >
-          <VStack>
-            <Text pb=".5rem" fontWeight="600" fontSize="md">
-              Sign up to our email list and receive 20% off your next order
+        <SimpleGrid templateColumns={{ sm: "1fr", md: "1fr 1fr" }} spacing={8} alignItems="center">
+          {/* Signup Section */}
+          
+
+          {/* Social Media Section */}
+          <VStack spacing={4} textAlign="center">
+            <Text fontSize="lg" fontWeight="600">
+              Follow us for the latest fragrances
             </Text>
-            <Button
-              fontWeight="600"
-              bgColor="black"
-              color="white"
-              borderRadius="0"
-              _hover={{
-                bg: "cyan.500",
-              }}
-            >
-              SIGN UP
-            </Button>
-          </VStack>
-          <VStack textAlign="left">
-            <Box textAlign="left" color="black">
-              <Text fontSize="md" fontWeight="600">
-                Connect with us
-              </Text>
-              <HStack gap={[2, 3, 4, 5]} p={2}>
-                <Icon
-                  boxSize={[4, 5, 6, 7]}
-                  as={FaFacebook}
-                  color="facebook.500"
-                />
-                <Icon
-                  boxSize={[4, 5, 6, 7]}
-                  as={FaTwitter}
-                  color="twitter.500"
-                />
-                <Icon
-                  boxSize={[4, 5, 6, 7]}
-                  as={FaSnapchat}
-                  color="yellow.400"
-                />
-                <Icon boxSize={[4, 5, 6, 7]} as={FaPinterest} color="red.700" />
-                <Icon boxSize={[4, 5, 6, 7]} as={FaInstagram} color="maroon" />
-              </HStack>
-            </Box>
+            <HStack spacing={5}>
+              {socialLinks.map(({ icon: IconComp, link, color }, index) => (
+                <Link key={index} href={link} isExternal>
+                  <MotionBox
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    transition={{ duration: 0.3 }}
+                    display="inline-block"
+                  >
+                    <Icon as={IconComp} boxSize={7} color={color} />
+                  </MotionBox>
+                </Link>
+              ))}
+            </HStack>
           </VStack>
         </SimpleGrid>
-        {/* Top section uppper end */}
-        <SimpleGrid
-          templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 1fr 1fr" }}
-          spacing={8}
-        >
+
+        <Divider my={6} />
+
+        {/* Links Section */}
+        <SimpleGrid templateColumns={{ sm: "1fr", md: "2fr 1fr 1fr 1fr" }} spacing={8}>
           <Stack align={"flex-start"}>
-            <Divider mb="2" h="2" borderColor={"black"} />
-            <List>
-              <ListHeader> Help & Information</ListHeader>
+            <ListHeader>Customer Support</ListHeader>
+            <List spacing={2}>
               <ListItem>
                 <HStack>
-                  <ListIcon as={PhoneIcon} fontSize="md" color="black.800" />
+                  <ListIcon as={PhoneIcon} fontSize="md" color="pink.300" />
                   <Text>Customer Service</Text>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
-                  <ListIcon
-                    as={TbTruckDelivery}
-                    fontSize="md"
-                    color="black.800"
-                  />
+                  <ListIcon as={TbTruckDelivery} fontSize="md" color="purple.300" />
                   <Text>Delivery Information</Text>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
-                  <ListIcon as={TbRefresh} fontSize="md" color="black.800" />
-                  <Text> Return & Refund</Text>
+                  <ListIcon as={TbRefresh} fontSize="md" color="purple.300" />
+                  <Text>Return & Refund</Text>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
-                  <ListIcon as={TbHelp} fontSize="md" color="black.800" />
+                  <ListIcon as={TbHelp} fontSize="md" color="pink.300" />
                   <Text>Help Center</Text>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
-                  <ListIcon
-                    as={MdGpsFixed}
-                    fontSize="1.2rem"
-                    color="black.800"
-                  />
-                  <Text>Track my order</Text>
-                </HStack>
-              </ListItem>
-              <ListItem>
-                <HStack>
-                  <ListIcon as={FaCookie} fontSize="1.2rem" color="black.800" />
-                  <Text>Cookie Setting</Text>
+                  <ListIcon as={MdGpsFixed} fontSize="md" color="pink.300" />
+                  <Text>Track My Order</Text>
                 </HStack>
               </ListItem>
             </List>
           </Stack>
+
           <Stack align={"flex-start"}>
-            <Divider mb="2" h="2" borderColor={"black"} />
-            <ListHeader>Key Workers Discount</ListHeader>
-            <Link href={"#"}>About Us</Link>
-            <Link href={"#"}>Affilate Program</Link>
-            <Link href={"#"}>Brand Directory</Link>
-            <Link href={"#"}>Coupon Codes</Link>
-            <Link href={"#"}>Student Discount</Link>
+            <ListHeader>Explore</ListHeader>
+            <Link href="#">About Us</Link>
+            <Link href="#">New Arrivals</Link>
+            <Link href="#">Best Sellers</Link>
+            <Link href="#">Exclusive Scents</Link>
+            <Link href="#">Gift Sets</Link>
           </Stack>
+
           <Stack align={"flex-start"}>
-            <Divider mb="2" h="2" borderColor={"black"} />
             <ListHeader>Legal</ListHeader>
-            <Link href={"#"}>Cookie Information</Link>
-            <Link href={"#"}>Privacy Policy</Link>
-            <Link href={"#"}>Terms & Condition</Link>
-            <Link href={"#"}>Modern Slavery Statement</Link>
+            <Link href="#">Privacy Policy</Link>
+            <Link href="#">Terms & Conditions</Link>
+            <Link href="#">Cookie Settings</Link>
           </Stack>
+
           <Stack align={"flex-start"}>
-            <Divider mb="2" h="2" borderColor={"black"} />
-            <ListHeader> How To Contact Us</ListHeader>
-            <Link href={"#"}>Message Us</Link>
-            <Link href={"#"}>Free Beauty Consultations</Link>
-            <Link href={"#"}>Terms & Condition</Link>
+            <ListHeader>Contact Us</ListHeader>
+            <Link href="#">Message Us</Link>
+            <Link href="#">Free Perfume Consultations</Link>
+            <Link href="#">Wholesale Inquiries</Link>
           </Stack>
         </SimpleGrid>
+
+        <Divider my={6} />
+
+        {/* Footer Bottom */}
+        <Text textAlign="center" fontSize="sm" opacity="0.7">
+          © {new Date().getFullYear()} Udgoon Hub - Where Luxury Meets Fragrance. All rights reserved.
+        </Text>
       </Container>
     </Box>
   );

@@ -18,8 +18,7 @@ import { UserContext } from "../Contexts/UserContext";
 import axios from "axios";
 import { useToast } from "@chakra-ui/react";
 
-// import jwt from "jsonwebtoken";
-//https://real-red-hen-hem.cyclic.app
+
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,8 +28,9 @@ export default function Register() {
   const toast = useToast();
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
+  
 
-  //https://real-red-hen-hem.cyclic.app/user/register
+ 
 
 
   const handleLogin = async (e) => {
@@ -40,7 +40,7 @@ export default function Register() {
     console.log(user);
     try {
       const response = await axios.post(
-        "https://skinstore.onrender.com/user/register",
+        "https:",
         user,
         {
           withCredentials: true,
@@ -63,10 +63,10 @@ export default function Register() {
         navigate("/verification");
       }
       console.log(response.data);
-      // Optionally update user context or perform other actions upon successful registration
+      
     } catch (error) {
       console.error("Registration failed:", error);
-      // Provide user-friendly feedback or handle errors as needed
+      
     }
   };
 
@@ -121,7 +121,7 @@ export default function Register() {
                 isLoading={loading}
                 loadingText="Verifying..."
               >
-                SING UP
+                SIGN UP
               </Button>
               <Stack pt={6}>
                 <Text align={"center"}>

@@ -4,20 +4,20 @@ const PromoBanner = () => {
   return (
     <Box 
       w="100%" 
-      bg="#F8F6F4"  // ✅ Background color matching reference
-      py={15}  // ✅ Reduced height for a sleeker look
+      bg="#F8F6F4"  
+      py={15}  
       px={5}
       display="flex" 
       justifyContent="center"
     >
       <Flex 
-        w="90%" 
+        w="90%"
         maxW="1400px"
         align="center"
         justify="space-between"
         flexWrap={{ base: "wrap", md: "nowrap" }}
       >
-        {/* Left Section - Text Content */}
+        
         <VStack align="flex-start" spacing={2} maxW="45%">
           <Text fontSize="42px" fontWeight="500" fontStyle="italic" fontFamily="Georgia, serif" color="#222">
             Limited-Time Offer
@@ -42,7 +42,7 @@ const PromoBanner = () => {
           </Button>
         </VStack>
 
-        {/* Middle Section - Circular Discount Badge */}
+        
         <Box 
           bg="black"
           color="white"
@@ -64,10 +64,9 @@ const PromoBanner = () => {
           <Text fontSize="16px" color="#E5C99F" fontFamily="Georgia, serif">LIMITED TIME</Text>
         </Box>
 
-        {/* Right Section - Perfume Image */}
+       
         <Image 
-          src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148285/fibdjbnwt8vyiauyow18.jpg"  // ✅ Replace with an actual promo image
-          alt="Exclusive Perfume Deals"
+          src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148285/fibdjbnwt8vyiauyow18.jpg"  
           maxW="450px"  
           borderRadius="10px"
           objectFit="cover"

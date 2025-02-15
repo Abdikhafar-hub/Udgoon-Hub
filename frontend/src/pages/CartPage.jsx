@@ -8,7 +8,7 @@ const CartPage = () => {
   const { user, addToCart, removeFromCart, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // ✅ Handle Delete Entire Item
+  
   const deleteItem = (productId) => {
     setUser((prevUser) => {
       const updatedCart = prevUser.cart.filter((item) => item.id !== productId);

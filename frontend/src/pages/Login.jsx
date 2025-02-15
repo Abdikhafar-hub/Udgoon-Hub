@@ -27,7 +27,7 @@ export default function Login() {
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
 
-  //https://real-red-hen-hem.cyclic.app/user/login
+ 
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ export default function Login() {
   const logingin = async () => {
     setLoading(true);
     axios
-      .post("https://skinstore.onrender.com/user/login", user, {
+      .post("https:", user, {
         withCredentials: true,
       })
       .then((res) => {
@@ -101,9 +101,6 @@ export default function Login() {
               >
                 <Link to="/register">
                   <Text color={"blue.400"}> New Customer?</Text>
-                </Link>
-                <Link to="/ForgotPass" >
-                  <Text color={"blue.400"}>Forgot Password?</Text>
                 </Link>
               </Stack>
               <Button

@@ -38,7 +38,7 @@ const ProductPage = () => {
     setNoofElements((prev) => prev + 10);
   };
 
-  // ✅ Ensure return is inside the function
+  
   return (
     <>
       <Box w="95%" m={5} justifyContent="space-evenly">

@@ -20,7 +20,7 @@ const Contact = () => {
           <VStack spacing={4} align="start">
             <HStack>
               <Icon as={FaMapMarkerAlt} color="black" />
-              <Text>Business Bay Mall, First Floor, Eastleigh, Nairobi Kenya</Text>
+              <Text>Business Bay Square Mall, First Floor, Eastleigh, Nairobi Kenya</Text>
             </HStack>
             <HStack>
               <Icon as={FaEnvelope} color="black" />
