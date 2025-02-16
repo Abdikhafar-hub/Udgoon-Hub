@@ -30,7 +30,7 @@ function CartTable() {
     console.log("User Cart Data:", user.cart); // 🛠️ Debugging
 
     axios
-      .get(`https://skinstore.onrender.com/product/usercart/${user.id}`, {
+      .get(`/${user.id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -43,7 +43,7 @@ function CartTable() {
 
   function toggleRemoveFromCart(id) {
     axios
-      .delete(`https://skinstore.onrender.com/product/cart/delete/${id}`, {
+      .delete(`${id}`, {
         withCredentials: true,
       })
       .then(() => {

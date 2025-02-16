@@ -50,7 +50,7 @@ const Contact = () => {
         </Box>
       </Flex>
       
-      {/* Google Maps Embed */}
+      
       {isClient && (
         <Box w="full" maxW="5xl" mt={12} borderRadius="lg" overflow="hidden">
           <iframe

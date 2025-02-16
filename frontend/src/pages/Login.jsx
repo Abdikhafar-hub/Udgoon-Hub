@@ -4,103 +4,81 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Checkbox,
   Stack,
   Button,
   Heading,
   Text,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
-
 import { useContext, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../Contexts/UserContext";
 import axios from "axios";
 
-// import jwt from "jsonwebtoken";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const toast = useToast();
   const navigate = useNavigate();
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
 
- 
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(email, password);
-    user.email = email;
-    user.password = password;
-    // console.log(user);
-    logingin();
-  };
-
-  const logingin = async () => {
     setLoading(true);
-    axios
-      .post("https:", user, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        // console.log(res);
-        user.status = true;
-        user.name = res.data.userDetail.name;
-        user.id = res.data.userDetail._id;
-        localStorage.setItem("userStatus", JSON.stringify(user.status));
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        { email, password },
+        { withCredentials: true }
+      );
+
+      setLoading(false);
+
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token); // Store JWT
+        setUser(response.data.user); // Update User Context
+        toast({
+          title: "Login Successful",
+          status: "success",
+          isClosable: true,
+        });
         navigate("/");
-        setLoading(false);
-        console.log(res.data.userDetail);
-        console.log(user);
-      })
-      .catch((err) => {
-        alert("Invalid Credentials");
-        setLoading(false);
-        console.log(err);
+      }
+    } catch (error) {
+      setLoading(false);
+      toast({
+        title: "Login Failed",
+        description: error.response?.data || "Invalid credentials",
+        status: "error",
+        isClosable: true,
       });
+    }
   };
 
   return (
-    <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-    >
+    <Flex minH={"100vh"} align={"center"} justify={"center"} bg={useColorModeValue("gray.50", "gray.800")}>
       <Stack spacing={5} mx={"auto"} maxW={"lg"} w="100%">
         <Stack align={"center"}>
-          <Heading fontWeight={350} fontSize={"4xl"}>
-            Existing Customers
-          </Heading>
+          <Heading fontWeight={350} fontSize={"4xl"}>Existing Customers</Heading>
         </Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={8}
-        >
+        <Box rounded={"lg"} bg={useColorModeValue("white", "gray.700")} boxShadow={"lg"} p={8}>
           <Stack spacing={4}>
-            <FormControl id="email">
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" onChange={(e) => setEmail(e.target.value)} />
-            </FormControl>
-            <FormControl id="password">
-              <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </FormControl>
+          <FormControl id="login-email">
+  <FormLabel>Email Address</FormLabel>
+  <Input type="email" onChange={(e) => setEmail(e.target.value)} />
+</FormControl>
+<FormControl id="login-password">
+  <FormLabel>Password</FormLabel>
+  <Input type="password" onChange={(e) => setPassword(e.target.value)} />
+</FormControl>
+
             <Stack spacing={10}>
-              <Stack
-                direction={{ base: "column", sm: "row" }}
-                align={"start"}
-                justify={"space-between"}
-              >
+              <Stack direction={{ base: "column", sm: "row" }} align={"start"} justify={"space-between"}>
                 <Link to="/register">
-                  <Text color={"blue.400"}> New Customer?</Text>
+                  <Text color={"blue.400"}>New Customer?</Text>
                 </Link>
               </Stack>
               <Button
@@ -109,11 +87,9 @@ export default function Login() {
                 bgColor="black"
                 color="white"
                 borderRadius="0"
-                _hover={{
-                  bg: "cyan.500",
-                }}
+                _hover={{ bg: "cyan.500" }}
                 isLoading={loading}
-                loadingText="Loging in..."
+                loadingText="Logging in..."
               >
                 LOGIN
               </Button>

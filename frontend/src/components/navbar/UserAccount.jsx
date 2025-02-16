@@ -19,7 +19,7 @@ function UserAccount() {
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
 
-  console.log("User data:", user);  // Debugging
+  console.log("User data:", user);  
 
   return (
     <Popover trigger="hover">

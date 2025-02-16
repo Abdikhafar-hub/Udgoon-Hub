@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Box, Button, Text, Image, VStack, HStack, Divider, Flex } from "@chakra-ui/react";
 import { UserContext } from "../Contexts/UserContext";
 import { useNavigate } from "react-router-dom";
@@ -8,19 +8,30 @@ const CartPage = () => {
   const { user, addToCart, removeFromCart, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  
+  // 🛠️ Ensure `cart` is always an array
+  const cartItems = user?.cart || [];
+
+  // ✅ Ensure `totalPrice` updates when cart changes
+  useEffect(() => {
+    const newTotalPrice = cartItems.reduce((acc, item) => acc + (Number(item.price) || 0) * item.quantity, 0);
+    setUser((prevUser) => ({
+      ...prevUser,
+      totalPrice: newTotalPrice,
+    }));
+  }, [cartItems, setUser]);
+
   const deleteItem = (productId) => {
     setUser((prevUser) => {
-      const updatedCart = prevUser.cart.filter((item) => item.id !== productId);
-      const newTotalPrice = updatedCart.reduce(
-        (acc, item) => acc + (Number(item.price) || 0) * item.quantity,
-        0
-      );
-      return { ...prevUser, cart: updatedCart, totalPrice: newTotalPrice };
+      const updatedCart = cartItems.filter((item) => item.id !== productId);
+      return { 
+        ...prevUser, 
+        cart: updatedCart, 
+        totalPrice: updatedCart.reduce((acc, item) => acc + (Number(item.price) || 0) * item.quantity, 0) 
+      };
     });
   };
 
-  if (!user.cart.length) {
+  if (cartItems.length === 0) {
     return (
       <Box textAlign="center" mt={10}>
         <Text fontSize="2xl" fontWeight="bold">Your cart is empty</Text>
@@ -37,7 +48,7 @@ const CartPage = () => {
         Your Cart
       </Text>
 
-      {user.cart.map((item) => (
+      {cartItems.map((item) => (
         <VStack key={item.id} border="1px solid #ddd" p={4} borderRadius="8px" w="100%" spacing={3} bg="white" boxShadow="lg">
           <Flex justify="space-between" w="100%">
             <Image src={item.image_link} alt={item.name} boxSize="120px" objectFit="cover" borderRadius="8px" />
@@ -47,7 +58,8 @@ const CartPage = () => {
               <Text fontSize="md">Quantity: {item.quantity}</Text>
 
               <HStack mt={2}>
-                <Button size="sm" isDisabled={item.quantity === 1} onClick={() => removeFromCart(item.id)}>-</Button>
+                <Button size="sm" onClick={() => removeFromCart(item.id)}>-</Button>
+                <Text>{item.quantity}</Text>
                 <Button size="sm" onClick={() => addToCart(item)}>+</Button>
                 <Button size="sm" colorScheme="red" onClick={() => deleteItem(item.id)}>
                   <FaTrashAlt />

@@ -7,7 +7,13 @@ const ProductPage = () => {
   const { addToCart } = useContext(UserContext);
   const navigate = useNavigate();
 
+  if (!addToCart) {
+    console.error("addToCart function is missing from UserContext.");
+    return <Text>Error: Cart functionality is not available.</Text>;
+  }
+
   const perfumes = [
+    { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
     { id: 3, name: "Lattafa Oud Mood", price: "6000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140852/yyabhbtz75x4iqxto0mi.png" },
@@ -64,42 +70,40 @@ const ProductPage = () => {
     { id: 48, name: "Club De Nuit", price: "10400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153688/oyut35besb3jlik07yfm.png" }
 ];
 
-return (
-  <Box w="80%" m="auto" py={10}>
-    <Text fontWeight={500} w={"100%"} textAlign={"center"} mb={10} fontSize={"40px"}>
-      Recommended Perfumes
-    </Text>
-    <SimpleGrid templateColumns={{ base: "1fr", sm: "1fr 1fr", md: "1fr 1fr 1fr" }} gap={10}>
-      {perfumes.map((el) => (
-        <Box key={el.id} p={5} border="1px solid #ddd" borderRadius="8px" textAlign="center">
-          {/* Centering the Image */}
-          <Box display="flex" justifyContent="center" alignItems="center" height="180px">
-            <Image 
-              src={el.image_link} 
-              alt={el.name} 
-              boxSize="150px" 
-              objectFit="contain" 
-              onClick={() => navigate(`/product/${el.id}`)} 
-            />
+  return (
+    <Box w="80%" m="auto" py={10}>
+      <Text fontWeight={500} w="100%" textAlign="center" mb={10} fontSize="40px">
+        Recommended Perfumes
+      </Text>
+      <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap={10}>
+        {perfumes.map((el) => (
+          <Box key={el.id} p={5} border="1px solid #ddd" borderRadius="8px" textAlign="center">
+            <Box display="flex" justifyContent="center" alignItems="center" height="180px">
+              <Image 
+                src={el.image_link} 
+                alt={el.name} 
+                boxSize="150px" 
+                objectFit="contain" 
+                onClick={() => navigate(`/product/${el.id}`)} 
+              />
+            </Box>
+            <Text fontSize="18px" fontWeight="bold">{el.name}</Text>
+            <Text fontSize="18px" fontWeight="500" mt={3}>Price: KSH {el.price}</Text>
+            <Button 
+              mt={4} 
+              w="100%" 
+              bgColor="black" 
+              color="white" 
+              _hover={{ bg: "cyan.500" }} 
+              onClick={() => addToCart(el)}
+            >
+              ADD TO CART 🛒
+            </Button>
           </Box>
-          <Text fontSize="18px" fontWeight="bold">{el.name}</Text>
-          <Text fontSize="18px" fontWeight="500" mt={3}>Price: KSH {el.price}</Text>
-          <Button 
-            mt={4} 
-            w="100%" 
-            bgColor="black" 
-            color="white" 
-            _hover={{ bg: "cyan.500" }} 
-            onClick={() => addToCart(el)}
-          >
-            ADD TO CART 🛒
-          </Button>
-        </Box>
-      ))}
-    </SimpleGrid>
-  </Box>
-);
-
+        ))}
+      </SimpleGrid>
+    </Box>
+  );
 };
 
 export default ProductPage;

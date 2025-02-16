@@ -6,12 +6,15 @@ import { UserContext } from "../../Contexts/UserContext";
 function Cart() {
   const { user } = useContext(UserContext);
 
-  // ✅ Fix: Ensure totalQuantity updates correctly
-  const totalQuantity = user.cart.reduce((acc, item) => acc + (item.quantity || 1), 0);
+  // 🛠️ Ensure `cart` is always an array
+  const cartItems = user?.cart || [];
+
+  // ✅ Fix: Use fallback empty array if cart is undefined
+  const totalQuantity = cartItems.reduce((acc, item) => acc + (item.quantity || 1), 0);
 
   useEffect(() => {
     console.log("Cart Updated:", totalQuantity);
-  }, [totalQuantity, user.cart]); 
+  }, [totalQuantity, cartItems]); 
 
   return (
     <Flex alignItems="center">
