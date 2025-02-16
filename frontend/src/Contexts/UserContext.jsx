@@ -7,24 +7,61 @@ export const UserContext = createContext();
 export function UserProvider({ children }) {
   const storedUser = JSON.parse(localStorage.getItem("user")) || {
     status: false,
-    name: "Guest",
+    name: "Guest",  // ✅ Default is "Guest" instead of "User"
     email: "",
     id: "",
     cart: [],
     totalPrice: 0,
   };
-
+  
   const [user, setUser] = useState(storedUser);
-  const [search, setSearch] = useState("");
-
+  const [search, setSearch] = useState()
+  
   useEffect(() => {
+    console.log("Updated User in Context:", user);  // ✅ Debugging
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
+  
 
   // ✅ Function to Recalculate Total Price
   const calculateTotalPrice = (cart) => {
     return cart.reduce((acc, item) => acc + (Number(item.price) || 0) * item.quantity, 0);
   };
+
+  // ✅ User Login Function
+  const login = (userData) => {
+    setUser({
+      ...userData,
+      status: true,
+      cart: user.cart.length ? user.cart : [],
+      totalPrice: calculateTotalPrice(user.cart),
+    });
+
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        ...userData,
+        status: true,
+        cart: user.cart.length ? user.cart : [],
+        totalPrice: calculateTotalPrice(user.cart),
+      })
+    );
+  };
+
+  // ✅ User Logout Function
+  const logout = () => {
+    setUser({
+      status: false,
+      name: "Guest",
+      email: "",
+      id: "",
+      cart: [],
+      totalPrice: 0,
+    });
+  
+    localStorage.removeItem("user");
+  };
+  
 
   // ✅ Add to Cart Function
   const addToCart = (product) => {
@@ -71,7 +108,7 @@ export function UserProvider({ children }) {
 
   // ✅ Ensure return is inside the function
   return (
-    <UserContext.Provider value={{ user, setUser, addToCart, removeFromCart, search, setSearch }}>
+    <UserContext.Provider value={{ user, setUser, login, logout, addToCart, removeFromCart, search, setSearch }}>
       {children}
     </UserContext.Provider>
   );

@@ -13,7 +13,7 @@ const ProductPage = () => {
   }
 
   const perfumes = [
-    { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
+    
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
     { id: 3, name: "Lattafa Oud Mood", price: "6000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140852/yyabhbtz75x4iqxto0mi.png" },
@@ -63,11 +63,12 @@ const ProductPage = () => {
     { id: 47, name: "Sultan Oud", price: "10500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739065123/p7g9kgmtewe911gsxhtz.jpg" },
     { id: 48, name: "Teriaq Intense", price: "8500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739152536/em0ogg1ckxpcgt9dbkzm.jpg" },
     { id: 49, name: "Maahir Legacy", price: "15500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739152655/cv6l3my3pzjggoyzjqb2.jpg" },
-    { id: 46, name: "Hawas Ice", price: "9500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739152792/mg3h0oikkfwfgyjbhsow.jpg" },
-    { id: 47, name: "Now Eau De Parfum", price: "6000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739152917/v479wxmwvgx6cmiyp3gd.png" },
-    { id: 48, name: "Arsh Extrait ", price: "7500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153234/alepupzsgj7hplisriwx.jpg" },
-    { id: 48, name: "Black Opium YSL", price: "23000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153375/p4caf0yj8e7i5hoy6ltb.jpg" },
-    { id: 48, name: "Club De Nuit", price: "10400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153688/oyut35besb3jlik07yfm.png" }
+    { id: 50, name: "Hawas Ice", price: "9500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739152792/mg3h0oikkfwfgyjbhsow.jpg" },
+    { id: 51, name: "Now Eau De Parfum", price: "6000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739152917/v479wxmwvgx6cmiyp3gd.png" },
+    { id: 52, name: "Arsh Extrait ", price: "7500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153234/alepupzsgj7hplisriwx.jpg" },
+    { id: 53, name: "Black Opium YSL", price: "23000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153375/p4caf0yj8e7i5hoy6ltb.jpg" },
+    { id: 54, name: "Club De Nuit", price: "10400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153688/oyut35besb3jlik07yfm.png" },
+    { id: 55, name: "Carolina Herrera Good Girl", price: "13000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739144039/uhqethx4cewzybidm8ac.jpg" },
 ];
 
   return (

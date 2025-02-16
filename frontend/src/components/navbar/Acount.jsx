@@ -25,7 +25,9 @@ function Account() {
         <Flex alignItems="center" gap="10px" cursor="pointer">
           <RxPerson size="20px" />
           <Text display={{ lg: "initial", md: "none", sm: "none", base: "none" }}>
-            {user.status ? user.name || "User" : "Guest"}
+          <Text>{user.status ? user.name : "Guest"}</Text>
+
+
           </Text>
         </Flex>
       </PopoverTrigger>

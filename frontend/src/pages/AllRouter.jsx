@@ -5,6 +5,7 @@ import Home from './Home'
 import Logout from './Logout'
 import Productdetails from './Productdetails'
 import CartPage from './CartPage'
+import HelpCenter from './HelpCentre'
 
 
 export default function AllRouter() {
@@ -17,6 +18,7 @@ export default function AllRouter() {
         <Route path="/logout" element={<Logout />} />
         <Route path="/product/:id" element={<Productdetails />} />
         <Route path="/CartPage/" element={<CartPage />} />
+        <Route path="/help/" element={<HelpCenter />} />
       </Routes>
     );
 }

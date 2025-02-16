@@ -1,4 +1,5 @@
 import { Box, Image, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 function TopNav() {
   return (
@@ -14,16 +15,27 @@ function TopNav() {
         boxSize="30px"
         src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739113417/k1ddlu9a4oeclq2helgo.png"
         alt="Dan Abramov"
-    
         p={2}
       />
       <Text fontSize={"14px"} p={2} color={"#2e3337"} px={2} py={1} mr={10}>
         KE - KSH
       </Text>
 
-      <Text fontSize={"14px"} p={2} color={"#2e3337"} px={2} py={1} mr={200}>
-        Help
-      </Text>
+      {/* Wrap Help with Link */}
+      <Link to="/help">
+        <Text
+          fontSize={"14px"}
+          p={2}
+          color={"#2e3337"}
+          px={2}
+          py={1}
+          mr={200}
+          cursor="pointer"
+          _hover={{ textDecoration: "underline" }}
+        >
+          Help Centre
+        </Text>
+      </Link>
     </Box>
   );
 }

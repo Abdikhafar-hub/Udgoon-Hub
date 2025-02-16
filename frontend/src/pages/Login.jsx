@@ -25,50 +25,54 @@ export default function Login() {
   const { setUser } = useContext(UserContext);
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-  
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        { email, password },
-        { withCredentials: true }
-      );
-  
-      setLoading(false);
-  
-      if (response.data.token) {
-        localStorage.setItem("token", response.data.token); // Store JWT
-  
-        // ✅ Ensure user status is set to `true` and update user details
-        setUser({
-          status: true,
-          name: response.data.user.name, 
-          email: response.data.user.email,
-          id: response.data.user.id,
-          cart: response.data.user.cart || [],
-          totalPrice: response.data.user.totalPrice || 0,
-        });
-  
-        toast({
-          title: "Login Successful",
-          status: "success",
-          isClosable: true,
-        });
-  
-        navigate("/");
-      }
-    } catch (error) {
-      setLoading(false);
+  e.preventDefault();
+  setLoading(true);
+
+  try {
+    const response = await axios.post(
+      "http://localhost:5000/api/auth/login",
+      { email, password },
+      { withCredentials: true }
+    );
+
+    setLoading(false);
+
+    console.log("Login Response:", response.data); // ✅ Debugging
+
+    if (response.data.token) {
+      localStorage.setItem("token", response.data.token);
+      
+      // ✅ Fix: Ensure name is included in the user object
+      const userData = {
+        name: response.data.user.name || "User",  // ✅ Store the name
+        email: response.data.user.email,
+        id: response.data.user.id,
+        status: true,
+        cart: [],
+        totalPrice: 0
+      };
+
+      setUser(userData);  // ✅ Update User Context
+      localStorage.setItem("user", JSON.stringify(userData)); // ✅ Store in local storage
+
       toast({
-        title: "Login Failed",
-        description: error.response?.data || "Invalid credentials",
-        status: "error",
+        title: `Welcome, ${userData.name}!`,
+        status: "success",
         isClosable: true,
       });
+      navigate("/");
     }
-  };
-  
+  } catch (error) {
+    setLoading(false);
+    toast({
+      title: "Login Failed",
+      description: error.response?.data || "Invalid credentials",
+      status: "error",
+      isClosable: true,
+    });
+  }
+};
+
 
   return (
     <Flex minH={"100vh"} align={"center"} justify={"center"} bg={useColorModeValue("gray.50", "gray.800")}>
