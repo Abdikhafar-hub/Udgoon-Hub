@@ -3,11 +3,11 @@ import React, { useState, createContext, useEffect } from "react";
 // ✅ Create the UserContext
 export const UserContext = createContext();
 
-// ✅ Create the UserProvider
+// ✅ Create the UserProvider function
 export function UserProvider({ children }) {
   const storedUser = JSON.parse(localStorage.getItem("user")) || {
     status: false,
-    name: "",
+    name: "Guest",
     email: "",
     id: "",
     cart: [],
@@ -15,7 +15,7 @@ export function UserProvider({ children }) {
   };
 
   const [user, setUser] = useState(storedUser);
-  const [search, setSearch] = useState(""); // ✅ Added search state
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
@@ -26,7 +26,7 @@ export function UserProvider({ children }) {
     return cart.reduce((acc, item) => acc + (Number(item.price) || 0) * item.quantity, 0);
   };
 
-  // ✅ Updated `addToCart`
+  // ✅ Add to Cart Function
   const addToCart = (product) => {
     setUser((prevUser) => {
       const updatedCart = prevUser.cart ? [...prevUser.cart] : [];
@@ -46,7 +46,7 @@ export function UserProvider({ children }) {
     });
   };
 
-  // ✅ Updated `removeFromCart`
+  // ✅ Remove from Cart Function
   const removeFromCart = (productId) => {
     setUser((prevUser) => {
       const updatedCart = prevUser.cart
@@ -59,7 +59,7 @@ export function UserProvider({ children }) {
           }
           return item;
         })
-        .filter(Boolean); // ✅ Remove null values (deleted items)
+        .filter(Boolean);
 
       return { 
         ...prevUser, 
@@ -69,6 +69,7 @@ export function UserProvider({ children }) {
     });
   };
 
+  // ✅ Ensure return is inside the function
   return (
     <UserContext.Provider value={{ user, setUser, addToCart, removeFromCart, search, setSearch }}>
       {children}
@@ -76,5 +77,5 @@ export function UserProvider({ children }) {
   );
 }
 
-// ✅ Ensure it's exported correctly
+// ✅ Export Default UserProvider
 export default UserProvider;

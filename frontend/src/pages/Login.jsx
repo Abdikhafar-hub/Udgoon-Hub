@@ -27,24 +27,35 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     try {
       const response = await axios.post(
         "http://localhost:5000/api/auth/login",
         { email, password },
         { withCredentials: true }
       );
-
+  
       setLoading(false);
-
+  
       if (response.data.token) {
         localStorage.setItem("token", response.data.token); // Store JWT
-        setUser(response.data.user); // Update User Context
+  
+        // ✅ Ensure user status is set to `true` and update user details
+        setUser({
+          status: true,
+          name: response.data.user.name, 
+          email: response.data.user.email,
+          id: response.data.user.id,
+          cart: response.data.user.cart || [],
+          totalPrice: response.data.user.totalPrice || 0,
+        });
+  
         toast({
           title: "Login Successful",
           status: "success",
           isClosable: true,
         });
+  
         navigate("/");
       }
     } catch (error) {
@@ -57,6 +68,7 @@ export default function Login() {
       });
     }
   };
+  
 
   return (
     <Flex minH={"100vh"} align={"center"} justify={"center"} bg={useColorModeValue("gray.50", "gray.800")}>

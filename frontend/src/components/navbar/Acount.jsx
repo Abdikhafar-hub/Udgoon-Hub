@@ -25,7 +25,7 @@ function Account() {
         <Flex alignItems="center" gap="10px" cursor="pointer">
           <RxPerson size="20px" />
           <Text display={{ lg: "initial", md: "none", sm: "none", base: "none" }}>
-            {user.status ? user.name : "Guest"}
+            {user.status ? user.name || "User" : "Guest"}
           </Text>
         </Flex>
       </PopoverTrigger>
@@ -35,8 +35,9 @@ function Account() {
         <PopoverHeader pt="40px" bg="#f9f9f9">
           {user.status ? (
             <Flex flexDir="column" rowGap="10px">
-              <Text fontWeight="bold">Welcome, {user.name} 👋</Text>
-              <Button colorScheme="red" onClick={logout}>Logout</Button>
+              <Text fontWeight="bold">Welcome, {user.name || "User"} 👋</Text>
+              <Button colorScheme="red" onClick={() => navigate("/logout")}>Logout</Button>
+
             </Flex>
           ) : (
             <Flex flexDir="column" rowGap="10px">
@@ -50,5 +51,6 @@ function Account() {
     </Popover>
   );
 }
+
 
 export default Account;
