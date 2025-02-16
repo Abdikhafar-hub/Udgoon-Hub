@@ -15,18 +15,25 @@ export function UserProvider({ children }) {
     totalPrice: 0,
   };
 
+  // Load search query from localStorage or default to an empty string
+  const storedSearch = localStorage.getItem("search") || "";
+
   const [user, setUser] = useState(storedUser);
-  const [search, setSearch] = useState(""); // ✅ Ensures `search` is properly initialized
+  const [search, setSearch] = useState(storedSearch); // ✅ Ensures `search` persists
 
   // ✅ Sync user data to local storage whenever it changes
   useEffect(() => {
-    console.log("🔄 Updating User Context:", user);
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
+  // ✅ Sync search query to local storage
+  useEffect(() => {
+    localStorage.setItem("search", search);
+  }, [search]);
+
   // ✅ Function to Recalculate Total Price
   const calculateTotalPrice = (cart) => {
-    return cart.reduce((acc, item) => acc + (Number(item.price) || 0) * item.quantity, 0);
+    return cart.reduce((acc, item) => acc + (parseFloat(item.price) || 0) * item.quantity, 0);
   };
 
   // ✅ User Login Function
@@ -84,7 +91,7 @@ export function UserProvider({ children }) {
     });
   };
 
-  // ✅ Remove from Cart Function
+  
   const removeFromCart = (productId) => {
     setUser((prevUser) => {
       const updatedCart = prevUser.cart

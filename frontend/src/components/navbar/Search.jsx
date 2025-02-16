@@ -1,46 +1,33 @@
-import { Input, InputGroup, InputRightAddon } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
+import { Input, InputGroup, InputRightAddon, Box } from "@chakra-ui/react";
+import React, { useContext } from "react";
 import { BiSearch } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../Contexts/UserContext"; // ✅ Ensure this path is correct
+import { UserContext } from "../../Contexts/UserContext"; 
 
 function Search() {
-  const [searchInput, setSearchInput] = useState("");
+  const { search, setSearch } = useContext(UserContext);
   const navigate = useNavigate();
-  const { search, setSearch } = useContext(UserContext); // ✅ Now, this will work
 
-  const handleInputChange = (e) => {
-    setSearchInput(e.target.value);
-  };
-
-  const handleSearch = () => {
-    setSearch(searchInput);
-    console.log(searchInput);
-    navigate(`/products?q=${searchInput}`);
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.code === "Enter") {
-      handleSearch();
-    }
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    navigate(`/products?q=${e.target.value}`);
   };
 
   return (
-    <InputGroup w="100%" h="40px" size="sm">
-      <Input
-        onChange={handleInputChange}
-        onKeyPress={handleKeyPress}
-        value={searchInput}
-        h="100%"
-        placeholder="Search for product or brand..."
-      />
-      <InputRightAddon
-        h="100%"
-        bg="white"
-        onClick={handleSearch}
-        children={<BiSearch />}
-      />
-    </InputGroup>
+    <Box position="relative" w="100%" maxW="900px" mx="auto"> 
+      <InputGroup size="md" w="100%">
+        <Input
+          placeholder="Search for a perfume..."
+          value={search}
+          onChange={handleSearch}
+          h="45px"
+        />
+        <InputRightAddon
+          children={<BiSearch />}
+          cursor="pointer"
+        />
+      </InputGroup>
+    </Box>
   );
 }
 

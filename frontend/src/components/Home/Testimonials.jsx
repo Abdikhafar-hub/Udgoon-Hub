@@ -1,34 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Box, Flex, Text, Image, IconButton, VStack, HStack, Container } from "@chakra-ui/react";
+import { Box, Text, Button, Flex, Image, IconButton, useColorModeValue } from "@chakra-ui/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const testimonials = [
   {
-    "id": 1,
-    "name": "Abdikhafar Issack",
-    "comment":
-      "I have been purchasing perfumes from Udgoon Hub for over a year now, and I must say the quality is unmatched! The scents are long-lasting, and the packaging is elegant. The customer service is also exceptional—they respond quickly and ensure timely deliveries. I highly recommend Udgoon Hub to anyone looking for premium fragrances!",
-    "image": "https://res.cloudinary.com/ddkkfumkl/image/upload/v1727702493/20190228001258_IMG_5505_hngip8.jpg"
+    id: 1,
+    name: "Abdikhafar Issack",
+    comment: "Udgoon Hub has the most exquisite collection of perfumes! I purchased 'Swiss Arabian Shaghaf Oud' and was blown away by its long-lasting fragrance. The quality and authenticity of their perfumes are unmatched. Highly recommend to anyone looking for luxury scents at great prices!",
+    image: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739688390/j7talvvxxdn2pajxtnix.jpg",
   },
   {
-    "id": 2,
-    "name": "Jamal",
-    "comment":
-      "Honestly, Udgoon Hub has completely transformed my fragrance collection. Their expert recommendations and high-quality perfumes have made me a loyal customer. What I love most is their honesty and commitment to delivering the best. They genuinely care about customer satisfaction!",
-    "image": "https://res.cloudinary.com/ddkkfumkl/image/upload/v1727702493/20190228001258_IMG_5505_hngip8.jpg"
+    id: 2,
+    name: "Jamac Abdirashid",
+    comment: "I have always struggled to find original designer perfumes until I came across Udgoon Hub. Their collection is amazing! I bought 'Dior Sauvage' and it’s simply incredible. The scent lasts all day, and their customer service is top-notch. Definitely coming back for more!",
+    image: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739688594/nlzrykaiknlxhjlsjzsl.jpg",
   },
   {
-    "id": 3,
-    "name": "John Doe",
-    "comment":
-      "Finding a trustworthy perfume shop was a challenge until I discovered Udgoon Hub. Their unique and luxurious scents have elevated my personal style. I constantly receive compliments, and I appreciate the transparency in their sourcing and quality assurance. Thank you, Udgoon Hub, for your dedication to excellence!",
-    "image": "https://res.cloudinary.com/ddkkfumkl/image/upload/v1727702493/20190228001258_IMG_5505_hngip8.jpg"
-  }
+    id: 3,
+    name: "Nasra Issack",
+    comment: "Finding the perfect perfume for special occasions was a hassle until I discovered Udgoon Hub. I purchased 'Yves Saint Laurent Mon Paris' and I’m absolutely in love with the scent! Their perfumes are authentic and last the entire day. Highly recommended!",
+    image: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739688940/ycnqn9wag1iflpia6jia.jpg",
+  },
+  {
+    id: 4,
+    name: "Yasmin Mohamed",
+    comment: "Udgoon Hub is my go-to store for premium fragrances. The selection is diverse, and they always have the latest collections. My recent purchase of 'Gucci Bloom' was a fantastic choice—rich, floral, and long-lasting. Amazing service and fast delivery too!",
+    image: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739689135/p7b5c2upmxe7iv50pd1n.jpg",
+  },
+  {
+    id: 5,
+    name: "John Doe",
+    comment: "Shopping for perfumes online was never this easy! Udgoon Hub provides detailed descriptions and recommendations that helped me pick 'Tom Ford Oud Wood.' The fragrance is strong yet elegant, perfect for both casual and formal wear. Excellent service and fast shipping!",
+    image: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739688760/ttm0nqfjkbgsb4ggis5c.png",
+  },
 ];
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-
+  
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide();
@@ -41,75 +50,97 @@ const Testimonials = () => {
   };
 
   const prevSlide = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length
-    );
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
   };
 
   return (
-    <Container maxW={{ base: "90%", md: "50%" }} py={4} px={4} textAlign="center" bg="gray.50" shadow="xl" rounded="xl">
-      <Text fontSize="3xl" fontWeight="bold" mb={4} color="gray.800">
-      <Text as="span" color="black">Customer</Text> <Text as="span" color="black">Feedback</Text>
-</Text>
+    <Box 
+      maxW="4xl" 
+      mx="auto" 
+      bg="white" 
+      boxShadow="lg" 
+      borderRadius="lg" 
+      p={6}
+      position="relative"
+      textAlign="center"
+    >
+      {/* Heading */}
+      <Text fontSize="2xl" fontWeight="bold" mb={6}>
+      <Text as="span" color="blackAlpha.800">Love at First Scent:</Text>{" "}
+      <Text as="span" color="blackAlpha.900">Our Customer`s Thoughts</Text>
+      </Text>
 
-
-      <Flex align="center" justify="center" position="relative" p={6} rounded="xl">
+      {/* Navigation Buttons */}
+      <Flex align="center" justify="space-between" position="relative">
         <IconButton
-          aria-label="Previous"
-          icon={<FaChevronLeft size={10} />}
-          position="absolute"
-          left={-8}
-          top="50%"
-          transform="translateY(-50%)"
+          aria-label="Previous testimonial"
+          icon={<FaChevronLeft size={24} />}
           onClick={prevSlide}
-          bg="white"
-          boxShadow="md"
-          _hover={{ bg: "gray.200" }}
+          bg="gray.200"
+          borderRadius="full"
+          position="absolute"
+          left={0}
+          zIndex={10}
+          _hover={{ bg: "gray.300" }}
         />
 
-<VStack spacing={3} textAlign="center" maxW="lg" p={4} bg="white" shadow="lg" rounded="lg">
-  <Image
-    src={testimonials[currentIndex].image}
-    alt={testimonials[currentIndex].name}
-    boxSize="80px"
-    borderRadius="full"
-    objectFit="cover"
-  />
-  <Text fontSize="md" fontStyle="italic" color="gray.700" px={4}>
-    "{testimonials[currentIndex].comment}"
-  </Text>
-  <Text mt={3} fontWeight="bold" color="blue.600" fontSize="lg">
-    {testimonials[currentIndex].name}
-  </Text>
-</VStack>
-
+        {/* Testimonial Content */}
+        <Box w="100%" overflow="hidden">
+          {testimonials.map((testimonial, index) => (
+            <Box 
+              key={testimonial.id} 
+              display={index === currentIndex ? "block" : "none"} 
+              transition="opacity 0.5s ease-in-out"
+            >
+              <Text fontSize="4xl" color="gray.300">“</Text>
+              <Image 
+                src={testimonial.image} 
+                alt={testimonial.name} 
+                boxSize="60px" 
+                borderRadius="full" 
+                mx="auto"
+                border="2px solid" 
+                borderColor="gray.300"
+                mb={2}
+              />
+              <Text fontStyle="italic" color="gray.700" px={4}>
+                {testimonial.comment}
+              </Text>
+              <Text mt={4} fontWeight="bold" color="blue.600">
+                {testimonial.name}
+              </Text>
+            </Box>
+          ))}
+        </Box>
 
         <IconButton
-          aria-label="Next"
-          icon={<FaChevronRight size={10} />}
-          position="absolute"
-          right={-8}
-          top="50%"
-          transform="translateY(-50%)"
+          aria-label="Next testimonial"
+          icon={<FaChevronRight size={24} />}
           onClick={nextSlide}
-          bg="white"
-          boxShadow="md"
-          _hover={{ bg: "gray.200" }}
+          bg="gray.200"
+          borderRadius="full"
+          position="absolute"
+          right={0}
+          zIndex={10}
+          _hover={{ bg: "gray.300" }}
         />
       </Flex>
 
-      <HStack justify="center" mt={4} spacing={2}>
-        {testimonials.map((testimonial, index) => (
+      {/* Dots for navigation */}
+      <Flex justify="center" mt={4}>
+        {testimonials.map((_, index) => (
           <Box
-            key={testimonial.id}
-            w={2.5}
-            h={2.5}
+            key={index}
+            w="8px"
+            h="8px"
+            mx="2px"
             borderRadius="full"
-            bg={index === currentIndex ? "blue.600" : "gray.300"}
+            bg={index === currentIndex ? "blue.500" : "gray.300"}
+            transition="background 0.3s"
           />
         ))}
-      </HStack>
-    </Container>
+      </Flex>
+    </Box>
   );
 };
 

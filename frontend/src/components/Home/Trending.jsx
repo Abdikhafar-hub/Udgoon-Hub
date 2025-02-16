@@ -1,9 +1,11 @@
 import { Box, Text, SimpleGrid, Image, Button, Center } from "@chakra-ui/react";
 import React from "react";
-import { Link } from "react-router-dom";
-import PromoBanner from "./PromoBanner"; // ✅ Import the PromoBanner component
+import { useNavigate } from "react-router-dom";
+import PromoBanner from "./PromoBanner"; // ✅ Keep everything as is
 
 const Trending = () => {
+  const navigate = useNavigate(); // ✅ Use navigate for redirection
+
   return (
     <Box
       alignSelf="normal"
@@ -22,69 +24,57 @@ const Trending = () => {
         m="auto"
         px="100px"
       >
+        {/* Keep all images the same */}
         <Center>
           <Box>
-            <Link to="/">
-              <Image
-                boxSize={{ lg: "12vw", base: "50vw" }}
-                src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153818/sllqotc4l9rmoueuj1ua.png"
-              />
-            </Link>
+            <Image
+              boxSize={{ lg: "12vw", base: "50vw" }}
+              src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153818/sllqotc4l9rmoueuj1ua.png"
+            />
           </Box>
         </Center>
         <Center>
           <Box>
-            <Link to="/">
-              <Image
-                boxSize={{ lg: "12vw", base: "50vw" }}
-                src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148668/rmdgeicishvxjegtlyvh.jpg"
-              />
-            </Link>
+            <Image
+              boxSize={{ lg: "12vw", base: "50vw" }}
+              src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148668/rmdgeicishvxjegtlyvh.jpg"
+            />
           </Box>
         </Center>
         <Center>
           <Box>
-            <Link to="/">
-              <Image
-                boxSize={{ lg: "12vw", base: "50vw" }}
-                src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148749/xtxwmlibcis5gee407kr.jpg"
-              />
-            </Link>
+            <Image
+              boxSize={{ lg: "12vw", base: "50vw" }}
+              src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148749/xtxwmlibcis5gee407kr.jpg"
+            />
           </Box>
         </Center>
         <Center>
           <Box>
-            <Link to="/">
-              <Image
-                boxSize={{ lg: "12vw", base: "50vw" }}
-                src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148892/ckkczklzk5nx1jhuzhqg.png"
-              />
-            </Link>
+            <Image
+              boxSize={{ lg: "12vw", base: "50vw" }}
+              src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148892/ckkczklzk5nx1jhuzhqg.png"
+            />
           </Box>
         </Center>
         <Center>
           <Box>
-            <Link to="/">
-              <Image
-                boxSize={{ lg: "12vw", base: "50vw" }}
-                src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148971/eypvkzhd71bxe0bhzlf8.png"
-              />
-            </Link>
+            <Image
+              boxSize={{ lg: "12vw", base: "50vw" }}
+              src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148971/eypvkzhd71bxe0bhzlf8.png"
+            />
           </Box>
         </Center>
         <Center>
           <Box>
-            <Link to="/">
-              <Image
-                boxSize={{ lg: "12vw", base: "50vw" }}
-                src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739149319/no8b9vy15i3d6whdupr3.png"
-              />
-            </Link>
+            <Image
+              boxSize={{ lg: "12vw", base: "50vw" }}
+              src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739149319/no8b9vy15i3d6whdupr3.png"
+            />
           </Box>
         </Center>
       </SimpleGrid>
 
-      {/* ✅ Removed the seventh image and replaced it with the PromoBanner */}
       <Box m={10} w="100%">
         <PromoBanner />
       </Box>
@@ -92,6 +82,7 @@ const Trending = () => {
       <Text pt="2.5%" fontSize="3rem" textAlign="center">
         Trending Offers
       </Text>
+
       <SimpleGrid
         w="90%"
         m="auto"
@@ -101,6 +92,7 @@ const Trending = () => {
         pr="2.5%"
         pt="2.5%"
       >
+        {/* ✅ SHOP NOW Button Now Navigates to Correct Product */}
         <Box
           alignSelf="normal"
           display="flex"
@@ -114,10 +106,10 @@ const Trending = () => {
             src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739149483/nzd7naentvjts8lbaexv.jpg"
           />
           <Text fontWeight="400" fontSize="20" mb={3}>
-          Lattafa Khamrah
+            Lattafa Khamrah
           </Text>
           <Text fontWeight="100">
-          Get a FREE 4ml  Body Spray (worth KSH 3,000) when you spend KSH 30,000 or more on Lattafa Khamrah.
+            Get a FREE 4ml Body Spray (worth KSH 3,000) when you spend KSH 30,000 or more on Lattafa Khamrah.
           </Text>
           <Button
             mt="auto"
@@ -125,10 +117,12 @@ const Trending = () => {
             borderRadius="0px"
             variant="outline"
             colorScheme="black"
+            onClick={() => navigate(`/product/12`)} // ✅ Navigate to product page
           >
-            <Link to="/"> SHOP NOW </Link>
+            SHOP NOW
           </Button>
         </Box>
+
         <Box
           alignSelf="normal"
           display="flex"
@@ -142,10 +136,10 @@ const Trending = () => {
             src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739144273/cxguramv8mzyh3enzn1m.jpg"
           />
           <Text fontWeight="400" fontSize="20" mb={3}>
-            Burberry Her 100ML 
+            Burberry Her 100ML
           </Text>
           <Text fontWeight="100">
-          Get a FREE 10ml Burberry Her Travel Spray (worth KSH 4,000) when you spend KSH 40,000 or more on Burberry Her.
+            Get a FREE 10ml Burberry Her Travel Spray (worth KSH 4,000) when you spend KSH 40,000 or more on Burberry Her.
           </Text>
           <Button
             mt="auto"
@@ -153,10 +147,12 @@ const Trending = () => {
             borderRadius="0px"
             variant="outline"
             colorScheme="black"
+            onClick={() => navigate(`/product/38`)} // ✅ Navigate to product page
           >
-            <Link to="/"> SHOP NOW </Link>
+            SHOP NOW
           </Button>
         </Box>
+
         <Box
           alignSelf="normal"
           display="flex"
@@ -173,7 +169,7 @@ const Trending = () => {
             Gucci Guilty
           </Text>
           <Text fontWeight="100">
-          Get a KSH 2,000 shopping voucher when you spend KSH 20,000 or more on Gucci Guilty.
+            Get a KSH 2,000 shopping voucher when you spend KSH 20,000 or more on Gucci Guilty.
           </Text>
           <Button
             mt="auto"
@@ -181,8 +177,9 @@ const Trending = () => {
             borderRadius="0px"
             variant="outline"
             colorScheme="black"
+            onClick={() => navigate(`/product/44`)} // ✅ Navigate to product page
           >
-            <Link to="/"> SHOP NOW </Link>
+            SHOP NOW
           </Button>
         </Box>
       </SimpleGrid>

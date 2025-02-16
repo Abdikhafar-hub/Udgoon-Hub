@@ -1,20 +1,20 @@
 import { useContext, useEffect } from "react";
-import { Box, Text, Image, Button, SimpleGrid, Input } from "@chakra-ui/react";
+import { Box, Text, Image, Button, SimpleGrid } from "@chakra-ui/react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { UserContext } from "../Contexts/UserContext";
 
 const Products = () => {
-  const { addToCart, search, setSearch } = useContext(UserContext);
+  const { search, setSearch } = useContext(UserContext);
   const navigate = useNavigate();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
-  // Get search query from URL
+  // ✅ Get search query from URL and sync with global search state
   useEffect(() => {
     const query = searchParams.get("q") || "";
     setSearch(query);
-  }, [searchParams]);
+  }, [searchParams, setSearch]);
 
-  // Perfume product list
+  // ✅ Perfume list
   const perfumes = [
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
@@ -73,37 +73,13 @@ const Products = () => {
     
   ];
 
-  // 🔍 Filter perfumes based on search query
+ 
   const filteredPerfumes = perfumes.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Handle Search Input Change
-  const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearch(value);
-
-    // Update URL query params
-    if (value) {
-      setSearchParams({ q: value });
-    } else {
-      setSearchParams({});
-    }
-  };
-
   return (
     <Box w="80%" m="auto" py={10}>
-      {/* Search Bar */}
-      <Box mb={6} textAlign="center">
-        <Input
-          placeholder="Search perfumes..."
-          value={search}
-          onChange={handleSearch}
-          width="50%"
-          mx="auto"
-        />
-      </Box>
-
       <Text fontWeight={500} w="100%" textAlign="center" mb={10} fontSize="40px">
         Recommended Perfumes
       </Text>
@@ -129,9 +105,9 @@ const Products = () => {
                 bgColor="black" 
                 color="white" 
                 _hover={{ bg: "cyan.500" }} 
-                onClick={() => addToCart(el)}
+                onClick={() => navigate(`/product/${el.id}`)}
               >
-                ADD TO CART 🛒
+                View Product
               </Button>
             </Box>
           ))
