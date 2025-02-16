@@ -144,21 +144,22 @@ const CartPage = () => {
           Back to Shopping
         </Button>
         <Button
-          flex="1"
-          colorScheme="blackAlpha"
-          bg="black"
-          color="white"
-          _hover={{ bg: "cyan.500" }}
-          onClick={() => {
-            if (!user.status) {
-              navigate("/login");
-            } else {
-              navigate("/checkout");
-            }
-          }}
-        >
-          Proceed to Checkout
-        </Button>
+  flex="1"
+  colorScheme="blackAlpha"
+  bg="black"
+  color="white"
+  _hover={{ bg: "cyan.500" }}
+  onClick={() => {
+    if (!user.status) {
+      navigate("/login");
+    } else {
+      navigate("/checkout", { state: { totalPrice: user.totalPrice } }); // Pass total amount
+    }
+  }}
+>
+  Proceed to Checkout
+</Button>
+
       </HStack>
     </Box>
   );

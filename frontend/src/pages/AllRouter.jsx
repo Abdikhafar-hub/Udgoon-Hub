@@ -8,6 +8,7 @@ import CartPage from './CartPage'
 import HelpCenter from './HelpCentre'
 import UserAccount from "./UserAccount";
 import Products from "./Products";
+import CheckoutPage from './CheckoutPage'
 
 
 export default function AllRouter() {
@@ -23,6 +24,7 @@ export default function AllRouter() {
         <Route path="/help/" element={<HelpCenter />} />
         <Route path="/useraccount" element={<UserAccount />} /> 
         <Route path="/products" element={<Products />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     );
 }
