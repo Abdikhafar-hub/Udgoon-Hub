@@ -1,7 +1,7 @@
 import { Box, Flex, Text,Image } from "@chakra-ui/react";
 import Crousel from "../components/Home/Crousel";
 import Trending from "../components/Home/Trending";
-import CardSlide from "../components/Home/Products";
+import CardSlide from "./Products";
 import Middle from "../components/Home/Testimonials";
 import Contact from "../components/Home/Contact"
 

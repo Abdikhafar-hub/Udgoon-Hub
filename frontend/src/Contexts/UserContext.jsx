@@ -5,23 +5,24 @@ export const UserContext = createContext();
 
 // ✅ Create the UserProvider function
 export function UserProvider({ children }) {
+  // Load user data from local storage OR use default values
   const storedUser = JSON.parse(localStorage.getItem("user")) || {
     status: false,
-    name: "Guest",  // ✅ Default is "Guest" instead of "User"
+    name: "Guest",
     email: "",
     id: "",
     cart: [],
     totalPrice: 0,
   };
-  
+
   const [user, setUser] = useState(storedUser);
-  const [search, setSearch] = useState()
-  
+  const [search, setSearch] = useState(""); // ✅ Ensures `search` is properly initialized
+
+  // ✅ Sync user data to local storage whenever it changes
   useEffect(() => {
-    console.log("Updated User in Context:", user);  // ✅ Debugging
+    console.log("🔄 Updating User Context:", user);
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
-  
 
   // ✅ Function to Recalculate Total Price
   const calculateTotalPrice = (cart) => {
@@ -30,26 +31,23 @@ export function UserProvider({ children }) {
 
   // ✅ User Login Function
   const login = (userData) => {
-    setUser({
+    const updatedUser = {
       ...userData,
       status: true,
       cart: user.cart.length ? user.cart : [],
       totalPrice: calculateTotalPrice(user.cart),
-    });
+    };
 
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        ...userData,
-        status: true,
-        cart: user.cart.length ? user.cart : [],
-        totalPrice: calculateTotalPrice(user.cart),
-      })
-    );
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+
+    console.log("✅ User logged in:", updatedUser);
   };
 
   // ✅ User Logout Function
   const logout = () => {
+    console.log("🚪 User logged out");
+
     setUser({
       status: false,
       name: "Guest",
@@ -58,28 +56,31 @@ export function UserProvider({ children }) {
       cart: [],
       totalPrice: 0,
     });
-  
+
     localStorage.removeItem("user");
   };
-  
 
   // ✅ Add to Cart Function
   const addToCart = (product) => {
     setUser((prevUser) => {
       const updatedCart = prevUser.cart ? [...prevUser.cart] : [];
-
       const existingProduct = updatedCart.find((item) => item.id === product.id);
+
       if (existingProduct) {
         existingProduct.quantity += 1;
       } else {
         updatedCart.push({ ...product, quantity: 1 });
       }
 
-      return { 
-        ...prevUser, 
-        cart: updatedCart, 
-        totalPrice: calculateTotalPrice(updatedCart) 
+      const updatedUser = {
+        ...prevUser,
+        cart: updatedCart,
+        totalPrice: calculateTotalPrice(updatedCart),
       };
+
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      return updatedUser;
     });
   };
 
@@ -89,24 +90,24 @@ export function UserProvider({ children }) {
       const updatedCart = prevUser.cart
         .map((item) => {
           if (item.id === productId) {
-            if (item.quantity > 1) {
-              return { ...item, quantity: item.quantity - 1 };
-            }
-            return null; // ✅ Remove item if quantity is 1
+            return item.quantity > 1 ? { ...item, quantity: item.quantity - 1 } : null;
           }
           return item;
         })
         .filter(Boolean);
 
-      return { 
-        ...prevUser, 
-        cart: updatedCart, 
-        totalPrice: calculateTotalPrice(updatedCart) 
+      const updatedUser = {
+        ...prevUser,
+        cart: updatedCart,
+        totalPrice: calculateTotalPrice(updatedCart),
       };
+
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      return updatedUser;
     });
   };
 
-  // ✅ Ensure return is inside the function
   return (
     <UserContext.Provider value={{ user, setUser, login, logout, addToCart, removeFromCart, search, setSearch }}>
       {children}

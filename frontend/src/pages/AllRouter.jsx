@@ -6,6 +6,8 @@ import Logout from './Logout'
 import Productdetails from './Productdetails'
 import CartPage from './CartPage'
 import HelpCenter from './HelpCentre'
+import UserAccount from "./UserAccount";
+import Products from "./Products";
 
 
 export default function AllRouter() {
@@ -19,6 +21,8 @@ export default function AllRouter() {
         <Route path="/product/:id" element={<Productdetails />} />
         <Route path="/CartPage/" element={<CartPage />} />
         <Route path="/help/" element={<HelpCenter />} />
+        <Route path="/useraccount" element={<UserAccount />} /> 
+        <Route path="/products" element={<Products />} />
       </Routes>
     );
 }

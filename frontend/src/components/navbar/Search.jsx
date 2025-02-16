@@ -16,7 +16,7 @@ function Search() {
   const handleSearch = () => {
     setSearch(searchInput);
     console.log(searchInput);
-    navigate(`/productpage?q=${searchInput}`);
+    navigate(`/products?q=${searchInput}`);
   };
 
   const handleKeyPress = (e) => {

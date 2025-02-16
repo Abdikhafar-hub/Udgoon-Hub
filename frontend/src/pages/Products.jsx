@@ -1,19 +1,21 @@
-import { useContext } from "react";
-import { Box, Text, Image, Button, SimpleGrid } from "@chakra-ui/react";
-import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../Contexts/UserContext";
+import { useContext, useEffect } from "react";
+import { Box, Text, Image, Button, SimpleGrid, Input } from "@chakra-ui/react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { UserContext } from "../Contexts/UserContext";
 
-const ProductPage = () => {
-  const { addToCart } = useContext(UserContext);
+const Products = () => {
+  const { addToCart, search, setSearch } = useContext(UserContext);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  if (!addToCart) {
-    console.error("addToCart function is missing from UserContext.");
-    return <Text>Error: Cart functionality is not available.</Text>;
-  }
+  // Get search query from URL
+  useEffect(() => {
+    const query = searchParams.get("q") || "";
+    setSearch(query);
+  }, [searchParams]);
 
+  // Perfume product list
   const perfumes = [
-    
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
     { id: 3, name: "Lattafa Oud Mood", price: "6000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140852/yyabhbtz75x4iqxto0mi.png" },
@@ -67,44 +69,78 @@ const ProductPage = () => {
     { id: 51, name: "Now Eau De Parfum", price: "6000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739152917/v479wxmwvgx6cmiyp3gd.png" },
     { id: 52, name: "Arsh Extrait ", price: "7500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153234/alepupzsgj7hplisriwx.jpg" },
     { id: 53, name: "Black Opium YSL", price: "23000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153375/p4caf0yj8e7i5hoy6ltb.jpg" },
-    { id: 54, name: "Club De Nuit", price: "10400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153688/oyut35besb3jlik07yfm.png" },
-    { id: 55, name: "Carolina Herrera Good Girl", price: "13000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739144039/uhqethx4cewzybidm8ac.jpg" },
-];
+    { id: 54, name: "Club De Nuit", price: "10400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153688/oyut35besb3jlik07yfm.png" }
+    
+  ];
+
+  // 🔍 Filter perfumes based on search query
+  const filteredPerfumes = perfumes.filter((product) =>
+    product.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  // Handle Search Input Change
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+
+    // Update URL query params
+    if (value) {
+      setSearchParams({ q: value });
+    } else {
+      setSearchParams({});
+    }
+  };
 
   return (
     <Box w="80%" m="auto" py={10}>
+      {/* Search Bar */}
+      <Box mb={6} textAlign="center">
+        <Input
+          placeholder="Search perfumes..."
+          value={search}
+          onChange={handleSearch}
+          width="50%"
+          mx="auto"
+        />
+      </Box>
+
       <Text fontWeight={500} w="100%" textAlign="center" mb={10} fontSize="40px">
         Recommended Perfumes
       </Text>
+
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap={10}>
-        {perfumes.map((el) => (
-          <Box key={el.id} p={5} border="1px solid #ddd" borderRadius="8px" textAlign="center">
-            <Box display="flex" justifyContent="center" alignItems="center" height="180px">
-              <Image 
-                src={el.image_link} 
-                alt={el.name} 
-                boxSize="150px" 
-                objectFit="contain" 
-                onClick={() => navigate(`/product/${el.id}`)} 
-              />
+        {filteredPerfumes.length > 0 ? (
+          filteredPerfumes.map((el) => (
+            <Box key={el.id} p={5} border="1px solid #ddd" borderRadius="8px" textAlign="center">
+              <Box display="flex" justifyContent="center" alignItems="center" height="180px">
+                <Image 
+                  src={el.image_link} 
+                  alt={el.name} 
+                  boxSize="150px" 
+                  objectFit="contain" 
+                  onClick={() => navigate(`/product/${el.id}`)} 
+                />
+              </Box>
+              <Text fontSize="18px" fontWeight="bold">{el.name}</Text>
+              <Text fontSize="18px" fontWeight="500" mt={3}>Price: KSH {el.price}</Text>
+              <Button 
+                mt={4} 
+                w="100%" 
+                bgColor="black" 
+                color="white" 
+                _hover={{ bg: "cyan.500" }} 
+                onClick={() => addToCart(el)}
+              >
+                ADD TO CART 🛒
+              </Button>
             </Box>
-            <Text fontSize="18px" fontWeight="bold">{el.name}</Text>
-            <Text fontSize="18px" fontWeight="500" mt={3}>Price: KSH {el.price}</Text>
-            <Button 
-              mt={4} 
-              w="100%" 
-              bgColor="black" 
-              color="white" 
-              _hover={{ bg: "cyan.500" }} 
-              onClick={() => addToCart(el)}
-            >
-              ADD TO CART 🛒
-            </Button>
-          </Box>
-        ))}
+          ))
+        ) : (
+          <Text textAlign="center" fontSize="18px">No products found</Text>
+        )}
       </SimpleGrid>
     </Box>
   );
 };
 
-export default ProductPage;
+export default Products;
