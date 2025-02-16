@@ -17,13 +17,20 @@ function Account() {
   const navigate = useNavigate();
   const { user, logout } = useContext(UserContext);
 
+  // Extract first name from email if name is missing
+  const firstName = user.name && user.name !== "User"
+    ? user.name.split(" ")[0] // Get first word from full name
+    : user.email
+    ? user.email.split("@")[0] // Extract username before "@"
+    : "Guest";
+
   return (
     <Popover trigger="hover">
       <PopoverTrigger>
         <Flex alignItems="center" gap="10px" cursor="pointer">
           <RxPerson size="20px" />
           <Text display={{ lg: "initial", md: "none", sm: "none", base: "none" }}>
-            {user.status ? `Welcome, ${user.name}` : "Welcome, Guest"}
+            {user.status ? `Welcome, ${firstName}` : "Welcome, Guest"}
           </Text>
         </Flex>
       </PopoverTrigger>
@@ -33,11 +40,11 @@ function Account() {
         <Flex flexDir="column" rowGap="10px" p={4}>
           {user.status ? (
             <>
-              <Text fontWeight="bold">Hello, {user.name} 👋</Text>
+              <Text fontWeight="bold">Hello, {firstName} 👋</Text>
               <Text>Email: {user.email}</Text>
               <Button colorScheme="blue" onClick={() => navigate("/useraccount")}>
-      View Profile
-    </Button>
+                View Profile
+              </Button>
               <Button colorScheme="red" onClick={logout}>
                 Logout
               </Button>
