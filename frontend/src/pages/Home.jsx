@@ -22,7 +22,7 @@ export default function Home() {
       >
         {" "}
         <Text fontSize={"18px"} fontWeight={"bold"}>
-        Get 15% off select products, plus 2 free gifts on orders over KSh 5,000!{" "}
+        Get 15% off select products, plus 2 free gifts on orders over KSh 10,000!{" "}
         </Text>
       </Box>
       <Crousel />

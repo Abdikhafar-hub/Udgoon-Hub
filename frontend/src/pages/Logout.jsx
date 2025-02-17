@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../Contexts/UserContext"; // ✅ Correct path
+import { UserContext } from "../Contexts/UserContext"; 
 import { Spinner, Box, Text } from "@chakra-ui/react";
 
 const Logout = () => {
@@ -8,7 +8,7 @@ const Logout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Clear user data from context and localStorage
+  
     setUser({
       status: false,
       name: "Guest",
@@ -20,7 +20,7 @@ const Logout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
 
-    // Redirect to home page after a brief delay
+   
     setTimeout(() => {
       navigate("/");
     }, 1500);

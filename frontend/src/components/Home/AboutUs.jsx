@@ -6,9 +6,9 @@ const MotionBox = motion(Box);
 const AboutUs = () => {
   return (
     <Container maxW="container.md" py={12}>
-      {/* ✅ Animated Card with Gold Theme */}
+      
       <MotionBox
-        bgGradient="linear(to-r, white, #fdf6e3)" // Luxurious gradient background
+        bgGradient="linear(to-r, white, #fdf6e3)" 
         p={10}
         borderRadius="lg"
         boxShadow="lg"
@@ -18,7 +18,7 @@ const AboutUs = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        {/* ✅ Header Section */}
+        
         <VStack spacing={4}>
           <Heading
             fontSize="4xl"
@@ -37,7 +37,7 @@ const AboutUs = () => {
           </Text>
         </VStack>
 
-        {/* ✅ Why Choose Us Section */}
+        
         <VStack spacing={6} align="center" mt={10}>
           <Heading
             fontSize="2xl"
@@ -57,7 +57,7 @@ const AboutUs = () => {
             that enhances confidence and personal style.
           </Text>
 
-          {/* ✅ Our Mission */}
+          
           <Heading
             fontSize="2xl"
             fontWeight="bold"
@@ -77,7 +77,7 @@ const AboutUs = () => {
             secure payments, and world-class customer support.
           </Text>
 
-          {/* ✅ Elevate Your Scent Game */}
+          
           <Heading
             fontSize="2xl"
             fontWeight="bold"

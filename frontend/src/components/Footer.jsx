@@ -14,6 +14,7 @@ import {
   Link,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { Link as RouterLink } from "react-router-dom"; 
 import {
   FaFacebook,
   FaInstagram,
@@ -26,10 +27,9 @@ import { TbTruckDelivery, TbRefresh, TbHelp } from "react-icons/tb";
 import { MdGpsFixed } from "react-icons/md";
 
 
-// Animation wrapper
 const MotionBox = motion(Box);
 
-// Social media icons with smooth animations
+
 const socialLinks = [
   { icon: FaFacebook, link: "https://web.facebook.com/abdikhafar.issack.9", color: "blue.500" },
   { icon: FaTwitter, link: "https://x.com/AbdikhafarI", color: "cyan.400" },
@@ -49,10 +49,7 @@ export default function Footer() {
     <Box bgGradient="linear(to-r, blackAlpha.900, gray.800)" color="white">
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid templateColumns={{ sm: "1fr", md: "1fr 1fr" }} spacing={8} alignItems="center">
-          {/* Signup Section */}
           
-
-          {/* Social Media Section */}
           <VStack spacing={4} textAlign="center">
             <Text fontSize="lg" fontWeight="600">
               Follow us for the latest fragrances
@@ -76,71 +73,75 @@ export default function Footer() {
 
         <Divider my={6} />
 
-        {/* Links Section */}
+        
         <SimpleGrid templateColumns={{ sm: "1fr", md: "2fr 1fr 1fr 1fr" }} spacing={8}>
+          
           <Stack align={"flex-start"}>
             <ListHeader>Customer Support</ListHeader>
             <List spacing={2}>
               <ListItem>
                 <HStack>
                   <ListIcon as={PhoneIcon} fontSize="md" color="pink.300" />
-                  <Text>Customer Service</Text>
+                  <Link as={RouterLink} to="/help">Customer Service</Link>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
                   <ListIcon as={TbTruckDelivery} fontSize="md" color="purple.300" />
-                  <Text>Delivery Information</Text>
+                  <Link as={RouterLink} to="/help">Delivery Information</Link>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
                   <ListIcon as={TbRefresh} fontSize="md" color="purple.300" />
-                  <Text>Return & Refund</Text>
+                  <Link as={RouterLink} to="/help">Return & Refund</Link>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
                   <ListIcon as={TbHelp} fontSize="md" color="pink.300" />
-                  <Text>Help Center</Text>
+                  <Link as={RouterLink} to="/help">Help Center</Link>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
                   <ListIcon as={MdGpsFixed} fontSize="md" color="pink.300" />
-                  <Text>Track My Order</Text>
+                  <Link as={RouterLink} to="/help">Track My Order</Link>
                 </HStack>
               </ListItem>
             </List>
           </Stack>
 
+          
           <Stack align={"flex-start"}>
             <ListHeader>Explore</ListHeader>
-            <Link href="#">About Us</Link>
-            <Link href="#">New Arrivals</Link>
-            <Link href="#">Best Sellers</Link>
-            <Link href="#">Exclusive Scents</Link>
-            <Link href="#">Gift Sets</Link>
+            <Link as={RouterLink} to="/aboutus">About Us</Link>
+            <Link as={RouterLink} to="/aboutus">New Arrivals</Link>
+            <Link as={RouterLink} to="/aboutus">Best Sellers</Link>
+            <Link as={RouterLink} to="/aboutus">Exclusive Scents</Link>
+            <Link as={RouterLink} to="/aboutus">Gift Sets</Link>
           </Stack>
 
+          
           <Stack align={"flex-start"}>
             <ListHeader>Legal</ListHeader>
-            <Link href="#">Privacy Policy</Link>
-            <Link href="#">Terms & Conditions</Link>
-            <Link href="#">Cookie Settings</Link>
+            <Link as={RouterLink} to="/help">Privacy Policy</Link>
+            <Link as={RouterLink} to="/help">Terms & Conditions</Link>
+            <Link as={RouterLink} to="/help">Cookie Settings</Link>
           </Stack>
 
+          
           <Stack align={"flex-start"}>
             <ListHeader>Contact Us</ListHeader>
-            <Link href="#">Message Us</Link>
-            <Link href="#">Free Perfume Consultations</Link>
-            <Link href="#">Wholesale Inquiries</Link>
+            <Link as={RouterLink} to="/contact">Message Us</Link>
+            <Link as={RouterLink} to="/contact">Free Perfume Consultations</Link>
+            <Link as={RouterLink} to="/contact">Wholesale Inquiries</Link>
           </Stack>
         </SimpleGrid>
 
         <Divider my={6} />
 
-        {/* Footer Bottom */}
+        
         <Text textAlign="center" fontSize="sm" opacity="0.7">
           © {new Date().getFullYear()} Udgoon Hub - Where Luxury Meets Fragrance. All rights reserved.
         </Text>

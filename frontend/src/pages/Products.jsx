@@ -8,13 +8,13 @@ const Products = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  // ✅ Get search query from URL and sync with global search state
+ 
   useEffect(() => {
     const query = searchParams.get("q") || "";
     setSearch(query);
   }, [searchParams, setSearch]);
 
-  // ✅ Perfume list
+  
   const perfumes = [
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
@@ -85,7 +85,7 @@ const Products = () => {
   w="100%"
   textAlign="center"
   mb={10}
-  fontSize="3rem"
+  fontSize="2.2rem"
   fontFamily="Playfair Display"
   fontStyle="italic"
   color="goldenrod"

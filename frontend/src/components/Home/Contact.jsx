@@ -12,7 +12,7 @@ const Contact = () => {
   return (
     <Container maxW="7xl" py={10}>
       <Flex direction={{ base: "column", md: "row" }} gap={10} alignItems="start">
-        {/* Contact Info */}
+       
         <Box flex={1} bg="white" p={8} rounded="lg" shadow="md" color="black">
           <Text bg="gray.200" color="black" px={2} py={1} rounded="md" fontSize="sm" display="inline-block">Contact</Text>
           <Heading size="lg" mt={3} color="black">Contact Us</Heading>
@@ -37,7 +37,7 @@ const Contact = () => {
           </VStack>
         </Box>
         
-        {/* Contact Form */}
+        
         <Box flex={1} bg="white" p={6} shadow="lg" rounded="lg">
           <VStack spacing={4}>
             <Input placeholder="Your First Name" borderColor="gray.400" focusBorderColor="black" color="black" bg="white" />

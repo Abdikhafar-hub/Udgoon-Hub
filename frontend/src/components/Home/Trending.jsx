@@ -1,10 +1,10 @@
 import { Box, Text, SimpleGrid, Image, Button, Center } from "@chakra-ui/react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import PromoBanner from "./PromoBanner"; // ✅ Keep everything as is
+import PromoBanner from "./PromoBanner"; 
 
 const Trending = () => {
-  const navigate = useNavigate(); // ✅ Use navigate for redirection
+  const navigate = useNavigate(); 
 
   return (
     <Box
@@ -14,8 +14,8 @@ const Trending = () => {
       alignItems="center"
     >
       <Text
-         pt="4%" // Increased padding for better spacing
-        fontSize="2.2rem" // Slightly bigger for emphasis
+         pt="4%" 
+        fontSize="2.2rem" 
          mb={12}
         textAlign="center"
         fontWeight="bold"
@@ -23,8 +23,8 @@ const Trending = () => {
         fontStyle="italic"
         color="goldenrod"
         textDecoration="underline"
-        textUnderlineOffset={8} // Adjusted for better styling
-        textShadow="1px 1px 8px rgba(0, 0, 0, 0.1)" // Subtle shadow for depth
+        textUnderlineOffset={8} 
+        textShadow="1px 1px 8px rgba(0, 0, 0, 0.1)" 
       >
        ✨ Top Brands ✨
       </Text>
@@ -37,7 +37,7 @@ const Trending = () => {
         m="auto"
         px="100px"
       >
-        {/* Keep all images the same */}
+       
         <Center>
           <Box>
             <Image
@@ -93,16 +93,16 @@ const Trending = () => {
       </Box>
 
       <Text
-         pt="4%" // Increased padding for better alignment
-         fontSize="3.2rem" // Slightly larger for emphasis
+         pt="4%" 
+         fontSize="2.2rem" 
          textAlign="center"
          fontWeight="bold"
          fontFamily="Playfair Display"
          fontStyle="italic"
          color="goldenrod"
          textDecoration="underline"
-         textUnderlineOffset={10} // More spacing for elegance
-         textShadow="1px 1px 10px rgba(0, 0, 0, 0.15)" // Soft glow effect
+         textUnderlineOffset={10} 
+         textShadow="1px 1px 10px rgba(0, 0, 0, 0.15)" 
       >
        🔥 Trending Offers 🔥
       </Text>
@@ -117,7 +117,7 @@ const Trending = () => {
         pr="2.5%"
         pt="2.5%"
       >
-        {/* ✅ SHOP NOW Button Now Navigates to Correct Product */}
+        
         <Box
           alignSelf="normal"
           display="flex"
@@ -142,7 +142,7 @@ const Trending = () => {
             borderRadius="0px"
             variant="outline"
             colorScheme="black"
-            onClick={() => navigate(`/product/12`)} // ✅ Navigate to product page
+            onClick={() => navigate(`/product/12`)} 
           >
             SHOP NOW
           </Button>
@@ -172,7 +172,7 @@ const Trending = () => {
             borderRadius="0px"
             variant="outline"
             colorScheme="black"
-            onClick={() => navigate(`/product/38`)} // ✅ Navigate to product page
+            onClick={() => navigate(`/product/38`)} 
           >
             SHOP NOW
           </Button>
@@ -202,7 +202,7 @@ const Trending = () => {
             borderRadius="0px"
             variant="outline"
             colorScheme="black"
-            onClick={() => navigate(`/product/44`)} // ✅ Navigate to product page
+            onClick={() => navigate(`/product/44`)} 
           >
             SHOP NOW
           </Button>

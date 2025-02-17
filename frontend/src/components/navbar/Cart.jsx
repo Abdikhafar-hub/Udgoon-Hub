@@ -15,10 +15,10 @@ function Cart() {
   return (
     <Flex alignItems="center" position="relative" cursor="pointer" _hover={{ transform: "scale(1.1)", transition: "0.2s" }}>
       <Box position="relative">
-        {/* Shopping Cart Icon */}
+        
         <AiOutlineShoppingCart size="28px" color="#333" />
 
-        {/* Notification Badge */}
+        
         {totalQuantity > 0 && (
           <Box
             position="absolute"

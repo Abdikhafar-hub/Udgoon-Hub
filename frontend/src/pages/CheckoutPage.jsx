@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import mpesaLogo from "/mpesa.png"; // Ensure M-Pesa logo is in assets
+import mpesaLogo from "/mpesa.png"; 
 
 const countiesAndConstituencies = {
   "Baringo": ["Baringo Central", "Baringo North", "Baringo South", "Eldama Ravine", "Mogotio", "Tiaty"],
@@ -112,9 +112,9 @@ const CheckoutPage = () => {
       alert("Please fill all required fields.");
       return;
     }
-    console.log("Opening M-Pesa Modal..."); // Debugging
-    setIsMpesaModalOpen(true);
+    setIsMpesaModalOpen(true); 
   };
+  
 
   const handlePayment = async () => {
     setIsProcessing(true);
@@ -142,8 +142,8 @@ const CheckoutPage = () => {
 
       if (response.data.message === "Payment initiated successfully.") {
         alert("✅ Payment request sent! Check your M-Pesa and enter your PIN.");
-        setIsMpesaModalOpen(false); // Close M-Pesa modal
-        setIsPaymentSuccess(true);  // Open success modal
+        setIsMpesaModalOpen(false); 
+        setIsPaymentSuccess(true);  
       }
     } catch (error) {
       console.error("Payment error:", error.response?.data || error.message);

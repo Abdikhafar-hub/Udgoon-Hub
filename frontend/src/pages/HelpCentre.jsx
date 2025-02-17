@@ -4,7 +4,7 @@ import { useState } from "react";
 function HelpCenter() {
   const [selectedCategory, setSelectedCategory] = useState("Delivery");
 
-  // Categories for Help Center
+  
   const categories = [
     { name: "Delivery", topics: ["How can I track my delivery?", "What if I am not available to receive my delivery?", "What do I do if my delivery is delayed?"] },
     { name: "Returns & Refunds", topics: ["What is Udgoon Hub's return policy?"] },
@@ -12,7 +12,7 @@ function HelpCenter() {
     { name: "Payments", topics: ["How to pay via M-Pesa?", "Are there additional charges for M-Pesa transactions?", "What happens if my payment fails?"] },
   ];
 
-  // Help Center Content (FAQs)
+  
   const helpTopics = {
     "How can I track my delivery?": (
       <VStack align="start">
@@ -96,7 +96,7 @@ function HelpCenter() {
 
   return (
     <Box display="flex" h="100vh" p={5}>
-      {/* Sidebar */}
+     
       <Box w="250px" borderRight="1px solid #e2e8f0" p={4}>
         <Text fontSize="lg" fontWeight="bold" mb={4}>Help Center</Text>
         {categories.map((category) => (
@@ -114,7 +114,7 @@ function HelpCenter() {
         ))}
       </Box>
 
-      {/* Main Content */}
+      
       <Box flex="1" p={5}>
         <Text fontSize="xl" fontWeight="bold">{selectedCategory}</Text>
         <Divider my={3} />

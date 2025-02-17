@@ -64,11 +64,11 @@ const Testimonials = () => {
       position="relative"
       textAlign="center"
     >
-      {/* Heading */}
+      
       <Text 
-  fontSize="3rem"  // Bigger for emphasis
+  fontSize="3rem"  
   fontWeight="bold" 
-  mb={8} // Slightly increased bottom margin
+  mb={8} 
   textAlign="center"
   fontFamily="'Playfair Display', serif"
 >
@@ -77,7 +77,7 @@ const Testimonials = () => {
     color="goldenrod" 
     fontFamily="'Playfair Display', serif" 
     textShadow="1px 1px 6px rgba(0, 0, 0, 0.15)"
-    fontSize="2.1rem" // Slightly larger for the main title
+    fontSize="2.1rem" 
   >
     🌸 Love at First Scent:
   </Text>{" "}
@@ -85,7 +85,7 @@ const Testimonials = () => {
     as="span" 
     color="blackAlpha.900" 
     fontFamily="'Merriweather', serif" 
-    fontSize="2.1rem" // Slightly smaller for balance
+    fontSize="2.1rem" 
   >
     Our Customers' Thoughts 💖
   </Text>
@@ -93,7 +93,7 @@ const Testimonials = () => {
 
 
 
-      {/* Navigation Buttons */}
+      
       <Flex align="center" justify="space-between" position="relative">
         <IconButton
           aria-label="Previous testimonial"
@@ -107,7 +107,7 @@ const Testimonials = () => {
           _hover={{ bg: "gray.300" }}
         />
 
-        {/* Testimonial Content */}
+        
         <Box w="100%" overflow="hidden">
           {testimonials.map((testimonial, index) => (
             <Box 
@@ -149,7 +149,7 @@ const Testimonials = () => {
         />
       </Flex>
 
-      {/* Dots for navigation */}
+      
       <Flex justify="center" mt={4}>
         {testimonials.map((_, index) => (
           <Box

@@ -27,7 +27,7 @@ function CartTable() {
   const toast = useToast();
 
   useEffect(() => {
-    console.log("User Cart Data:", user.cart); // 🛠️ Debugging
+    console.log("User Cart Data:", user.cart); 
 
     axios
       .get(`/${user.id}`, {
@@ -62,7 +62,7 @@ function CartTable() {
   useEffect(() => {
     setUser((prevUser) => ({
       ...prevUser,
-      cart: Array.isArray(data) ? data.length : 0, // 🛠️ Ensure cart is always an array
+      cart: Array.isArray(data) ? data.length : 0, 
       totalPrice: data.reduce((acc, item) => acc + item.price, 0),
     }));
 

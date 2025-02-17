@@ -22,19 +22,19 @@ function Navmenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
-  // ✅ Function to Close Menu When Clicking a Link
+ 
   const handleCloseMenu = () => {
-    onClose(); // Closes the menu after clicking a link
+    onClose(); 
   };
 
   return (
     <>
-      {/* ✅ Hamburger Icon (Opens Menu) */}
+      
       <Box ref={btnRef} onClick={onOpen} cursor="pointer">
         <RxHamburgerMenu size={24} />
       </Box>
 
-      {/* ✅ Sidebar Drawer */}
+      
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent>
@@ -43,7 +43,7 @@ function Navmenu() {
             <AiFillHome size={24} />
           </DrawerHeader>
 
-          {/* ✅ Menu Links (Automatically Closes on Click) */}
+         
           <DrawerBody>
           <Link to="/aboutus" onClick={handleCloseMenu}>
               <Button w="100%" mb={2}>AboutUs</Button>
@@ -65,7 +65,7 @@ function Navmenu() {
             </Link>
           </DrawerBody>
 
-          {/* ✅ Footer Section */}
+         
           <DrawerFooter bg="#f9f9f9">
             <Flex mb="50px" w="100%" alignItems="center" justifyContent="space-between">
               <Image w="30px" h="30px" border="1px solid" borderRadius="100%" src="" />

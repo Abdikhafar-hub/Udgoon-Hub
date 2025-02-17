@@ -6,20 +6,20 @@ require("dotenv").config();
 
 const router = express.Router();
 
-// M-Pesa API Credentials
+
 const shortCode = process.env.MPESA_SHORTCODE || "174379";
 const passKey = process.env.MPESA_PASSKEY;
 const consumerKey = process.env.MPESA_CONSUMER_KEY;
 const consumerSecret = process.env.MPESA_CONSUMER_SECRET;
 const callbackUrl = process.env.CALLBACK_URL || "https://yourwebsite.com/mpesa/callback";
 
-// Generate Timestamp
+
 const getTimestamp = () => {
   const date = new Date();
   return `${date.getFullYear()}${("0" + (date.getMonth() + 1)).slice(-2)}${("0" + date.getDate()).slice(-2)}${("0" + date.getHours()).slice(-2)}${("0" + date.getMinutes()).slice(-2)}${("0" + date.getSeconds()).slice(-2)}`;
 };
 
-// Generate Access Token
+
 const getMpesaAccessToken = async () => {
   try {
     console.log("🔹 Requesting M-Pesa Access Token...");
@@ -33,7 +33,7 @@ const getMpesaAccessToken = async () => {
     );
 
     console.log("✅ M-Pesa Access Token Received:", response.data.access_token);
-    return response.data.access_token; // Always return a new token
+    return response.data.access_token; 
   } catch (error) {
     console.error("❌ M-Pesa Token Error:", error.response?.data || error.message);
     return null;
@@ -41,7 +41,7 @@ const getMpesaAccessToken = async () => {
 };
 
 
-// STK Push Payment
+
 const initiatePayment = async (rawPhone, amount = 1) => {
   try {
     const accessToken = await getMpesaAccessToken();
@@ -83,7 +83,7 @@ const initiatePayment = async (rawPhone, amount = 1) => {
 };
 
 
-// Protected Payment Route
+
 router.post("/pay", verifyToken, async (req, res) => {
   const { phoneNumber, totalPrice = 1 } = req.body;
 
@@ -95,7 +95,7 @@ router.post("/pay", verifyToken, async (req, res) => {
   console.log(`🔹 Processing payment for: ${phoneNumber} Amount: ${totalPrice}`);
 
   try {
-    const accessToken = await getMpesaAccessToken(); // Always fetch a fresh token
+    const accessToken = await getMpesaAccessToken(); 
     if (!accessToken) throw new Error("Failed to obtain M-Pesa access token.");
 
     const paymentResponse = await initiatePayment(phoneNumber, totalPrice);
@@ -115,7 +115,7 @@ router.post("/pay", verifyToken, async (req, res) => {
 });
 
 
-// M-Pesa Callback
+
 router.post("/callback", (req, res) => {
   console.log("✅ M-Pesa Callback Data Received:", req.body);
 

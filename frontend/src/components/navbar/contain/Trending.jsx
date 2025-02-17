@@ -25,7 +25,7 @@ function NewArrivals() {
         <PopoverBody p="25px">
           <Flex p="15px" flexWrap="wrap" justifyContent="space-between">
             
-            {/* Latest Perfume Brands */}
+            
             <Box>
               <Text className={NavStyle.greyHover} p="3px">
                 Maison Francis Kurkdjian
@@ -44,7 +44,7 @@ function NewArrivals() {
               </Text>
             </Box>
 
-            {/* New Arrivals */}
+            
             <Box>
               <Text className={NavStyle.greyHover} p="3px">
                 Roja Parfums Elysium
@@ -57,7 +57,7 @@ function NewArrivals() {
               </Text>
             </Box>
 
-            {/* Trending Now */}
+           
             <Box>
               <Text className={NavStyle.greyHover} p="3px">
                 Baccarat Rouge 540

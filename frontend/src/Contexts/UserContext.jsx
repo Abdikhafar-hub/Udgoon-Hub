@@ -1,11 +1,11 @@
 import React, { useState, createContext, useEffect } from "react";
 
-// ✅ Create the UserContext
+
 export const UserContext = createContext();
 
-// ✅ Create the UserProvider function
+
 export function UserProvider({ children }) {
-  // Load user data from local storage OR use default values
+ 
   const storedUser = JSON.parse(localStorage.getItem("user")) || {
     status: false,
     name: "Guest",
@@ -15,28 +15,28 @@ export function UserProvider({ children }) {
     totalPrice: 0,
   };
 
-  // Load search query from localStorage or default to an empty string
+  
   const storedSearch = localStorage.getItem("search") || "";
 
   const [user, setUser] = useState(storedUser);
-  const [search, setSearch] = useState(storedSearch); // ✅ Ensures `search` persists
+  const [search, setSearch] = useState(storedSearch); 
 
-  // ✅ Sync user data to local storage whenever it changes
+  
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-  // ✅ Sync search query to local storage
+
   useEffect(() => {
     localStorage.setItem("search", search);
   }, [search]);
 
-  // ✅ Function to Recalculate Total Price
+  
   const calculateTotalPrice = (cart) => {
     return cart.reduce((acc, item) => acc + (parseFloat(item.price) || 0) * item.quantity, 0);
   };
 
-  // ✅ User Login Function
+  
   const login = (userData) => {
     const updatedUser = {
       ...userData,
@@ -51,7 +51,7 @@ export function UserProvider({ children }) {
     console.log("✅ User logged in:", updatedUser);
   };
 
-  // ✅ User Logout Function
+  
   const logout = () => {
     console.log("🚪 User logged out");
 
@@ -67,7 +67,7 @@ export function UserProvider({ children }) {
     localStorage.removeItem("user");
   };
 
-  // ✅ Add to Cart Function
+ 
   const addToCart = (product) => {
     setUser((prevUser) => {
       const updatedCart = prevUser.cart ? [...prevUser.cart] : [];
@@ -122,5 +122,5 @@ export function UserProvider({ children }) {
   );
 }
 
-// ✅ Export Default UserProvider
+
 export default UserProvider;

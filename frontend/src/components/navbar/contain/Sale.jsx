@@ -32,7 +32,7 @@ function Sale() {
         <PopoverBody bg="#f5f3f3" p="25px">
           <SimpleGrid gap="15px" columns={5}>
             
-            {/* Perfume Sales */}
+           
             <Box
               bg="white"
               display="flex"
@@ -46,7 +46,7 @@ function Sale() {
               <Text onClick={toggleSearch}>Perfume Sale</Text>
             </Box>
 
-            {/* Exclusive Discounts */}
+            
             <Box
               bg="white"
               display="flex"
@@ -60,7 +60,7 @@ function Sale() {
               <Text onClick={toggleSearch}>Exclusive Fragrance Discounts</Text>
             </Box>
 
-            {/* Buy One Get One Free */}
+            
             <Box
               bg="white"
               display="flex"
@@ -74,7 +74,7 @@ function Sale() {
               <Text onClick={toggleSearch}>Buy One Get One Free</Text>
             </Box>
 
-            {/* Clearance Section */}
+           
             <Box
               bg="white"
               display="flex"
@@ -88,7 +88,7 @@ function Sale() {
               <Text onClick={toggleSearch}>Clearance Perfumes</Text>
             </Box>
 
-            {/* Gift Sets */}
+            
             <Box
               bg="white"
               display="flex"
@@ -102,7 +102,7 @@ function Sale() {
               <Text onClick={toggleSearch}>Luxury Gift Sets</Text>
             </Box>
 
-            {/* Coupon Discounts */}
+           
             <Box
               bg="white"
               display="flex"
@@ -116,7 +116,7 @@ function Sale() {
               <Text onClick={toggleSearch}>All Perfume Coupons</Text>
             </Box>
 
-            {/* Featured Offers */}
+            
             <Box
               bg="white"
               display="flex"

@@ -10,14 +10,14 @@ router.post("/register", async (req, res) => {
   try {
     const { username, email, password } = req.body;
     
-    // Check if user already exists
+    
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json("User already exists");
 
-    // Hash Password
+    
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create User
+   
     const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
@@ -27,7 +27,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// Login User & Generate JWT Token
+
 router.post("/login", async (req, res) => {
   try {
       const { email, password } = req.body;

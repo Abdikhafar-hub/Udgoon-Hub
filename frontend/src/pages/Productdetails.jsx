@@ -8,7 +8,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // ✅ Find the selected product
+  
   const perfumes = [
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
@@ -71,26 +71,26 @@ const ProductDetails = () => {
 
   if (!product) return <Text>Product Not Found</Text>;
 
-  // ✅ Ensure cart exists before accessing
+  
   const cart = user?.cart || [];
   const cartItem = cart.find((item) => item.id === product.id);
-  const quantity = cartItem ? cartItem.quantity : 1; // ✅ Default quantity set to 1
+  const quantity = cartItem ? cartItem.quantity : 1;
 
   return (
     <Box w="60%" m="auto" py={10}>
-      {/* ✅ Fix: Ensure the image URL is correct */}
+     
       <Image 
         src={product.image_link} 
         alt={product.name} 
         boxSize="300px" 
         objectFit="cover" 
-        fallbackSrc="https://via.placeholder.com/300" // ✅ If the image is missing, show this placeholder
+        fallbackSrc="https://via.placeholder.com/300" 
       />
 
       <Text fontSize="24px" fontWeight="bold">{product.name}</Text>
       <Text fontSize="20px">Price: KSH {product.price}</Text>
 
-      {/* ✅ Always Show "In Stock" */}
+     
       <Text fontSize="18px" color="green.500">In Stock</Text>
 
       <HStack mt={4}>

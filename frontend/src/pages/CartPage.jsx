@@ -48,7 +48,7 @@ const CartPage = () => {
     });
   }, [cartItems]);
 
-  // 7-Day Promo Countdown Timer
+  
   const getEndTime = () => {
     const storedEndTime = localStorage.getItem("promoEndTime");
     if (storedEndTime && Number(storedEndTime) > Date.now()) {

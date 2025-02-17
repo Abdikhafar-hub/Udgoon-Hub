@@ -17,11 +17,11 @@ function Account() {
   const navigate = useNavigate();
   const { user, logout } = useContext(UserContext);
 
-  // Extract first name from email if name is missing
+  
   const firstName = user.name && user.name !== "User"
-    ? user.name.split(" ")[0] // Get first word from full name
+    ? user.name.split(" ")[0] 
     : user.email
-    ? user.email.split("@")[0] // Extract username before "@"
+    ? user.email.split("@")[0] 
     : "Guest";
 
   return (

@@ -21,7 +21,7 @@ function TopNav() {
         KE - KSH
       </Text>
 
-      {/* Wrap Help with Link */}
+      
       <Link to="/help">
         <Text
           fontSize={"14px"}

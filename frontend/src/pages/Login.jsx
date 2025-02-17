@@ -37,14 +37,14 @@ export default function Login() {
 
     setLoading(false);
 
-    console.log("Login Response:", response.data); // ✅ Debugging
+    console.log("Login Response:", response.data); 
 
     if (response.data.token) {
       localStorage.setItem("token", response.data.token);
       
-      // ✅ Fix: Ensure name is included in the user object
+     
       const userData = {
-        name: response.data.user.name || "User",  // ✅ Store the name
+        name: response.data.user.name || "User",  
         email: response.data.user.email,
         id: response.data.user.id,
         status: true,
@@ -52,8 +52,8 @@ export default function Login() {
         totalPrice: 0
       };
 
-      setUser(userData);  // ✅ Update User Context
-      localStorage.setItem("user", JSON.stringify(userData)); // ✅ Store in local storage
+      setUser(userData); 
+      localStorage.setItem("user", JSON.stringify(userData)); 
 
       toast({
         title: `Welcome, ${userData.name}!`,
