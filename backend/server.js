@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 10000;
 
 const allowedOrigins = [
   "http://localhost:5173", 
-  "https://udgoon-hub.vercel.app" 
+  "https://udgoon-hub.vercel.app"
 ];
 
 app.use(cors({
@@ -18,23 +18,23 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      console.warn(`Blocked CORS request from: ${origin}`);
+      callback(null, false); 
     }
   },
   credentials: true
 }));
 
+app.use(bodyParser.json());
+app.use(express.json());
 
-app.use(bodyParser.json()); 
-app.use(express.json()); 
 
-
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log("✅ MongoDB Connected"))
-.catch(err => console.error("❌ MongoDB Connection Error:", err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch(err => {
+    console.error("❌ MongoDB Connection Error:", err);
+    process.exit(1); 
+  });
 
 
 const authRoutes = require("./routes/authRoutes");
