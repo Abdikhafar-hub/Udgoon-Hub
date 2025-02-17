@@ -67,7 +67,10 @@ const Products = () => {
     { id: 51, name: "Now Eau De Parfum", price: "6000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739152917/v479wxmwvgx6cmiyp3gd.png" },
     { id: 52, name: "Arsh Extrait ", price: "7500", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153234/alepupzsgj7hplisriwx.jpg" },
     { id: 53, name: "Black Opium YSL", price: "23000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153375/p4caf0yj8e7i5hoy6ltb.jpg" },
-    { id: 54, name: "Club De Nuit", price: "10400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153688/oyut35besb3jlik07yfm.png" }
+    { id: 54, name: "Club De Nuit", price: "10400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153688/oyut35besb3jlik07yfm.png" },
+    { id: 55, name: "Xerjoff Pikovaya", price: "85400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739800887/ribb2ehj5kzffpjvpdvv.jpg" },
+    { id: 56, name: "Explore Baccart", price: "63400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739801141/w032hybncdakmbi1oc9b.png" }
+    
     
   ];
   const filteredPerfumes = perfumes.filter((product) =>
