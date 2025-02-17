@@ -5,27 +5,44 @@ const PromoBanner = () => {
     <Box 
       w="100%" 
       bg="#F8F6F4"  
-      py={15}  
-      px={5}
+      py={{ base: 5, md: 15 }}  // ✅ Reduce height for mobile
+      px={{ base: 3, md: 5 }}
       display="flex" 
       justifyContent="center"
     >
       <Flex 
         w="90%"
-        maxW="1400px"
+        maxW="1100px"
         align="center"
         justify="space-between"
-        flexWrap={{ base: "wrap", md: "nowrap" }}
+        flexDirection={{ base: "column", md: "row" }} // ✅ Stack on mobile, row on desktop
+        textAlign={{ base: "center", md: "left" }}  // ✅ Center text on mobile
       >
         
-        <VStack align="flex-start" spacing={2} maxW="45%">
-          <Text fontSize="42px" fontWeight="500" fontStyle="italic" fontFamily="Georgia, serif" color="#222">
+        <VStack align={{ base: "center", md: "flex-start" }} spacing={3} maxW={{ base: "100%", md: "45%" }}>
+          <Text 
+            fontSize={{ base: "20px", md: "38px" }}  // ✅ Reduce text size on mobile
+            fontWeight="500" 
+            fontStyle="italic" 
+            fontFamily="Georgia, serif" 
+            color="#222"
+          >
             Limited-Time Offer
           </Text>
-          <Text fontSize="44px" fontWeight="bold" textTransform="uppercase" color="#222">
+          <Text 
+            fontSize={{ base: "22px", md: "40px" }}  // ✅ Reduce heading size on mobile
+            fontWeight="bold" 
+            textTransform="uppercase" 
+            color="#222"
+          >
             EXCLUSIVE PERFUME DEALS
           </Text>
-          <Text fontSize="18px" color="#222" lineHeight="1.6" fontWeight="400">
+          <Text 
+            fontSize={{ base: "13px", md: "18px" }}  // ✅ Reduce body text
+            color="#222" 
+            lineHeight="1.5" 
+            fontWeight="400"
+          >
             Elevate your fragrance collection with our <strong>luxury perfume sale.</strong> <br />
             Get up to <strong>50% OFF</strong> on top brands like <strong>Versace, Dior, YSL, and more!</strong>
           </Text>
@@ -33,10 +50,12 @@ const PromoBanner = () => {
             bg="black" 
             color="white" 
             _hover={{ bg: "gray.700" }} 
-            px={6} py={4} 
-            fontSize="16px"
+            px={{ base: 3, md: 6 }}  // ✅ Reduce button padding
+            py={{ base: 2, md: 4 }}
+            fontSize={{ base: "13px", md: "16px" }} // ✅ Reduce button text size
             fontWeight="bold"
             borderRadius="0"
+            mt={2}
           >
             SHOP NOW
           </Button>
@@ -48,27 +67,30 @@ const PromoBanner = () => {
           color="white"
           borderRadius="full"
           textAlign="center"
-          w="160px"  
-          h="160px"  
+          w={{ base: "90px", md: "140px" }} // ✅ Reduce width for mobile
+          h={{ base: "90px", md: "140px" }}
           display="flex"
           flexDir="column"
           justifyContent="center"
           alignItems="center"
-          fontSize="lg"
+          fontSize="md"
           fontWeight="bold"
-          mx={8}  
+          mx={{ base: 0, md: 8 }}  // ✅ Remove margin on mobile
+          my={{ base: 4, md: 0 }}  // ✅ Add spacing on mobile
           letterSpacing="0.5px"
         >
-          <Text fontSize="16px" color="#E5C99F" fontFamily="Georgia, serif">Save Up To</Text>
-          <Text fontSize="34px" fontWeight="bold">50%</Text>
-          <Text fontSize="16px" color="#E5C99F" fontFamily="Georgia, serif">LIMITED TIME</Text>
+          <Text fontSize="11px" color="#E5C99F" fontFamily="Georgia, serif">Save Up To</Text>
+          <Text fontSize="22px" fontWeight="bold">50%</Text>  
+          <Text fontSize="11px" color="#E5C99F" fontFamily="Georgia, serif">LIMITED TIME</Text>
         </Box>
 
        
         <Image 
           src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148285/fibdjbnwt8vyiauyow18.jpg"  
-          maxW="450px"  
-          borderRadius="10px"
+          w={{ base: "90%", md: "380px" }} // ✅ Reduce width for mobile
+          maxW="380px" 
+          mx="auto" 
+          borderRadius="8px"
           objectFit="cover"
           boxShadow="lg"
         />

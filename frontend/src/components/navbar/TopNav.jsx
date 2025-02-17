@@ -1,35 +1,35 @@
-import { Box, Image, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Box, Image, Text, HStack, Link } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 
 function TopNav() {
   return (
     <Box
       display="flex"
-      justifyContent="end"
-      w={"100%"}
-      p={0}
-      bg={"#f2f2f2"}
+      justifyContent="space-between"  // ✅ Spread items out properly
+      alignItems="center"
+      w="100%"
+      p={2}
+      bg="#f2f2f2"
+      px={{ base: 4, md: 10 }}  // ✅ Adjust padding for mobile
     >
-      <Image
-        borderRadius="50%"
-        boxSize="30px"
-        src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739113417/k1ddlu9a4oeclq2helgo.png"
-        alt="Dan Abramov"
-        p={2}
-      />
-      <Text fontSize={"14px"} p={2} color={"#2e3337"} px={2} py={1} mr={10}>
-        KE - KSH
-      </Text>
+      {/* Currency Section */}
+      <HStack spacing={2}>
+        <Image
+          borderRadius="full"
+          boxSize="25px"  // ✅ Smaller image on mobile
+          src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739113417/k1ddlu9a4oeclq2helgo.png"
+          alt="Dan Abramov"
+        />
+        <Text fontSize={{ base: "12px", md: "14px" }} color="#2e3337">
+          KE - KSH
+        </Text>
+      </HStack>
 
-      
-      <Link to="/help">
+      {/* Help Centre */}
+      <Link as={RouterLink} to="/help">
         <Text
-          fontSize={"14px"}
-          p={2}
-          color={"#2e3337"}
-          px={2}
-          py={1}
-          mr={200}
+          fontSize={{ base: "12px", md: "14px" }}  // ✅ Smaller text on mobile
+          color="#2e3337"
           cursor="pointer"
           _hover={{ textDecoration: "underline" }}
         >

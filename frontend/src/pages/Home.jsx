@@ -21,9 +21,15 @@ export default function Home() {
         _hover={{ bg: "white", color: "black" }}
       >
         {" "}
-        <Text fontSize={"18px"} fontWeight={"bold"}>
-        Get 15% off select products, plus 2 free gifts on orders over KSh 10,000!{" "}
-        </Text>
+        <Text 
+  fontSize={{ base: "14px", md: "18px" }} // ✅ Smaller text on mobile, same on desktop
+  fontWeight="bold"
+  textAlign="center"
+  px={{ base: 2, md: 0 }} // ✅ Add padding on mobile to prevent text overflow
+>
+  Get 15% off select products, plus 2 free gifts on orders over KSh 10,000!
+</Text>
+
       </Box>
       <Crousel />
       <AboutUs />

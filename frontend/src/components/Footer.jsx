@@ -26,9 +26,7 @@ import { PhoneIcon } from "@chakra-ui/icons";
 import { TbTruckDelivery, TbRefresh, TbHelp } from "react-icons/tb";
 import { MdGpsFixed } from "react-icons/md";
 
-
 const MotionBox = motion(Box);
-
 
 const socialLinks = [
   { icon: FaFacebook, link: "https://web.facebook.com/abdikhafar.issack.9", color: "blue.500" },
@@ -39,22 +37,23 @@ const socialLinks = [
 ];
 
 const ListHeader = ({ children }) => (
-  <Text fontWeight="600" fontSize="lg" mb={2} color="white">
+  <Text fontWeight="600" fontSize={{ base: "sm", md: "lg" }} mb={2} color="white">
     {children}
   </Text>
 );
 
 export default function Footer() {
   return (
-    <Box bgGradient="linear(to-r, blackAlpha.900, gray.800)" color="white">
-      <Container as={Stack} maxW={"6xl"} py={10}>
-        <SimpleGrid templateColumns={{ sm: "1fr", md: "1fr 1fr" }} spacing={8} alignItems="center">
-          
-          <VStack spacing={4} textAlign="center">
-            <Text fontSize="lg" fontWeight="600">
+    <Box bgGradient="linear(to-r, blackAlpha.900, gray.800)" color="white" py={{ base: 4, md: 8 }}>
+      <Container as={Stack} maxW="6xl" px={{ base: 3, md: 8 }}>
+        
+        {/* Social Icons */}
+        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 3, md: 6 }} alignItems="center">
+          <VStack spacing={3} textAlign="center">
+            <Text fontSize={{ base: "sm", md: "md" }} fontWeight="600">
               Follow us for the latest fragrances
             </Text>
-            <HStack spacing={5}>
+            <HStack spacing={{ base: 2, md: 4 }}>
               {socialLinks.map(({ icon: IconComp, link, color }, index) => (
                 <Link key={index} href={link} isExternal>
                   <MotionBox
@@ -63,7 +62,7 @@ export default function Footer() {
                     transition={{ duration: 0.3 }}
                     display="inline-block"
                   >
-                    <Icon as={IconComp} boxSize={7} color={color} />
+                    <Icon as={IconComp} boxSize={{ base: 4, md: 6 }} color={color} />
                   </MotionBox>
                 </Link>
               ))}
@@ -71,58 +70,45 @@ export default function Footer() {
           </VStack>
         </SimpleGrid>
 
-        <Divider my={6} />
+        <Divider my={{ base: 3, md: 5 }} />
 
-        
-        <SimpleGrid templateColumns={{ sm: "1fr", md: "2fr 1fr 1fr 1fr" }} spacing={8}>
-          
+        {/* Support & Explore (One Row on Mobile) */}
+        <SimpleGrid columns={{ base: 2, md: 4 }} spacing={{ base: 3, md: 6 }}>
+          {/* Customer Support */}
           <Stack align={"flex-start"}>
             <ListHeader>Customer Support</ListHeader>
-            <List spacing={2}>
+            <List spacing={1}>
               <ListItem>
                 <HStack>
-                  <ListIcon as={PhoneIcon} fontSize="md" color="pink.300" />
+                  <ListIcon as={PhoneIcon} fontSize="sm" color="pink.300" />
                   <Link as={RouterLink} to="/help">Customer Service</Link>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
-                  <ListIcon as={TbTruckDelivery} fontSize="md" color="purple.300" />
+                  <ListIcon as={TbTruckDelivery} fontSize="sm" color="purple.300" />
                   <Link as={RouterLink} to="/help">Delivery Information</Link>
                 </HStack>
               </ListItem>
               <ListItem>
                 <HStack>
-                  <ListIcon as={TbRefresh} fontSize="md" color="purple.300" />
+                  <ListIcon as={TbRefresh} fontSize="sm" color="purple.300" />
                   <Link as={RouterLink} to="/help">Return & Refund</Link>
-                </HStack>
-              </ListItem>
-              <ListItem>
-                <HStack>
-                  <ListIcon as={TbHelp} fontSize="md" color="pink.300" />
-                  <Link as={RouterLink} to="/help">Help Center</Link>
-                </HStack>
-              </ListItem>
-              <ListItem>
-                <HStack>
-                  <ListIcon as={MdGpsFixed} fontSize="md" color="pink.300" />
-                  <Link as={RouterLink} to="/help">Track My Order</Link>
                 </HStack>
               </ListItem>
             </List>
           </Stack>
 
-          
+          {/* Explore */}
           <Stack align={"flex-start"}>
             <ListHeader>Explore</ListHeader>
             <Link as={RouterLink} to="/aboutus">About Us</Link>
             <Link as={RouterLink} to="/aboutus">New Arrivals</Link>
             <Link as={RouterLink} to="/aboutus">Best Sellers</Link>
             <Link as={RouterLink} to="/aboutus">Exclusive Scents</Link>
-            <Link as={RouterLink} to="/aboutus">Gift Sets</Link>
           </Stack>
 
-          
+          {/* Legal */}
           <Stack align={"flex-start"}>
             <ListHeader>Legal</ListHeader>
             <Link as={RouterLink} to="/help">Privacy Policy</Link>
@@ -130,7 +116,7 @@ export default function Footer() {
             <Link as={RouterLink} to="/help">Cookie Settings</Link>
           </Stack>
 
-          
+          {/* Contact */}
           <Stack align={"flex-start"}>
             <ListHeader>Contact Us</ListHeader>
             <Link as={RouterLink} to="/contact">Message Us</Link>
@@ -139,10 +125,9 @@ export default function Footer() {
           </Stack>
         </SimpleGrid>
 
-        <Divider my={6} />
+        <Divider my={{ base: 3, md: 5 }} />
 
-        
-        <Text textAlign="center" fontSize="sm" opacity="0.7">
+        <Text textAlign="center" fontSize={{ base: "xs", md: "sm" }} opacity="0.7">
           © {new Date().getFullYear()} Udgoon Hub - Where Luxury Meets Fragrance. All rights reserved.
         </Text>
       </Container>

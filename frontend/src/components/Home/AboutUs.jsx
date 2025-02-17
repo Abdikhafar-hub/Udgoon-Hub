@@ -5,11 +5,14 @@ const MotionBox = motion(Box);
 
 const AboutUs = () => {
   return (
-    <Container maxW="container.md" py={12}>
+    <Container 
+      maxW={{ base: "95%", md: "container.md" }} // ✅ Full width on mobile, container size on desktop
+      py={{ base: 6, md: 12 }} // ✅ Reduce padding on mobile
+    >
       
       <MotionBox
-        bgGradient="linear(to-r, white, #fdf6e3)" 
-        p={10}
+        bgGradient="linear(to-r, white, #fdf6e3)"
+        p={{ base: 6, md: 10 }} // ✅ Smaller padding on mobile
         borderRadius="lg"
         boxShadow="lg"
         textAlign="center"
@@ -21,7 +24,7 @@ const AboutUs = () => {
         
         <VStack spacing={4}>
           <Heading
-            fontSize="4xl"
+            fontSize={{ base: "2xl", md: "4xl" }} // ✅ Smaller title on mobile
             fontWeight="bold"
             color="goldenrod"
             fontFamily="Playfair Display"
@@ -30,7 +33,7 @@ const AboutUs = () => {
           >
             ✨ Welcome to Udgoon Hub ✨
           </Heading>
-          <Text fontSize="lg" color="gray.700">
+          <Text fontSize={{ base: "md", md: "lg" }} color="gray.700">
             Your <strong>one-stop shop</strong> for  
             <span style={{ color: "goldenrod" }}> premium, authentic, and luxurious</span>  
             perfumes – delivered to your doorstep!
@@ -38,9 +41,9 @@ const AboutUs = () => {
         </VStack>
 
         
-        <VStack spacing={6} align="center" mt={10}>
+        <VStack spacing={{ base: 4, md: 6 }} align="center" mt={{ base: 6, md: 10 }}>
           <Heading
-            fontSize="2xl"
+            fontSize={{ base: "xl", md: "2xl" }} // ✅ Adjust heading size for mobile
             fontWeight="bold"
             color="black"
             fontFamily="Merriweather"
@@ -50,7 +53,7 @@ const AboutUs = () => {
           >
             🌟 Why Choose Us?
           </Heading>
-          <Text fontSize="md" color="gray.600">
+          <Text fontSize={{ base: "sm", md: "md" }} color="gray.600">
             We are the <strong>leading destination</strong> for  
             <span style={{ color: "goldenrod" }}> luxury fragrances</span>,  
             offering an <strong>unparalleled shopping experience</strong>  
@@ -59,7 +62,7 @@ const AboutUs = () => {
 
           
           <Heading
-            fontSize="2xl"
+            fontSize={{ base: "xl", md: "2xl" }}
             fontWeight="bold"
             color="black"
             fontStyle="italic"
@@ -68,7 +71,7 @@ const AboutUs = () => {
           >
             🎯 Our Mission
           </Heading>
-          <Text fontSize="md" color="gray.600">
+          <Text fontSize={{ base: "sm", md: "md" }} color="gray.600">
             At <strong>Udgoon Hub</strong>, we bring you the finest,  
             <span style={{ color: "goldenrod" }}> 100% authentic perfumes</span>  
             at unbeatable prices.  
@@ -79,7 +82,7 @@ const AboutUs = () => {
 
           
           <Heading
-            fontSize="2xl"
+            fontSize={{ base: "xl", md: "2xl" }}
             fontWeight="bold"
             color="black"
             fontStyle="italic"
@@ -88,7 +91,7 @@ const AboutUs = () => {
           >
             🌸 Elevate Your Scent Game
           </Heading>
-          <Text fontSize="md" color="gray.600">
+          <Text fontSize={{ base: "sm", md: "md" }} color="gray.600">
             Find your <strong>signature scent</strong>, gift a loved one,  
             or explore <span style={{ color: "goldenrod" }}>exclusive fragrances</span> –  
             all in one place.  

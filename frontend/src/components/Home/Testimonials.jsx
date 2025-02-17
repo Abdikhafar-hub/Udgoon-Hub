@@ -56,58 +56,60 @@ const Testimonials = () => {
   return (
     <Box 
       maxW="4xl" 
+      w={{ base: "95%", md: "4xl" }} // ✅ Full width on mobile, max-width on desktop
       mx="auto" 
       bg="white" 
       boxShadow="lg" 
       borderRadius="lg" 
-      p={6}
+      p={{ base: 4, md: 6 }} // ✅ Reduce padding on mobile
       position="relative"
       textAlign="center"
     >
-      
+      {/* ✅ Heading: Adjust for Mobile */}
       <Text 
-  fontSize="3rem"  
-  fontWeight="bold" 
-  mb={8} 
-  textAlign="center"
-  fontFamily="'Playfair Display', serif"
->
-  <Text 
-    as="span" 
-    color="goldenrod" 
-    fontFamily="'Playfair Display', serif" 
-    textShadow="1px 1px 6px rgba(0, 0, 0, 0.15)"
-    fontSize="2.1rem" 
-  >
-    🌸 Love at First Scent:
-  </Text>{" "}
-  <Text 
-    as="span" 
-    color="blackAlpha.900" 
-    fontFamily="'Merriweather', serif" 
-    fontSize="2.1rem" 
-  >
-    Our Customers' Thoughts 💖
-  </Text>
-</Text>
+        fontSize={{ base: "1.6rem", md: "2.1rem" }} // ✅ Smaller text on mobile
+        fontWeight="bold" 
+        mb={6} // ✅ Reduce margin on mobile
+        textAlign="center"
+        fontFamily="'Playfair Display', serif"
+      >
+        <Text 
+          as="span" 
+          color="goldenrod" 
+          fontFamily="'Playfair Display', serif" 
+          textShadow="1px 1px 6px rgba(0, 0, 0, 0.15)"
+          fontSize={{ base: "1.5rem", md: "2.1rem" }} // ✅ Adjust for mobile
+        >
+          🌸 Love at First Scent:
+        </Text>{" "}
+        <Text 
+          as="span" 
+          color="blackAlpha.900" 
+          fontFamily="'Merriweather', serif" 
+          fontSize={{ base: "1.5rem", md: "2.1rem" }} // ✅ Adjust for mobile
+        >
+          Our Customers' Thoughts 💖
+        </Text>
+      </Text>
 
-
-
-      
+      {/* ✅ Flex Container for Testimonials */}
       <Flex align="center" justify="space-between" position="relative">
+        {/* ✅ Left Arrow Button: Reduce Size on Mobile */}
         <IconButton
           aria-label="Previous testimonial"
-          icon={<FaChevronLeft size={24} />}
+          icon={<FaChevronLeft size={20} />} // ✅ Smaller icon on mobile
           onClick={prevSlide}
           bg="gray.200"
           borderRadius="full"
           position="absolute"
-          left={0}
+          left={{ base: "-10px", md: "-40px" }} // ✅ Adjust placement for mobile
+          top="50%"
+          transform="translateY(-50%)"
           zIndex={10}
           _hover={{ bg: "gray.300" }}
         />
 
-        
+        {/* ✅ Testimonial Content */}
         <Box w="100%" overflow="hidden">
           {testimonials.map((testimonial, index) => (
             <Box 
@@ -119,14 +121,19 @@ const Testimonials = () => {
               <Image 
                 src={testimonial.image} 
                 alt={testimonial.name} 
-                boxSize="60px" 
+                boxSize={{ base: "50px", md: "60px" }} // ✅ Reduce image size on mobile
                 borderRadius="full" 
                 mx="auto"
                 border="2px solid" 
                 borderColor="gray.300"
                 mb={2}
               />
-              <Text fontStyle="italic" color="gray.700" px={4}>
+              <Text 
+                fontStyle="italic" 
+                color="gray.700" 
+                px={{ base: 2, md: 4 }} // ✅ Reduce padding for text on mobile
+                fontSize={{ base: "0.9rem", md: "1rem" }} // ✅ Adjust text size for mobile
+              >
                 {testimonial.comment}
               </Text>
               <Text mt={4} fontWeight="bold" color="blue.600">
@@ -136,32 +143,20 @@ const Testimonials = () => {
           ))}
         </Box>
 
+        {/* ✅ Right Arrow Button: Reduce Size on Mobile */}
         <IconButton
           aria-label="Next testimonial"
-          icon={<FaChevronRight size={24} />}
+          icon={<FaChevronRight size={20} />} // ✅ Smaller icon on mobile
           onClick={nextSlide}
           bg="gray.200"
           borderRadius="full"
           position="absolute"
-          right={0}
+          right={{ base: "-10px", md: "-40px" }} // ✅ Adjust placement for mobile
+          top="50%"
+          transform="translateY(-50%)"
           zIndex={10}
           _hover={{ bg: "gray.300" }}
         />
-      </Flex>
-
-      
-      <Flex justify="center" mt={4}>
-        {testimonials.map((_, index) => (
-          <Box
-            key={index}
-            w="8px"
-            h="8px"
-            mx="2px"
-            borderRadius="full"
-            bg={index === currentIndex ? "blue.500" : "gray.300"}
-            transition="background 0.3s"
-          />
-        ))}
       </Flex>
     </Box>
   );

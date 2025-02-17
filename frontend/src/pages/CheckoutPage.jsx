@@ -156,62 +156,72 @@ const CheckoutPage = () => {
   return (
     <Box w={{ base: "95%", md: "60%" }} m="auto" py={10} border="1px solid #ddd" borderRadius="8px" p={5} boxShadow="lg">
       <Text fontSize="xl" fontWeight="bold" mb={5}>1. CUSTOMER ADDRESS</Text>
-      <VStack spacing={4} align="stretch">
-        <HStack spacing={4}>
-          <FormControl>
-            <FormLabel>First Name</FormLabel>
-            <Input placeholder="First Name" name="firstName" onChange={handleChange} />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Last Name</FormLabel>
-            <Input placeholder="Last Name" name="lastName" onChange={handleChange} />
-          </FormControl>
-        </HStack>
+      <VStack spacing={3} align="stretch">
+  
+  {/* Name Fields */}
+  <HStack spacing={3} flexDirection={{ base: "column", md: "row" }}>
+    <FormControl flex="1">
+      <FormLabel fontSize={{ base: "sm", md: "md" }}>First Name</FormLabel>
+      <Input placeholder="First Name" name="firstName" onChange={handleChange} fontSize={{ base: "sm", md: "md" }} w="full" />
+    </FormControl>
+    <FormControl flex="1">
+      <FormLabel fontSize={{ base: "sm", md: "md" }}>Last Name</FormLabel>
+      <Input placeholder="Last Name" name="lastName" onChange={handleChange} fontSize={{ base: "sm", md: "md" }} w="full" />
+    </FormControl>
+  </HStack>
 
-        <FormControl>
-          <FormLabel>Email Address</FormLabel>
-          <Input placeholder="Email Address" name="email" onChange={handleChange} />
-        </FormControl>
+  {/* Email */}
+  <FormControl>
+    <FormLabel fontSize={{ base: "sm", md: "md" }}>Email Address</FormLabel>
+    <Input placeholder="Email Address" name="email" onChange={handleChange} fontSize={{ base: "sm", md: "md" }} w="full" />
+  </FormControl>
 
-        <HStack spacing={4}>
-          <FormControl>
-            <FormLabel>Phone Number</FormLabel>
-            <HStack>
-              <Input value="+254" isReadOnly w="25%" />
-              <Input placeholder="Phone Number" name="phoneNumber" onChange={handleChange} />
-            </HStack>
-          </FormControl>
-        </HStack>
+  {/* Phone Number */}
+  <HStack spacing={3} flexDirection={{ base: "column", md: "row" }}>
+    <FormControl flex="1">
+      <FormLabel fontSize={{ base: "sm", md: "md" }}>Phone Number</FormLabel>
+      <HStack>
+        <Input value="+254" isReadOnly w="30%" fontSize={{ base: "sm", md: "md" }} />
+        <Input placeholder="Phone Number" name="phoneNumber" onChange={handleChange} fontSize={{ base: "sm", md: "md" }} w="full" />
+      </HStack>
+    </FormControl>
+  </HStack>
 
-        <HStack spacing={4}>
-          <FormControl>
-            <FormLabel>County</FormLabel>
-            <Select placeholder="Select County" name="county" onChange={handleCountyChange}>
-              {Object.keys(countiesAndConstituencies).map((county) => (
-                <option key={county} value={county}>{county}</option>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl>
-            <FormLabel>Constituency</FormLabel>
-            <Select 
-              placeholder="Select Constituency" 
-              name="constituency" 
-              onChange={handleChange} 
-              isDisabled={!formData.county}
-            >
-              {formData.county && countiesAndConstituencies[formData.county].map((constituency) => (
-                <option key={constituency} value={constituency}>{constituency}</option>
-              ))}
-            </Select>
-          </FormControl>
-        </HStack>
+  {/* County & Constituency */}
+  <HStack spacing={3} flexDirection={{ base: "column", md: "row" }}>
+    <FormControl flex="1">
+      <FormLabel fontSize={{ base: "sm", md: "md" }}>County</FormLabel>
+      <Select placeholder="Select County" name="county" onChange={handleCountyChange} fontSize={{ base: "sm", md: "md" }} w="full">
+        {Object.keys(countiesAndConstituencies).map((county) => (
+          <option key={county} value={county}>{county}</option>
+        ))}
+      </Select>
+    </FormControl>
+    <FormControl flex="1">
+      <FormLabel fontSize={{ base: "sm", md: "md" }}>Constituency</FormLabel>
+      <Select 
+        placeholder="Select Constituency" 
+        name="constituency" 
+        onChange={handleChange} 
+        isDisabled={!formData.county} 
+        fontSize={{ base: "sm", md: "md" }} 
+        w="full"
+      >
+        {formData.county && countiesAndConstituencies[formData.county].map((constituency) => (
+          <option key={constituency} value={constituency}>{constituency}</option>
+        ))}
+      </Select>
+    </FormControl>
+  </HStack>
 
-        <HStack justify="flex-end" mt={4}>
-          <Button variant="outline" onClick={() => navigate("/")}>Cancel</Button>
-          <Button colorScheme="orange" onClick={handleSave}>Save and Pay</Button>
-        </HStack>
-      </VStack>
+  {/* Action Buttons */}
+  <HStack justify="flex-end" mt={3}>
+    <Button size="sm" variant="outline" onClick={() => navigate("/")}>Cancel</Button>
+    <Button size="sm" colorScheme="orange" onClick={handleSave}>Save and Pay</Button>
+  </HStack>
+
+</VStack>
+
 
       {/* ✅ M-Pesa Payment Modal */}
       <Modal isOpen={isMpesaModalOpen} onClose={() => setIsMpesaModalOpen(false)} isCentered>

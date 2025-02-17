@@ -8,13 +8,11 @@ const Products = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
- 
   useEffect(() => {
     const query = searchParams.get("q") || "";
     setSearch(query);
   }, [searchParams, setSearch]);
 
-  
   const perfumes = [
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
@@ -72,62 +70,84 @@ const Products = () => {
     { id: 54, name: "Club De Nuit", price: "10400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739153688/oyut35besb3jlik07yfm.png" }
     
   ];
-
- 
   const filteredPerfumes = perfumes.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <Box w="80%" m="auto" py={10}>
+    <Box w="85%" m="auto" py={10}>
       <Text
-  fontWeight="bold"
-  w="100%"
-  textAlign="center"
-  mb={10}
-  fontSize="2.2rem"
-  fontFamily="Playfair Display"
-  fontStyle="italic"
-  color="goldenrod"
-  textDecoration="underline"
-  textUnderlineOffset={8}
-  textShadow="1px 1px 8px rgba(0, 0, 0, 0.2)"
->
-  🌸 Our Signature Perfume Collection 💨
-</Text>
+        fontWeight="bold"
+        w="100%"
+        textAlign="center"
+        mb={{ base: 6, md: 10 }} 
+        fontSize={{ base: "1.5rem", md: "2.2rem" }} 
+        fontFamily="Playfair Display"
+        fontStyle="italic"
+        color="goldenrod"
+        textDecoration="underline"
+        textUnderlineOffset={{ base: 4, md: 8 }} 
+        textShadow="1px 1px 6px rgba(0, 0, 0, 0.2)"
+      >
+        🌸 Our Signature Perfume Collection 💨
+      </Text>
+
+      <SimpleGrid columns={{ base: 2, sm: 2, md: 3, lg: 4 }} gap={{ base: 4, md: 8 }}>
+  {filteredPerfumes.length > 0 ? (
+    filteredPerfumes.map((el) => (
+      <Box 
+        key={el.id} 
+        p={3}  
+        border="1px solid #ddd" 
+        borderRadius="8px" 
+        textAlign="center" 
+        bg="white" 
+        boxShadow="md"
+        display="flex"
+        flexDirection="column"  
+        alignItems="center"
+        justifyContent="space-between"  
+        h="auto"  
+      >
+        <Box display="flex" justifyContent="center" alignItems="center" height="120px">
+          <Image 
+            src={el.image_link} 
+            alt={el.name} 
+            boxSize="100px"  
+            objectFit="contain"  
+            _hover={{ transform: "scale(1.05)" }}
+            transition="transform 0.2s ease-in-out"
+            onClick={() => navigate(`/product/${el.id}`)} 
+          />
+        </Box>
+        
+        <Box flex="1" w="100%" maxW="90%" textAlign="center">
+          <Text fontSize="14px" fontWeight="bold" mt={2} noOfLines={2}>{el.name}</Text>
+          <Text fontSize="13px" fontWeight="500" mt={1} color="gray.600">
+            Price: <strong>KSH {el.price}</strong>
+          </Text>
+        </Box>
+
+        <Button 
+          mt={3}  
+          w="85%"  
+          bgColor="black" 
+          color="white" 
+          fontSize="14px"
+          py={2}
+          _hover={{ bg: "cyan.500" }} 
+          onClick={() => navigate(`/product/${el.id}`)}
+        >
+          View Product
+        </Button>
+      </Box>
+    ))
+  ) : (
+    <Text textAlign="center" fontSize="16px">No products found</Text>
+  )}
+</SimpleGrid>
 
 
-      <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap={10}>
-        {filteredPerfumes.length > 0 ? (
-          filteredPerfumes.map((el) => (
-            <Box key={el.id} p={5} border="1px solid #ddd" borderRadius="8px" textAlign="center">
-              <Box display="flex" justifyContent="center" alignItems="center" height="180px">
-                <Image 
-                  src={el.image_link} 
-                  alt={el.name} 
-                  boxSize="150px" 
-                  objectFit="contain" 
-                  onClick={() => navigate(`/product/${el.id}`)} 
-                />
-              </Box>
-              <Text fontSize="18px" fontWeight="bold">{el.name}</Text>
-              <Text fontSize="18px" fontWeight="500" mt={3}>Price: KSH {el.price}</Text>
-              <Button 
-                mt={4} 
-                w="100%" 
-                bgColor="black" 
-                color="white" 
-                _hover={{ bg: "cyan.500" }} 
-                onClick={() => navigate(`/product/${el.id}`)}
-              >
-                View Product
-              </Button>
-            </Box>
-          ))
-        ) : (
-          <Text textAlign="center" fontSize="18px">No products found</Text>
-        )}
-      </SimpleGrid>
     </Box>
   );
 };
