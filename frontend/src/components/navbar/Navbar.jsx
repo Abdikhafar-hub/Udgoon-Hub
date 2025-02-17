@@ -46,15 +46,29 @@ function Navbar() {
         py={3} // Adds padding on top and bottom
         borderBottom="2px solid black"
       >
-        {/* ✅ Logo on the far left */}
-        <Flex cursor="pointer" onClick={handleClickLogo} flexDir="column">
-          <Text fontWeight="530" fontSize="50px" color="#2e3337" mb={0} h="55px">
-            UdgoonHub
-          </Text>
-          <Text fontSize="13px" color="#2e3337" mb={0}>
-            Where Fragrance Meets Elegance
-          </Text>
-        </Flex>
+        {/* ✅ Logo on the far left with premium styling */}
+<Flex cursor="pointer" onClick={handleClickLogo} flexDir="column">
+  <Text 
+    fontWeight="bold" 
+    fontSize="3.0rem" // Larger for premium branding
+    fontFamily="'Playfair Display', serif"
+    color="goldenrod" // Luxury touch
+    textShadow="1px 1px 5px rgba(0, 0, 0, 0.15)" // Subtle depth effect
+    mb={0} 
+    h="60px"
+  >
+    UdgoonHub
+  </Text>
+  <Text 
+    fontSize="1rem" // Improved readability
+    fontFamily="'Merriweather', serif"
+    color="gray.700" // Softer contrast for elegance
+    mb={0}
+  >
+    Where Fragrance Meets Elegance ✨
+  </Text>
+</Flex>
+
 
         {/* ✅ Search Bar (Visible in Desktop, Hidden in Mobile) */}
         <Box flex={1} mx={6} display={{ base: "none", lg: "block" }}>

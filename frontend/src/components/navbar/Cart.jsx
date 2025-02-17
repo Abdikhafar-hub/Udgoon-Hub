@@ -40,15 +40,7 @@ function Cart() {
           </Box>
         )}
       </Box>
-      <Text
-        ml="8px"
-        fontSize="14px"
-        fontWeight="medium"
-        color="gray.700"
-        display={{ base: "none", sm: "none", md: "initial" }}
-      >
-        Cart
-      </Text>
+      
     </Flex>
   );
 }

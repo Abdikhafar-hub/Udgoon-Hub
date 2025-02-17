@@ -13,9 +13,22 @@ const Trending = () => {
       flexDirection="column"
       alignItems="center"
     >
-      <Text pt="2.5%" fontSize="2rem" mb={10} textAlign="center">
-        Top Brands
+      <Text
+         pt="4%" // Increased padding for better spacing
+        fontSize="2.2rem" // Slightly bigger for emphasis
+         mb={12}
+        textAlign="center"
+        fontWeight="bold"
+        fontFamily="Playfair Display"
+        fontStyle="italic"
+        color="goldenrod"
+        textDecoration="underline"
+        textUnderlineOffset={8} // Adjusted for better styling
+        textShadow="1px 1px 8px rgba(0, 0, 0, 0.1)" // Subtle shadow for depth
+      >
+       ✨ Top Brands ✨
       </Text>
+
       <SimpleGrid
         rowGap="20px"
         columns={{ lg: 6, md: 3, sm: 1, base: 1 }}
@@ -79,9 +92,21 @@ const Trending = () => {
         <PromoBanner />
       </Box>
 
-      <Text pt="2.5%" fontSize="3rem" textAlign="center">
-        Trending Offers
+      <Text
+         pt="4%" // Increased padding for better alignment
+         fontSize="3.2rem" // Slightly larger for emphasis
+         textAlign="center"
+         fontWeight="bold"
+         fontFamily="Playfair Display"
+         fontStyle="italic"
+         color="goldenrod"
+         textDecoration="underline"
+         textUnderlineOffset={10} // More spacing for elegance
+         textShadow="1px 1px 10px rgba(0, 0, 0, 0.15)" // Soft glow effect
+      >
+       🔥 Trending Offers 🔥
       </Text>
+
 
       <SimpleGrid
         w="90%"

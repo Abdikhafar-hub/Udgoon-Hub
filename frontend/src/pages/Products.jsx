@@ -80,9 +80,22 @@ const Products = () => {
 
   return (
     <Box w="80%" m="auto" py={10}>
-      <Text fontWeight={500} w="100%" textAlign="center" mb={10} fontSize="40px">
-        Recommended Perfumes
-      </Text>
+      <Text
+  fontWeight="bold"
+  w="100%"
+  textAlign="center"
+  mb={10}
+  fontSize="3rem"
+  fontFamily="Playfair Display"
+  fontStyle="italic"
+  color="goldenrod"
+  textDecoration="underline"
+  textUnderlineOffset={8}
+  textShadow="1px 1px 8px rgba(0, 0, 0, 0.2)"
+>
+  🌸 Our Signature Perfume Collection 💨
+</Text>
+
 
       <SimpleGrid columns={{ base: 1, sm: 2, md: 3 }} gap={10}>
         {filteredPerfumes.length > 0 ? (

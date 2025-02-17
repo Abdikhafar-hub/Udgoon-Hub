@@ -65,10 +65,33 @@ const Testimonials = () => {
       textAlign="center"
     >
       {/* Heading */}
-      <Text fontSize="2xl" fontWeight="bold" mb={6}>
-      <Text as="span" color="blackAlpha.800">Love at First Scent:</Text>{" "}
-      <Text as="span" color="blackAlpha.900">Our Customer`s Thoughts</Text>
-      </Text>
+      <Text 
+  fontSize="3rem"  // Bigger for emphasis
+  fontWeight="bold" 
+  mb={8} // Slightly increased bottom margin
+  textAlign="center"
+  fontFamily="'Playfair Display', serif"
+>
+  <Text 
+    as="span" 
+    color="goldenrod" 
+    fontFamily="'Playfair Display', serif" 
+    textShadow="1px 1px 6px rgba(0, 0, 0, 0.15)"
+    fontSize="2.1rem" // Slightly larger for the main title
+  >
+    🌸 Love at First Scent:
+  </Text>{" "}
+  <Text 
+    as="span" 
+    color="blackAlpha.900" 
+    fontFamily="'Merriweather', serif" 
+    fontSize="2.1rem" // Slightly smaller for balance
+  >
+    Our Customers' Thoughts 💖
+  </Text>
+</Text>
+
+
 
       {/* Navigation Buttons */}
       <Flex align="center" justify="space-between" position="relative">
