@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import mpesaLogo from "../assets/mpesa.png"; // Ensure M-Pesa logo is in assets
+import mpesaLogo from "/mpesa.png"; // Ensure M-Pesa logo is in assets
 
 const countiesAndConstituencies = {
   "Baringo": ["Baringo Central", "Baringo North", "Baringo South", "Eldama Ravine", "Mogotio", "Tiaty"],
