@@ -15,7 +15,7 @@ const UserAccount = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Fetch user data from backend
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -37,7 +37,7 @@ const UserAccount = () => {
     }
   }, [user, navigate]);
 
-  // Handle profile picture upload
+  
   const handleProfilePicUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -60,7 +60,7 @@ const UserAccount = () => {
 
   return (
     <Box w="90%" m="auto" py={10} textAlign="center">
-      {/* 🔹 User Profile */}
+     
       <Heading fontSize="3xl" mb={5}>
         {user?.status ? `Welcome, ${user.name}!` : "Guest Account"}
       </Heading>
@@ -75,7 +75,7 @@ const UserAccount = () => {
 
       <Divider my={6} />
 
-      {/* 🔹 Shopping Summary */}
+      
       <Heading fontSize="2xl" mb={3}>Shopping Summary</Heading>
       <VStack spacing={4}>
         <Text fontSize="lg"><FaShoppingCart /> Items in Cart: {user?.cart?.length || 0}</Text>
@@ -84,7 +84,7 @@ const UserAccount = () => {
 
       <Divider my={6} />
 
-      {/* 🔹 Order History & Delivery Tracking */}
+      
       <Heading fontSize="2xl" mb={3}><FaTruck /> Order History</Heading>
       <Select 
         placeholder="Select Order to View Details"
@@ -107,39 +107,39 @@ const UserAccount = () => {
 
       <Divider my={6} />
 
-      {/* 🔹 Payment Methods */}
+     
       <Heading fontSize="2xl" mb={3}><FaCreditCard /> Payment Methods</Heading>
       <Button colorScheme="blue" mt={3} onClick={() => navigate("/add-payment")}>Manage Payments</Button>
 
       <Divider my={6} />
 
-      {/* 🔹 Wishlist */}
+     
       <Heading fontSize="2xl" mb={3}><FaHeart /> Wishlist</Heading>
       <Button colorScheme="pink" mt={3} onClick={() => navigate("/wishlist")}>View Wishlist</Button>
 
       <Divider my={6} />
 
-      {/* 🔹 Support & Returns */}
+      
       <Heading fontSize="2xl" mb={3}><FaHeadset /> Support & Returns</Heading>
       <Button colorScheme="teal" mt={3} onClick={() => navigate("/support")}>Contact Support</Button>
       <Button colorScheme="red" mt={3} ml={3} onClick={() => navigate("/returns")}>Request a Return</Button>
 
       <Divider my={6} />
 
-      {/* 🔹 Notifications */}
+    
       <Heading fontSize="2xl" mb={3}><FaBell /> Notifications</Heading>
       <Button colorScheme="yellow" mt={3} onClick={() => navigate("/notifications")}>View Notifications</Button>
 
       <Divider my={6} />
 
-      {/* 🔹 Security Settings */}
+      
       <Heading fontSize="2xl" mb={3}><FaLock /> Security Settings</Heading>
       <Button colorScheme="purple" mt={3} onClick={() => navigate("/change-password")}>Change Password</Button>
       <Button colorScheme="orange" mt={3} ml={3} onClick={() => navigate("/enable-2fa")}>Enable 2FA</Button>
 
       <Divider my={6} />
 
-      {/* 🔹 Logout */}
+      
       <Button colorScheme="red" mt={5} onClick={() => { logout(); navigate("/"); }}>
         Log Out
       </Button>

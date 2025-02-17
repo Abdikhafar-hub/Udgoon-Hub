@@ -31,7 +31,7 @@ export default function Register() {
     const userData = { username, email, password };
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/register", userData, {
+      const response = await axios.post("https://udgoon-hub.onrender.com/api/auth/register", userData, {
         withCredentials: true,
       });
 

@@ -130,7 +130,7 @@ const CheckoutPage = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:5000/api/mpesa/pay",
+        "https://udgoon-hub.onrender.com/api/mpesa/pay",
         { phoneNumber: mpesaNumber, totalPrice: totalAmount },
         {
           headers: {
