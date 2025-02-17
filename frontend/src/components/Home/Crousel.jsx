@@ -29,10 +29,10 @@ export default function App() {
           <SwiperSlide key={index}>
             <Image
               src={image}
-              w="100%" // ✅ Full width on both desktop and mobile
-              h={{ base: "40vh", md: "70vh" }} // ✅ Smaller height on mobile, full height on desktop
-              objectFit="cover" // ✅ Ensures proper scaling
-              borderRadius="10px" // ✅ Optional rounded corners
+              w="100%" 
+              h={{ base: "40vh", md: "70vh" }} 
+              objectFit="cover" 
+              borderRadius="10px" 
               alt={`Perfume Promotion ${index + 1}`}
             />
           </SwiperSlide>

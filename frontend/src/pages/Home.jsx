@@ -22,10 +22,10 @@ export default function Home() {
       >
         {" "}
         <Text 
-  fontSize={{ base: "14px", md: "18px" }} // ✅ Smaller text on mobile, same on desktop
+  fontSize={{ base: "14px", md: "18px" }} 
   fontWeight="bold"
   textAlign="center"
-  px={{ base: 2, md: 0 }} // ✅ Add padding on mobile to prevent text overflow
+  px={{ base: 2, md: 0 }} 
 >
   Get 15% off select products, plus 2 free gifts on orders over KSh 10,000!
 </Text>

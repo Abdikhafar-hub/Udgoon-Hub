@@ -56,20 +56,20 @@ const Testimonials = () => {
   return (
     <Box 
       maxW="4xl" 
-      w={{ base: "95%", md: "4xl" }} // ✅ Full width on mobile, max-width on desktop
+      w={{ base: "95%", md: "4xl" }} 
       mx="auto" 
       bg="white" 
       boxShadow="lg" 
       borderRadius="lg" 
-      p={{ base: 4, md: 6 }} // ✅ Reduce padding on mobile
+      p={{ base: 4, md: 6 }} 
       position="relative"
       textAlign="center"
     >
-      {/* ✅ Heading: Adjust for Mobile */}
+      
       <Text 
-        fontSize={{ base: "1.6rem", md: "2.1rem" }} // ✅ Smaller text on mobile
+        fontSize={{ base: "1.6rem", md: "2.1rem" }} 
         fontWeight="bold" 
-        mb={6} // ✅ Reduce margin on mobile
+        mb={6} 
         textAlign="center"
         fontFamily="'Playfair Display', serif"
       >
@@ -78,7 +78,7 @@ const Testimonials = () => {
           color="goldenrod" 
           fontFamily="'Playfair Display', serif" 
           textShadow="1px 1px 6px rgba(0, 0, 0, 0.15)"
-          fontSize={{ base: "1.5rem", md: "2.1rem" }} // ✅ Adjust for mobile
+          fontSize={{ base: "1.5rem", md: "2.1rem" }} 
         >
           🌸 Love at First Scent:
         </Text>{" "}
@@ -86,30 +86,30 @@ const Testimonials = () => {
           as="span" 
           color="blackAlpha.900" 
           fontFamily="'Merriweather', serif" 
-          fontSize={{ base: "1.5rem", md: "2.1rem" }} // ✅ Adjust for mobile
+          fontSize={{ base: "1.5rem", md: "2.1rem" }} 
         >
           Our Customers' Thoughts 💖
         </Text>
       </Text>
 
-      {/* ✅ Flex Container for Testimonials */}
+      
       <Flex align="center" justify="space-between" position="relative">
-        {/* ✅ Left Arrow Button: Reduce Size on Mobile */}
+        
         <IconButton
           aria-label="Previous testimonial"
-          icon={<FaChevronLeft size={20} />} // ✅ Smaller icon on mobile
+          icon={<FaChevronLeft size={20} />} 
           onClick={prevSlide}
           bg="gray.200"
           borderRadius="full"
           position="absolute"
-          left={{ base: "-10px", md: "-40px" }} // ✅ Adjust placement for mobile
+          left={{ base: "-10px", md: "-40px" }} 
           top="50%"
           transform="translateY(-50%)"
           zIndex={10}
           _hover={{ bg: "gray.300" }}
         />
 
-        {/* ✅ Testimonial Content */}
+        
         <Box w="100%" overflow="hidden">
           {testimonials.map((testimonial, index) => (
             <Box 
@@ -121,7 +121,7 @@ const Testimonials = () => {
               <Image 
                 src={testimonial.image} 
                 alt={testimonial.name} 
-                boxSize={{ base: "50px", md: "60px" }} // ✅ Reduce image size on mobile
+                boxSize={{ base: "50px", md: "60px" }}
                 borderRadius="full" 
                 mx="auto"
                 border="2px solid" 
@@ -131,8 +131,8 @@ const Testimonials = () => {
               <Text 
                 fontStyle="italic" 
                 color="gray.700" 
-                px={{ base: 2, md: 4 }} // ✅ Reduce padding for text on mobile
-                fontSize={{ base: "0.9rem", md: "1rem" }} // ✅ Adjust text size for mobile
+                px={{ base: 2, md: 4 }} 
+                fontSize={{ base: "0.9rem", md: "1rem" }} 
               >
                 {testimonial.comment}
               </Text>
@@ -143,15 +143,15 @@ const Testimonials = () => {
           ))}
         </Box>
 
-        {/* ✅ Right Arrow Button: Reduce Size on Mobile */}
+        
         <IconButton
           aria-label="Next testimonial"
-          icon={<FaChevronRight size={20} />} // ✅ Smaller icon on mobile
+          icon={<FaChevronRight size={20} />} 
           onClick={nextSlide}
           bg="gray.200"
           borderRadius="full"
           position="absolute"
-          right={{ base: "-10px", md: "-40px" }} // ✅ Adjust placement for mobile
+          right={{ base: "-10px", md: "-40px" }} 
           top="50%"
           transform="translateY(-50%)"
           zIndex={10}

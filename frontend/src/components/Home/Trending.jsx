@@ -7,34 +7,30 @@ const Trending = () => {
   const navigate = useNavigate(); 
 
   return (
-    <Box
-      alignSelf="normal"
-      display={{ lg: "flex" }}
-      flexDirection="column"
-      alignItems="center"
-    >
+    <Box display="flex" flexDirection="column" alignItems="center">
+      
       <Text
-        pt="4%" 
-        fontSize={{ base: "1.8rem", md: "2.2rem" }} // ✅ Adjust font size for mobile
-        mb={10}
+        pt={{ base: "1%", md: "3%" }}  
+        fontSize={{ base: "1.3rem", md: "2.2rem" }}  
+        mb={{ base: 4, md: 8 }}  
         textAlign="center"
         fontWeight="bold"
         fontFamily="Playfair Display"
         fontStyle="italic"
         color="goldenrod"
         textDecoration="underline"
-        textUnderlineOffset={8} 
-        textShadow="1px 1px 8px rgba(0, 0, 0, 0.1)" 
+        textUnderlineOffset={4}  
+        textShadow="1px 1px 5px rgba(0, 0, 0, 0.1)"  
       >
-       ✨ Top Brands ✨
+        ✨ Top Brands ✨
       </Text>
 
       <SimpleGrid
-        rowGap="20px"
-        columns={{ base: 2, sm: 3, md: 6 }} // ✅ 2 per row on mobile, 6 on desktop
-        spacing={4}
+        rowGap="10px"  
+        columns={{ base: 3, sm: 4, md: 6 }}  
+        spacing={2}  
         w="100%"
-        px={{ base: 6, md: "100px" }} // ✅ Smaller padding on mobile
+        px={{ base: 3, md: "60px" }}  
         textAlign="center"
       >
         {[
@@ -48,7 +44,7 @@ const Trending = () => {
           <Center key={index}>
             <Box>
               <Image
-                boxSize={{ base: "30vw", sm: "25vw", lg: "12vw" }} // ✅ Adjust image size for mobile
+                boxSize={{ base: "18vw", sm: "16vw", md: "10vw" }}  
                 src={src}
               />
             </Box>
@@ -56,70 +52,70 @@ const Trending = () => {
         ))}
       </SimpleGrid>
 
-      <Box m={10} w="100%">
+      <Box m={{ base: 4, md: 8 }} w="100%">  
         <PromoBanner />
       </Box>
 
       <Text
-        pt="4%" 
-        fontSize={{ base: "1.8rem", md: "2.2rem" }} 
+        pt={{ base: "1%", md: "3%" }}  
+        fontSize={{ base: "1.3rem", md: "2.2rem" }}  
         textAlign="center"
         fontWeight="bold"
         fontFamily="Playfair Display"
         fontStyle="italic"
         color="goldenrod"
         textDecoration="underline"
-        textUnderlineOffset={10} 
-        textShadow="1px 1px 10px rgba(0, 0, 0, 0.15)" 
+        textUnderlineOffset={4}  
+        textShadow="1px 1px 5px rgba(0, 0, 0, 0.15)"  
       >
-       🔥 Trending Offers 🔥
+        🔥 Trending Offers 🔥
       </Text>
 
       <SimpleGrid
         w="90%"
         m="auto"
-        columns={{ base: 1, sm: 2, md: 3 }} // ✅ 1 column on mobile, 2 on tablets, 3 on desktop
-        spacing={10}
-        px={{ base: 4, md: "2.5%" }}
-        pt="2.5%"
+        columns={{ base: 2, sm: 2, md: 3 }}  
+        spacing={{ base: 4, md: 8 }}  
+        px={{ base: 3, md: "2.5%" }}
+        pt="2%"
       >
         {[
           {
             src: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739149483/nzd7naentvjts8lbaexv.jpg",
             title: "Lattafa Khamrah",
-            description: "Get a FREE 4ml Body Spray (worth KSH 3,000) when you spend KSH 30,000 or more on Lattafa Khamrah.",
+            description: "Get a FREE 4ml Body Spray,spend KSH 30,000 or more on Lattafa Khamrah.",
             link: "/product/12"
           },
           {
             src: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739144273/cxguramv8mzyh3enzn1m.jpg",
             title: "Burberry Her 100ML",
-            description: "Get a FREE 10ml Burberry Her Travel Spray (worth KSH 4,000) when you spend KSH 40,000 or more on Burberry Her.",
+            description: "Get a FREE 10ml Spray,spend KSH 40,000 or more on Burberry Her.",
             link: "/product/38"
           },
           {
             src: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064161/uc3khepmva2bwe6z8riq.jpg",
             title: "Gucci Guilty",
-            description: "Get a KSH 2,000 shopping voucher when you spend KSH 20,000 or more on Gucci Guilty.",
+            description: "Get KSH 2,000 shopping voucher when you spend KSH 20,000 or more on Gucci Guilty.",
             link: "/product/44"
           }
         ].map((offer, index) => (
           <Box
             key={index}
-            alignSelf="normal"
             display="flex"
             flexDirection="column"
             alignItems="center"
             textAlign="center"
+            p={{ base: 2, md: 3 }}  
           >
             <Image
               borderRadius="50%"
-              boxSize={{ base: "45vw", sm: "30vw", md: "25vw" }} // ✅ Adjust size for mobile
+              boxSize={{ base: "30vw", sm: "25vw", md: "18vw" }}  
               src={offer.src}
             />
-            <Text fontWeight="400" fontSize={{ base: "18px", md: "20px" }} mb={3}>
+            <Text fontWeight="400" fontSize={{ base: "14px", md: "18px" }} mb={2}>
               {offer.title}
             </Text>
-            <Text fontWeight="100" fontSize={{ base: "14px", md: "16px" }} px={{ base: 2, md: 0 }}>
+            <Text fontWeight="100" fontSize={{ base: "12px", md: "16px" }} px={{ base: 1, md: 0 }}>
               {offer.description}
             </Text>
             <Button
@@ -128,10 +124,10 @@ const Trending = () => {
               borderRadius="0px"
               variant="outline"
               colorScheme="black"
-              fontSize={{ base: "14px", md: "16px" }} // ✅ Adjust button text size
-              px={{ base: 4, md: 6 }}
-              py={{ base: 2, md: 4 }}
-              onClick={() => navigate(offer.link)} 
+              fontSize={{ base: "12px", md: "14px" }}  
+              px={{ base: 3, md: 5 }}
+              py={{ base: 2, md: 3 }}
+              onClick={() => navigate(offer.link)}  
             >
               SHOP NOW
             </Button>

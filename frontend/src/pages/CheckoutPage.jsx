@@ -158,7 +158,7 @@ const CheckoutPage = () => {
       <Text fontSize="xl" fontWeight="bold" mb={5}>1. CUSTOMER ADDRESS</Text>
       <VStack spacing={3} align="stretch">
   
-  {/* Name Fields */}
+ 
   <HStack spacing={3} flexDirection={{ base: "column", md: "row" }}>
     <FormControl flex="1">
       <FormLabel fontSize={{ base: "sm", md: "md" }}>First Name</FormLabel>
@@ -170,13 +170,13 @@ const CheckoutPage = () => {
     </FormControl>
   </HStack>
 
-  {/* Email */}
+ 
   <FormControl>
     <FormLabel fontSize={{ base: "sm", md: "md" }}>Email Address</FormLabel>
     <Input placeholder="Email Address" name="email" onChange={handleChange} fontSize={{ base: "sm", md: "md" }} w="full" />
   </FormControl>
 
-  {/* Phone Number */}
+ 
   <HStack spacing={3} flexDirection={{ base: "column", md: "row" }}>
     <FormControl flex="1">
       <FormLabel fontSize={{ base: "sm", md: "md" }}>Phone Number</FormLabel>
@@ -187,7 +187,6 @@ const CheckoutPage = () => {
     </FormControl>
   </HStack>
 
-  {/* County & Constituency */}
   <HStack spacing={3} flexDirection={{ base: "column", md: "row" }}>
     <FormControl flex="1">
       <FormLabel fontSize={{ base: "sm", md: "md" }}>County</FormLabel>
@@ -214,7 +213,7 @@ const CheckoutPage = () => {
     </FormControl>
   </HStack>
 
-  {/* Action Buttons */}
+  
   <HStack justify="flex-end" mt={3}>
     <Button size="sm" variant="outline" onClick={() => navigate("/")}>Cancel</Button>
     <Button size="sm" colorScheme="orange" onClick={handleSave}>Save and Pay</Button>
@@ -223,7 +222,7 @@ const CheckoutPage = () => {
 </VStack>
 
 
-      {/* ✅ M-Pesa Payment Modal */}
+     
       <Modal isOpen={isMpesaModalOpen} onClose={() => setIsMpesaModalOpen(false)} isCentered>
         <ModalOverlay />
         <ModalContent>
@@ -252,7 +251,7 @@ const CheckoutPage = () => {
         </ModalContent>
       </Modal>
 
-      {/* ✅ Success Confirmation Modal */}
+      
       <Modal isOpen={isPaymentSuccess} onClose={() => navigate("/order-confirmation")} isCentered>
         <ModalOverlay />
          <ModalContent>

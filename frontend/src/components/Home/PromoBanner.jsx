@@ -5,23 +5,23 @@ const PromoBanner = () => {
     <Box 
       w="100%" 
       bg="#F8F6F4"  
-      py={{ base: 5, md: 15 }}  // ✅ Reduce height for mobile
-      px={{ base: 3, md: 5 }}
+      py={{ base: 2, md: 10 }}  
+      px={{ base: 2, md: 4 }}
       display="flex" 
       justifyContent="center"
     >
       <Flex 
         w="90%"
-        maxW="1100px"
+        maxW="900px"
         align="center"
         justify="space-between"
-        flexDirection={{ base: "column", md: "row" }} // ✅ Stack on mobile, row on desktop
-        textAlign={{ base: "center", md: "left" }}  // ✅ Center text on mobile
+        flexDirection={{ base: "column", md: "row" }}  
+        textAlign={{ base: "center", md: "left" }} 
       >
         
-        <VStack align={{ base: "center", md: "flex-start" }} spacing={3} maxW={{ base: "100%", md: "45%" }}>
+        <VStack align={{ base: "center", md: "flex-start" }} spacing={{ base: 1, md: 3 }} maxW={{ base: "100%", md: "45%" }}>
           <Text 
-            fontSize={{ base: "20px", md: "38px" }}  // ✅ Reduce text size on mobile
+            fontSize={{ base: "16px", md: "32px" }}  
             fontWeight="500" 
             fontStyle="italic" 
             fontFamily="Georgia, serif" 
@@ -30,7 +30,7 @@ const PromoBanner = () => {
             Limited-Time Offer
           </Text>
           <Text 
-            fontSize={{ base: "22px", md: "40px" }}  // ✅ Reduce heading size on mobile
+            fontSize={{ base: "18px", md: "34px" }}  
             fontWeight="bold" 
             textTransform="uppercase" 
             color="#222"
@@ -38,9 +38,9 @@ const PromoBanner = () => {
             EXCLUSIVE PERFUME DEALS
           </Text>
           <Text 
-            fontSize={{ base: "13px", md: "18px" }}  // ✅ Reduce body text
+            fontSize={{ base: "11px", md: "15px" }}  
             color="#222" 
-            lineHeight="1.5" 
+            lineHeight="1.3" 
             fontWeight="400"
           >
             Elevate your fragrance collection with our <strong>luxury perfume sale.</strong> <br />
@@ -50,12 +50,12 @@ const PromoBanner = () => {
             bg="black" 
             color="white" 
             _hover={{ bg: "gray.700" }} 
-            px={{ base: 3, md: 6 }}  // ✅ Reduce button padding
-            py={{ base: 2, md: 4 }}
-            fontSize={{ base: "13px", md: "16px" }} // ✅ Reduce button text size
+            px={{ base: 2, md: 5 }}  
+            py={{ base: 1, md: 3 }}
+            fontSize={{ base: "11px", md: "14px" }}  
             fontWeight="bold"
             borderRadius="0"
-            mt={2}
+            mt={1}  
           >
             SHOP NOW
           </Button>
@@ -67,32 +67,32 @@ const PromoBanner = () => {
           color="white"
           borderRadius="full"
           textAlign="center"
-          w={{ base: "90px", md: "140px" }} // ✅ Reduce width for mobile
-          h={{ base: "90px", md: "140px" }}
+          w={{ base: "75px", md: "120px" }}  
+          h={{ base: "75px", md: "120px" }}
           display="flex"
           flexDir="column"
           justifyContent="center"
           alignItems="center"
-          fontSize="md"
+          fontSize="sm"
           fontWeight="bold"
-          mx={{ base: 0, md: 8 }}  // ✅ Remove margin on mobile
-          my={{ base: 4, md: 0 }}  // ✅ Add spacing on mobile
+          mx={{ base: 0, md: 5 }}  
+          my={{ base: 2, md: 0 }}  
           letterSpacing="0.5px"
         >
-          <Text fontSize="11px" color="#E5C99F" fontFamily="Georgia, serif">Save Up To</Text>
-          <Text fontSize="22px" fontWeight="bold">50%</Text>  
-          <Text fontSize="11px" color="#E5C99F" fontFamily="Georgia, serif">LIMITED TIME</Text>
+          <Text fontSize="9px" color="#E5C99F" fontFamily="Georgia, serif">Save Up To</Text>
+          <Text fontSize="18px" fontWeight="bold">50%</Text>  
+          <Text fontSize="9px" color="#E5C99F" fontFamily="Georgia, serif">LIMITED TIME</Text>
         </Box>
 
        
         <Image 
           src="https://res.cloudinary.com/ddkkfumkl/image/upload/v1739148285/fibdjbnwt8vyiauyow18.jpg"  
-          w={{ base: "90%", md: "380px" }} // ✅ Reduce width for mobile
-          maxW="380px" 
+          w={{ base: "80%", md: "320px" }}  
+          maxW="320px" 
           mx="auto" 
           borderRadius="8px"
           objectFit="cover"
-          boxShadow="lg"
+          boxShadow="md"
         />
       </Flex>
     </Box>

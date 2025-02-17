@@ -14,10 +14,10 @@ function Search() {
   };
 
   return (
-    <Box position="relative" w="100%" maxW="950px" mx="auto">
+    <Box position="relative" w="100%" maxW="800px" mx="auto"> 
       <InputGroup 
-        size="lg"
-        boxShadow="md"
+        size="md" 
+        boxShadow="sm" 
         borderRadius="full"
         bg={useColorModeValue("white", "gray.800")}
       >
@@ -25,15 +25,15 @@ function Search() {
           placeholder="Search for a perfume..."
           value={search}
           onChange={handleSearch}
-          h="55px"
+          h="45px"  
           borderRadius="full"
-          px={6}
-          fontSize="1.2rem"
+          px={4}  
+          fontSize="1rem"  
           border="2px solid transparent"
-          _focus={{ borderColor: "goldenrod", boxShadow: "0 0 6px goldenrod" }}
+          _focus={{ borderColor: "goldenrod", boxShadow: "0 0 4px goldenrod" }}  
         />
         <InputRightElement 
-          width="3.5rem"
+          width="3rem"  
           h="100%"
           display="flex"
           alignItems="center"
@@ -41,7 +41,7 @@ function Search() {
         >
           <Icon 
             as={BiSearch} 
-            fontSize="1.8rem" 
+            fontSize="1.5rem" 
             color="gray.600" 
             cursor="pointer"
             _hover={{ color: "goldenrod" }}

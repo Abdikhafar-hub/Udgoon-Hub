@@ -75,81 +75,83 @@ const Products = () => {
   );
 
   return (
-    <Box w="85%" m="auto" py={10}>
+    <Box w="85%" m="auto" py={6}>
       <Text
         fontWeight="bold"
         w="100%"
         textAlign="center"
-        mb={{ base: 6, md: 10 }} 
-        fontSize={{ base: "1.5rem", md: "2.2rem" }} 
+        mb={{ base: 4, md: 8 }}  
+        fontSize={{ base: "1.3rem", md: "2.2rem" }} 
         fontFamily="Playfair Display"
         fontStyle="italic"
         color="goldenrod"
         textDecoration="underline"
-        textUnderlineOffset={{ base: 4, md: 8 }} 
+        textUnderlineOffset={{ base: 3, md: 8 }} 
         textShadow="1px 1px 6px rgba(0, 0, 0, 0.2)"
       >
         🌸 Our Signature Perfume Collection 💨
       </Text>
-
-      <SimpleGrid columns={{ base: 2, sm: 2, md: 3, lg: 4 }} gap={{ base: 4, md: 8 }}>
-  {filteredPerfumes.length > 0 ? (
-    filteredPerfumes.map((el) => (
-      <Box 
-        key={el.id} 
-        p={3}  
-        border="1px solid #ddd" 
-        borderRadius="8px" 
-        textAlign="center" 
-        bg="white" 
-        boxShadow="md"
-        display="flex"
-        flexDirection="column"  
-        alignItems="center"
-        justifyContent="space-between"  
-        h="auto"  
-      >
-        <Box display="flex" justifyContent="center" alignItems="center" height="120px">
-          <Image 
-            src={el.image_link} 
-            alt={el.name} 
-            boxSize="100px"  
-            objectFit="contain"  
-            _hover={{ transform: "scale(1.05)" }}
-            transition="transform 0.2s ease-in-out"
-            onClick={() => navigate(`/product/${el.id}`)} 
-          />
-        </Box>
-        
-        <Box flex="1" w="100%" maxW="90%" textAlign="center">
-          <Text fontSize="14px" fontWeight="bold" mt={2} noOfLines={2}>{el.name}</Text>
-          <Text fontSize="13px" fontWeight="500" mt={1} color="gray.600">
-            Price: <strong>KSH {el.price}</strong>
-          </Text>
-        </Box>
-
-        <Button 
-          mt={3}  
-          w="85%"  
-          bgColor="black" 
-          color="white" 
-          fontSize="14px"
-          py={2}
-          _hover={{ bg: "cyan.500" }} 
-          onClick={() => navigate(`/product/${el.id}`)}
-        >
-          View Product
-        </Button>
-      </Box>
-    ))
-  ) : (
-    <Text textAlign="center" fontSize="16px">No products found</Text>
-  )}
-</SimpleGrid>
-
-
+  
+      <SimpleGrid columns={{ base: 2, sm: 2, md: 3, lg: 4 }} gap={{ base: 3, md: 6 }}>
+        {filteredPerfumes.length > 0 ? (
+          filteredPerfumes.map((el) => (
+            <Box 
+              key={el.id} 
+              p={2}  
+              border="1px solid #ddd" 
+              borderRadius="8px" 
+              textAlign="center" 
+              bg="white" 
+              boxShadow="md"
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="space-between"
+              height="auto"
+            >
+              
+              <Box display="flex" justifyContent="center" alignItems="center" height="100px">
+                <Image 
+                  src={el.image_link} 
+                  alt={el.name} 
+                  boxSize={{ base: "90px", md: "100px" }}  
+                  objectFit="contain"
+                  _hover={{ transform: "scale(1.05)" }}
+                  transition="transform 0.2s ease-in-out"
+                  onClick={() => navigate(`/product/${el.id}`)} 
+                />
+              </Box>
+  
+              
+              <Box flex="1" w="100%" maxW="90%" textAlign="center">
+                <Text fontSize="13px" fontWeight="bold" mt={2} noOfLines={2}>{el.name}</Text>  
+                <Text fontSize="12px" fontWeight="500" mt={1} color="gray.600">
+                  Price: <strong>KSH {el.price}</strong>
+                </Text>
+              </Box>
+  
+             
+              <Button 
+                mt={2}  
+                w="85%"  
+                bgColor="black" 
+                color="white" 
+                fontSize="13px"  
+                py={1.5} 
+                _hover={{ bg: "cyan.500" }} 
+                onClick={() => navigate(`/product/${el.id}`)}
+              >
+                View Product
+              </Button>
+            </Box>
+          ))
+        ) : (
+          <Text textAlign="center" fontSize="14px">No products found</Text>  
+        )}
+      </SimpleGrid>
     </Box>
   );
+  
 };
 
 export default Products;

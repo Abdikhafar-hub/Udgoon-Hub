@@ -50,27 +50,27 @@ const CartPage = () => {
         🚚 Delivery available <strong>countrywide</strong> at customer cost, or pick up at a central location.
       </Text>
 
-      {/* ✅ 2 Products Per Row on Mobile */}
+     
       <SimpleGrid columns={{ base: 2, md: 1 }} spacing={4}>
         {cartItems.map((item) => (
           <VStack 
             key={item.id} 
             border="1px solid #ddd" 
-            p={{ base: 3, md: 4 }} // ✅ Reduce padding for mobile
+            p={{ base: 3, md: 4 }} 
             borderRadius="8px" 
             spacing={2} 
             bg="white" 
             boxShadow="lg"
           >
             <Flex 
-              direction={{ base: "column", md: "row" }} // ✅ Stack on mobile, row on desktop
+              direction={{ base: "column", md: "row" }} 
               align="center"
               w="100%"
             >
               <Image 
                 src={item.image_link} 
                 alt={item.name} 
-                boxSize={{ base: "80px", md: "120px" }} // ✅ Smaller image on mobile
+                boxSize={{ base: "80px", md: "120px" }} 
                 objectFit="cover" 
                 borderRadius="8px"
               />
