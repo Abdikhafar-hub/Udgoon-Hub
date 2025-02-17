@@ -54,7 +54,7 @@ const Contact = () => {
       {isClient && (
         <Box 
         w="full" 
-        maxW={{ base: "100%", md: "5xl" }}  
+        maxW={{ base: "100%", md: "none" }}  
         mt={{ base: 6, md: 12 }}  
         borderRadius="lg" 
         overflow="hidden"
@@ -62,10 +62,10 @@ const Contact = () => {
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.82308113028!2d36.843964776263675!3d-1.2797756356217265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f170b1905d029%3A0x34d92f603e5aff18!2sBusiness%20Bay%20Square%20(BBS)%20Mall!5e0!3m2!1sen!2ske!4v1739263553358!5m2!1sen!2ske"
           width="100%"
-          height={{ base: "250", md: "450" }}  
+          height={window.innerWidth >= 768 ? "400px" : "250px"} // ✅ Desktop: 600px, Mobile: 250px
           style={{
             border: 0,
-            minHeight: "200px" 
+            minHeight: "250px",
           }}
           allowFullScreen
           loading="lazy"
