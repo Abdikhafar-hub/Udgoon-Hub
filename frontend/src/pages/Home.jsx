@@ -1,5 +1,6 @@
 import { Box, Flex, Text,Image } from "@chakra-ui/react";
 import Crousel from "../components/Home/Crousel";
+import AboutUs from "../components/Home/AboutUs";
 import Trending from "../components/Home/Trending";
 import CardSlide from "./Products";
 import Middle from "../components/Home/Testimonials";
@@ -25,11 +26,13 @@ export default function Home() {
         </Text>
       </Box>
       <Crousel />
+      <AboutUs />
       <Trending />
-     
       <CardSlide />
       <Middle />
       <Contact />
     </Flex>
   );
 }
+
+

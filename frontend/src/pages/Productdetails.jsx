@@ -107,7 +107,7 @@ const ProductDetails = () => {
         _hover={{ bg: "cyan.500" }} 
         onClick={() => addToCart(product)}
       >
-        Add to Cart
+        Add to Cart 🛒
       </Button>
 
       <Button mt={2} w="100%" onClick={() => navigate("/")}>Continue Shopping</Button>

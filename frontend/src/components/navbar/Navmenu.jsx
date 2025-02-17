@@ -11,22 +11,30 @@ import {
   Flex,
   Image,
   Text,
+  Button,
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { AiFillHome } from "react-icons/ai";
-import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 function Navmenu() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef();
 
+  // ✅ Function to Close Menu When Clicking a Link
+  const handleCloseMenu = () => {
+    onClose(); // Closes the menu after clicking a link
+  };
+
   return (
     <>
+      {/* ✅ Hamburger Icon (Opens Menu) */}
       <Box ref={btnRef} onClick={onOpen} cursor="pointer">
         <RxHamburgerMenu size={24} />
       </Box>
+
+      {/* ✅ Sidebar Drawer */}
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} finalFocusRef={btnRef}>
         <DrawerOverlay />
         <DrawerContent>
@@ -34,19 +42,30 @@ function Navmenu() {
           <DrawerHeader>
             <AiFillHome size={24} />
           </DrawerHeader>
+
+          {/* ✅ Menu Links (Automatically Closes on Click) */}
           <DrawerBody>
-            <Link to="/products"><Button>All Perfumes</Button></Link>
-            <Link to="/products?category=men"><Button>Men's Fragrances</Button></Link>
-            <Link to="/products?category=women"><Button>Women's Fragrances</Button></Link>
-            <Link to="/products?category=unisex"><Button>Unisex Scents</Button></Link>
-            <Link to="/products?category=luxury"><Button>Luxury Perfumes</Button></Link>
-            <Link to="/products?category=mists"><Button>Body Mists</Button></Link>
-            <Link to="/products?category=oils"><Button>Fragrance Oils</Button></Link>
-            <Link to="/products?new=true"><Button>New Arrivals</Button></Link>
-            <Link to="/products?bestseller=true"><Button>Best Sellers</Button></Link>
-            <Link to="/blog"><Button>Perfume Blog</Button></Link>
+          <Link to="/aboutus" onClick={handleCloseMenu}>
+              <Button w="100%" mb={2}>AboutUs</Button>
+            </Link>
+            <Link to="/trending" onClick={handleCloseMenu}>
+              <Button w="100%" mb={2}>Trending</Button>
+            </Link>
+            <Link to="/testimonials" onClick={handleCloseMenu}>
+              <Button w="100%" mb={2}>Testimonials</Button>
+            </Link>
+            <Link to="/promo" onClick={handleCloseMenu}>
+              <Button w="100%" mb={2}>Promotions</Button>
+            </Link>
+            <Link to="/products" onClick={handleCloseMenu}>
+              <Button w="100%" mb={2}>Products</Button>
+            </Link>
+            <Link to="/contact" onClick={handleCloseMenu}>
+              <Button w="100%" mb={2}>Contact Us</Button>
+            </Link>
           </DrawerBody>
 
+          {/* ✅ Footer Section */}
           <DrawerFooter bg="#f9f9f9">
             <Flex mb="50px" w="100%" alignItems="center" justifyContent="space-between">
               <Image w="30px" h="30px" border="1px solid" borderRadius="100%" src="" />

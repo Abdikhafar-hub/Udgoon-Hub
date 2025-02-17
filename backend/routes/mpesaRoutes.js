@@ -22,19 +22,27 @@ const getTimestamp = () => {
 // Generate Access Token
 const getMpesaAccessToken = async () => {
   try {
+    console.log("🔹 Requesting M-Pesa Access Token...");
+
     const keySecret = Buffer.from(`${consumerKey}:${consumerSecret}`).toString("base64");
-    const response = await axios.get("https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials", {
-      headers: { Authorization: `Basic ${keySecret}` },
-    });
-    return response.data.access_token;
+    const response = await axios.get(
+      "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials",
+      {
+        headers: { Authorization: `Basic ${keySecret}` },
+      }
+    );
+
+    console.log("✅ M-Pesa Access Token Received:", response.data.access_token);
+    return response.data.access_token; // Always return a new token
   } catch (error) {
     console.error("❌ M-Pesa Token Error:", error.response?.data || error.message);
     return null;
   }
 };
 
+
 // STK Push Payment
-const initiatePayment = async (rawPhone, amount) => {
+const initiatePayment = async (rawPhone, amount = 1) => {
   try {
     const accessToken = await getMpesaAccessToken();
     if (!accessToken) throw new Error("Failed to obtain M-Pesa access token.");
@@ -55,7 +63,7 @@ const initiatePayment = async (rawPhone, amount) => {
         PartyB: shortCode,
         PhoneNumber: phone,
         CallBackURL: callbackUrl,
-        AccountReference: "Udgoon Hub",
+        AccountReference: `UDGOON-HUB${Date.now()}`,
         TransactionDesc: "Udgoon Hub Payment",
       },
       {
@@ -65,33 +73,47 @@ const initiatePayment = async (rawPhone, amount) => {
         },
       }
     );
+
     console.log("✅ Payment Initiated Successfully:", response.data);
     return response.data;
   } catch (error) {
-    console.error("❌ Payment Error:", error.response?.data || error.message);
-    return { error: "Payment initiation failed" };
+    console.error("❌ Payment API Error:", error.response?.data || error.message);
+    return { error: error.response?.data || "Payment initiation failed" };
   }
 };
 
-// Protected Payment Route
-router.post("/pay", verifyToken, async (req, res) => { 
 
-  const { phoneNumber, totalPrice } = req.body;
+// Protected Payment Route
+router.post("/pay", verifyToken, async (req, res) => {
+  const { phoneNumber, totalPrice = 1 } = req.body;
+
 
   if (!phoneNumber || !totalPrice) {
     return res.status(400).json({ message: "Phone number and total price are required." });
   }
 
-  console.log(`Processing payment for: ${phoneNumber} Amount: ${totalPrice}`);
+  console.log(`🔹 Processing payment for: ${phoneNumber} Amount: ${totalPrice}`);
 
-  const paymentResponse = await initiatePayment(phoneNumber, totalPrice);
+  try {
+    const accessToken = await getMpesaAccessToken(); // Always fetch a fresh token
+    if (!accessToken) throw new Error("Failed to obtain M-Pesa access token.");
 
-  if (paymentResponse.error) {
-    return res.status(500).json({ message: "Payment initiation failed" });
+    const paymentResponse = await initiatePayment(phoneNumber, totalPrice);
+    
+    if (paymentResponse.error) {
+      console.error("❌ Payment Error:", paymentResponse.error);
+      return res.status(500).json({ message: "Payment initiation failed", error: paymentResponse.error });
+    }
+
+    console.log("✅ Payment initiated successfully.");
+    res.json({ message: "Payment initiated successfully.", data: paymentResponse });
+
+  } catch (error) {
+    console.error("❌ Server Error:", error.message);
+    res.status(500).json({ message: "Server error. Please try again later.", error: error.message });
   }
-
-  res.json({ message: "Payment initiated successfully.", data: paymentResponse });
 });
+
 
 // M-Pesa Callback
 router.post("/callback", (req, res) => {

@@ -14,6 +14,8 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "@react-three/drei": "^9.121.5",
+    "@react-three/fiber": "^8.17.14",
     "axios": "^1.6.7",
     "framer-motion": "^11.18.2",
     "react": "^18.2.0",
@@ -22,6 +24,7 @@
     "react-icons": "^5.4.0",
     "react-multi-carousel": "^2.8.4",
     "react-router-dom": "^6.22.0",
+    "socket.io-client": "^4.8.1",
     "swiper": "^11.0.5"
   },
   "devDependencies": {

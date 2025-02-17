@@ -1,21 +1,12 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text, Link } from "@chakra-ui/react";
 import TopNav from "./TopNav";
 import Search from "./Search";
-import Account from "./Acount"; // ✅ Fixed incorrect import
+import Account from "./Acount";
 import Cart from "./Cart";
-import Brands from "./contain/Brands";
-import Sale from "./contain/Sale";
-import PerfumesForHim from "./contain/ForHim";
-import DesignerPerfumes from "./contain/Designer";
-import PerfumesForHer from "./contain/ForHer";
-import ArabicSomaliPerfumes from "./contain/SomaliPerfumes";
-import Trending from "./contain/Trending";
-import Blog from "./contain/Blog";
 import Navmenu from "./Navmenu";
-import Popsearch from "./Popsearch";
 import { UserContext } from "../../Contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const { user } = useContext(UserContext);
@@ -32,7 +23,7 @@ function Navbar() {
   }
 
   useEffect(() => {
-    setCartCount(user.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0); // ✅ Fixed cart count
+    setCartCount(user.cart?.reduce((acc, item) => acc + item.quantity, 0) || 0);
   }, [user.cart]);
 
   return (
@@ -43,44 +34,20 @@ function Navbar() {
       w="100%"
       bg="white"
       flexDir="column"
-      alignItems="space-between"
       boxShadow="0px 2px 5px rgba(0,0,0,0.1)"
     >
       <TopNav />
 
-      {/* ✅ Mobile Navbar */}
-      <Flex
-        display={{ lg: "none", md: "flex", sm: "flex", base: "flex" }}
-        gap="15px"
-        alignItems="center"
-        w="80%"
-      >
-        <Flex w="80%" gap="15px" alignItems="center" m={3}>
-          <Navmenu />
-          <Popsearch />
-        </Flex>
-        <Flex w="80%" justifyContent="space-evenly">
-          <Account />
-          <Cart />
-        </Flex>
-      </Flex>
-
       {/* ✅ Main Navbar */}
-      <Box
-        display="flex"
-        justifyContent="space-evenly"
+      <Flex
         alignItems="center"
+        justifyContent="space-between"
+        px={6} // Adds padding to the sides
+        py={3} // Adds padding on top and bottom
         borderBottom="2px solid black"
-        pb="20px"
       >
-        {/* ✅ Logo Section */}
-        <Flex
-          cursor="pointer"
-          onClick={handleClickLogo}
-          display={{ lg: "flex", md: "none", sm: "none", base: "none" }}
-          justifyContent="center"
-          flexDir="column"
-        >
+        {/* ✅ Logo on the far left */}
+        <Flex cursor="pointer" onClick={handleClickLogo} flexDir="column">
           <Text fontWeight="530" fontSize="50px" color="#2e3337" mb={0} h="55px">
             UdgoonHub
           </Text>
@@ -89,39 +56,29 @@ function Navbar() {
           </Text>
         </Flex>
 
-        {/* ✅ Search Bar */}
-        <Box w="40%" display={{ lg: "flex", md: "none", sm: "none", base: "none" }}>
+        {/* ✅ Search Bar (Visible in Desktop, Hidden in Mobile) */}
+        <Box flex={1} mx={6} display={{ base: "none", lg: "block" }}>
           <Search />
         </Box>
 
-        {/* ✅ User Account & Cart */}
-        <Flex w="20%" justifyContent="space-evenly" display={{ lg: "flex", md: "none", sm: "none", base: "none" }}>
-          <Account />
+        {/* ✅ Right-Side Icons (Mobile: Hamburger Menu, Account, Cart) */}
+        <Flex alignItems="center" gap={6}>
+          {/* ✅ Hamburger Menu (Only in Mobile) */}
+          <Box display={{ base: "block", lg: "none" }}>
+            <Navmenu />
+          </Box>
+
+          <Account /> {/* User Profile */}
           <Link onClick={handleCartClick}>
-            <Cart num={cartCount} /> {/* ✅ Corrected cart count display */}
+            <Cart num={cartCount} /> {/* Shopping Cart */}
           </Link>
         </Flex>
-      </Box>
-
-      {/* ✅ Categories Section */}
-      <Flex
-        display={{ lg: "flex", md: "none", sm: "none", base: "none" }}
-        gap="10px"
-        bg="white"
-        boxShadow="rgba(33, 35, 38, 0.1) 0px 10px 10px -10px"
-        justifyContent="center"
-        color="#333"
-        fontSize="15px"
-      >
-        <Brands />
-        <Sale />
-        <PerfumesForHim />
-        <DesignerPerfumes />
-        <PerfumesForHer />
-        <ArabicSomaliPerfumes />
-        <Trending />
-        <Blog />
       </Flex>
+
+      {/* ✅ Mobile Search Bar (Appears Below Navbar in Mobile) */}
+      <Box display={{ base: "block", lg: "none" }} px={4} py={2}>
+        <Search />
+      </Box>
     </Flex>
   );
 }
