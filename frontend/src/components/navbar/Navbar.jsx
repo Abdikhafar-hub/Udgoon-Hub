@@ -3,6 +3,14 @@ import TopNav from "./TopNav";
 import Search from "./Search";
 import Account from "./Acount";
 import Cart from "./Cart";
+import Blog from "./contain/Blog";
+import Brands from "./contain/Brands";
+import Designer from "./contain/Designer";
+import ForHer from "./contain/ForHer";
+import ForHim from "./contain/ForHim";
+import Sale from "./contain/Sale";
+import SomaliPerfumes from "./contain/SomaliPerfumes";
+import Trending from "./contain/Trending";
 import Navmenu from "./Navmenu";
 import { UserContext } from "../../Contexts/UserContext";
 import { useContext, useEffect, useState } from "react";
@@ -38,6 +46,7 @@ function Navbar() {
     >
       <TopNav />
 
+      {/* Main Navigation Bar */}
       <Flex
         alignItems="center"
         justifyContent="space-between"
@@ -45,21 +54,21 @@ function Navbar() {
         py={3} 
         borderBottom="2px solid black"
       >
-        {/* ✅ Logo Adjusted for Mobile & Desktop */}
+        {/* ✅ Logo */}
         <Flex cursor="pointer" onClick={handleClickLogo} flexDir="column">
           <Text 
             fontWeight="bold" 
-            fontSize={{ base: "1.5rem", md: "2.5rem" }}  // ✅ Smaller on mobile, same on desktop
+            fontSize={{ base: "1.5rem", md: "2.5rem" }}
             fontFamily="'Playfair Display', serif"
             color="goldenrod"
             textShadow="1px 1px 5px rgba(0, 0, 0, 0.15)"
             mb={0}
-            h={{ base: "35px", md: "60px" }}  // ✅ Adjust height for mobile
+            h={{ base: "35px", md: "60px" }}
           >
             UdgoonHub
           </Text>
           <Text 
-            fontSize={{ base: "0.7rem", md: "1rem" }}  // ✅ Smaller tagline on mobile
+            fontSize={{ base: "0.7rem", md: "1rem" }}
             fontFamily="'Merriweather', serif"
             color="gray.700" 
             mb={0}
@@ -83,9 +92,30 @@ function Navbar() {
         </Flex>
       </Flex>
 
+      {/* Mobile Search Box */}
       <Box display={{ base: "block", lg: "none" }} px={4} py={2}>
         <Search />
       </Box>
+
+      {/* ✅ New section added to call all contain components */}
+      <Flex
+        display={{ lg: "flex", md: "none", sm: "none", base: "none" }}
+        gap="10px"
+        bg="white"
+        boxShadow="rgba(33, 35, 38, 0.1) 0px 10px 10px -10px"
+        justifyContent="center"
+        color={"#333"}
+        fontSize={"15px"}
+      >
+        <Brands />
+        <Designer />
+        <ForHer />
+        <ForHim />
+        <Sale />
+        <SomaliPerfumes />
+        <Trending />
+        <Blog />
+      </Flex>
     </Flex>
   );
 }
