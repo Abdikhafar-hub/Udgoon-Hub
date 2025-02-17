@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Box, Text, Button, Flex, Image, IconButton, useColorModeValue } from "@chakra-ui/react";
+import { 
+  Box, Text, Button, Flex, Image, IconButton, useColorModeValue 
+} from "@chakra-ui/react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const testimonials = [
@@ -61,15 +63,15 @@ const Testimonials = () => {
       bg="white" 
       boxShadow="lg" 
       borderRadius="lg" 
-      p={{ base: 4, md: 6 }} 
+      p={{ base: 3, md: 6 }}  
       position="relative"
       textAlign="center"
     >
       
       <Text 
-        fontSize={{ base: "1.6rem", md: "2.1rem" }} 
+        fontSize={{ base: "1.4rem", md: "2.1rem" }}  
         fontWeight="bold" 
-        mb={6} 
+        mb={4}  
         textAlign="center"
         fontFamily="'Playfair Display', serif"
       >
@@ -77,8 +79,8 @@ const Testimonials = () => {
           as="span" 
           color="goldenrod" 
           fontFamily="'Playfair Display', serif" 
-          textShadow="1px 1px 6px rgba(0, 0, 0, 0.15)"
-          fontSize={{ base: "1.5rem", md: "2.1rem" }} 
+          textShadow="1px 1px 4px rgba(0, 0, 0, 0.15)"
+          fontSize={{ base: "1.3rem", md: "2rem" }} 
         >
           🌸 Love at First Scent:
         </Text>{" "}
@@ -86,7 +88,7 @@ const Testimonials = () => {
           as="span" 
           color="blackAlpha.900" 
           fontFamily="'Merriweather', serif" 
-          fontSize={{ base: "1.5rem", md: "2.1rem" }} 
+          fontSize={{ base: "1.3rem", md: "2rem" }} 
         >
           Our Customers' Thoughts 💖
         </Text>
@@ -97,12 +99,12 @@ const Testimonials = () => {
         
         <IconButton
           aria-label="Previous testimonial"
-          icon={<FaChevronLeft size={20} />} 
+          icon={<FaChevronLeft size={16} />}  
           onClick={prevSlide}
           bg="gray.200"
           borderRadius="full"
           position="absolute"
-          left={{ base: "-10px", md: "-40px" }} 
+          left={{ base: "-5px", md: "-40px" }}  
           top="50%"
           transform="translateY(-50%)"
           zIndex={10}
@@ -121,7 +123,7 @@ const Testimonials = () => {
               <Image 
                 src={testimonial.image} 
                 alt={testimonial.name} 
-                boxSize={{ base: "50px", md: "60px" }}
+                boxSize={{ base: "45px", md: "60px" }}  
                 borderRadius="full" 
                 mx="auto"
                 border="2px solid" 
@@ -132,11 +134,11 @@ const Testimonials = () => {
                 fontStyle="italic" 
                 color="gray.700" 
                 px={{ base: 2, md: 4 }} 
-                fontSize={{ base: "0.9rem", md: "1rem" }} 
+                fontSize={{ base: "0.85rem", md: "1rem" }}  
               >
                 {testimonial.comment}
               </Text>
-              <Text mt={4} fontWeight="bold" color="blue.600">
+              <Text mt={3} fontWeight="bold" color="blue.600">
                 {testimonial.name}
               </Text>
             </Box>
@@ -146,12 +148,12 @@ const Testimonials = () => {
         
         <IconButton
           aria-label="Next testimonial"
-          icon={<FaChevronRight size={20} />} 
+          icon={<FaChevronRight size={16} />}  
           onClick={nextSlide}
           bg="gray.200"
           borderRadius="full"
           position="absolute"
-          right={{ base: "-10px", md: "-40px" }} 
+          right={{ base: "-5px", md: "-40px" }}  
           top="50%"
           transform="translateY(-50%)"
           zIndex={10}

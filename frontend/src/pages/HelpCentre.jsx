@@ -1,10 +1,9 @@
-import { Box, Text, VStack, HStack, Divider, Link } from "@chakra-ui/react";
+import { Box, Text, VStack, HStack, Divider, useBreakpointValue } from "@chakra-ui/react";
 import { useState } from "react";
 
 function HelpCenter() {
   const [selectedCategory, setSelectedCategory] = useState("Delivery");
 
-  
   const categories = [
     { name: "Delivery", topics: ["How can I track my delivery?", "What if I am not available to receive my delivery?", "What do I do if my delivery is delayed?"] },
     { name: "Returns & Refunds", topics: ["What is Udgoon Hub's return policy?"] },
@@ -12,7 +11,6 @@ function HelpCenter() {
     { name: "Payments", topics: ["How to pay via M-Pesa?", "Are there additional charges for M-Pesa transactions?", "What happens if my payment fails?"] },
   ];
 
-  
   const helpTopics = {
     "How can I track my delivery?": (
       <VStack align="start">
@@ -32,7 +30,7 @@ function HelpCenter() {
         <Text>✔ Arrange for someone else to receive it by providing their details to the delivery agent.</Text>
         <Text>✔ Contact the delivery agent to reschedule a convenient time.</Text>
         <Text>✔ If no other options are available, call our support at <b>0717219448</b>.</Text>
-        <Text>⚠️ Note: You cannot change the delivery address once the order is placed. Udgoon Hub will attempt delivery twice before canceling.</Text>
+        <Text>⚠️ Note: You cannot change the delivery address once the order is placed.</Text>
       </VStack>
     ),
 
@@ -94,30 +92,42 @@ function HelpCenter() {
     ),
   };
 
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
   return (
-    <Box display="flex" h="100vh" p={5}>
-     
-      <Box w="250px" borderRight="1px solid #e2e8f0" p={4}>
-        <Text fontSize="lg" fontWeight="bold" mb={4}>Help Center</Text>
-        {categories.map((category) => (
-          <Text
-            key={category.name}
-            fontSize="sm"
-            fontWeight={selectedCategory === category.name ? "bold" : "normal"}
-            p={2}
-            cursor="pointer"
-            _hover={{ bg: "gray.100" }}
-            onClick={() => setSelectedCategory(category.name)}
-          >
-            {category.name}
-          </Text>
-        ))}
+    <Box minH="100vh" p={5} display="flex" flexDirection={{ base: "column", md: "row" }}>
+      
+      <Box w={{ base: "100%", md: "250px" }} borderRight={{ md: "1px solid #e2e8f0" }} p={4} mb={{ base: 5, md: 0 }}>
+        <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold" mb={4} textAlign={{ base: "center", md: "left" }}>
+          Help Center
+        </Text>
+
+        <VStack align={{ base: "center", md: "start" }} spacing={2} w="100%">
+          {categories.map((category) => (
+            <Text
+              key={category.name}
+              fontSize="sm"
+              fontWeight={selectedCategory === category.name ? "bold" : "normal"}
+              p={2}
+              w="100%"
+              textAlign={{ base: "center", md: "left" }}
+              cursor="pointer"
+              _hover={{ bg: "gray.100" }}
+              onClick={() => setSelectedCategory(category.name)}
+            >
+              {category.name}
+            </Text>
+          ))}
+        </VStack>
       </Box>
 
       
       <Box flex="1" p={5}>
-        <Text fontSize="xl" fontWeight="bold">{selectedCategory}</Text>
+        <Text fontSize={{ base: "lg", md: "xl" }} fontWeight="bold" textAlign={{ base: "center", md: "left" }}>
+          {selectedCategory}
+        </Text>
         <Divider my={3} />
+
         <VStack align="start" spacing={4}>
           {categories.find((cat) => cat.name === selectedCategory)?.topics.map((topic) => (
             <Box key={topic} w="100%">

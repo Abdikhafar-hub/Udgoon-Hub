@@ -141,7 +141,7 @@ const CheckoutPage = () => {
       );
 
       if (response.data.message === "Payment initiated successfully.") {
-        alert("✅ Payment request sent! Check your M-Pesa and enter your PIN.");
+        
         setIsMpesaModalOpen(false); 
         setIsPaymentSuccess(true);  
       }
