@@ -127,9 +127,19 @@ export default function Footer() {
 
         <Divider my={{ base: 3, md: 5 }} />
 
-        <Text textAlign="center" fontSize={{ base: "xs", md: "sm" }} opacity="0.7">
-          © {new Date().getFullYear()} Udgoon Hub - Where Luxury Meets Fragrance. All rights reserved.
-        </Text>
+        <VStack spacing={2} textAlign="center">
+          <Text fontSize={{ base: "xs", md: "sm" }} opacity="0.7">
+            © {new Date().getFullYear()} Udgoon Hub - Where Luxury Meets Fragrance. All rights reserved.
+          </Text>
+          <HStack>
+            <Text fontSize={{ base: "xs", md: "sm" }}>Made with</Text>
+            <Text fontSize={{ base: "sm", md: "md" }} color="red.400">❤️</Text>
+            <Text fontSize={{ base: "xs", md: "sm" }}>by</Text>
+            <Link href="https://www.instagram.com/abdikhafar_issack/" isExternal color="pink.400" fontWeight="bold">
+              Abdikhafar Issack
+            </Link>
+          </HStack>
+        </VStack>
       </Container>
     </Box>
   );

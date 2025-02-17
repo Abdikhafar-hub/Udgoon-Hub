@@ -97,6 +97,12 @@ const Trending = () => {
             title: "Gucci Guilty",
             description: "Get KSH 2,000 shopping voucher when you spend KSH 20,000 or more on Gucci Guilty.",
             link: "/product/44"
+          },
+          {
+            src: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739144464/bh5cbcfwawzmogephvmu.jpg",
+            title: "Prada Candy",
+            description: "Get KSH 1,000 shopping voucher when you spend KSH 25,000 or more on Prada Candy.",
+            link: "/product/40"
           }
         ].map((offer, index) => (
           <Box
