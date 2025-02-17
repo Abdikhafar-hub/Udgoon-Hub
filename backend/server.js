@@ -1,29 +1,54 @@
+require("dotenv").config();
 const express = require("express");
-const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const connectDB = require("./config/db");
-const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
-const mpesaRoutes = require("./routes/mpesaRoutes"); // Import M-Pesa routes
-
-dotenv.config();
-connectDB();
+const bodyParser = require("body-parser");
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Enable CORS for your frontend
+
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://udgoon-hub.vercel.app" 
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // Allow frontend requests
-  credentials: true // Allow cookies & authentication
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
 
-app.use(express.json());
-app.use(cookieParser());
+
+app.use(bodyParser.json()); 
+app.use(express.json()); 
+
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log("✅ MongoDB Connected"))
+.catch(err => console.error("❌ MongoDB Connection Error:", err));
+
+
+const authRoutes = require("./routes/authRoutes");
+const mpesaRoutes = require("./routes/mpesaRoutes");
 
 app.use("/api/auth", authRoutes);
-app.use("/api/user", userRoutes);
 app.use("/api/mpesa", mpesaRoutes);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Udgoon Hub API!");
+});
+
+
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
