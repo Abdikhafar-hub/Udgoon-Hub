@@ -99,7 +99,7 @@ Open your browser and navigate to http://localhost:3000 to access the frontend.
 Use Postman or any API client to interact with the backend at http://localhost:5000.
 
 ## Folder Structure
-
+```
 Udgoon Hub/
 ├── backend/
 │   ├── config/
@@ -143,7 +143,7 @@ Udgoon Hub/
 │   ├── vercel.json
 │   └── vite.config.js
 ├── README.md
-
+```
 ### API Endpoints
 
 # Authentication
