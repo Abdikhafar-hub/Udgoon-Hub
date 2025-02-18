@@ -1,14 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Box, Text, Image, Button, HStack } from "@chakra-ui/react";
+import { Box, Text, Image, Button, HStack, useToast } from "@chakra-ui/react";
+import { FaHeart } from "react-icons/fa";
 import { UserContext } from "../Contexts/UserContext";
 
 const ProductDetails = () => {
-  const { addToCart, removeFromCart, user } = useContext(UserContext);
+  const { addToCart, removeFromCart, user, addToWishlist } = useContext(UserContext);
   const { id } = useParams();
   const navigate = useNavigate();
+  const toast = useToast();
+  const [wishlistLoading, setWishlistLoading] = useState(false);
 
-  
+  // List of perfumes
   const perfumes = [
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
@@ -67,20 +70,33 @@ const ProductDetails = () => {
     { id: 55, name: "Xerjoff Pikovaya", price: "85400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739800887/ribb2ehj5kzffpjvpdvv.jpg" },
     { id: 56, name: "Explore Baccart", price: "63400", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739801141/w032hybncdakmbi1oc9b.png" }
     
+    
   ];
 
   const product = perfumes.find((p) => p.id === parseInt(id));
-
   if (!product) return <Text>Product Not Found</Text>;
 
-  
   const cart = user?.cart || [];
   const cartItem = cart.find((item) => item.id === product.id);
   const quantity = cartItem ? cartItem.quantity : 1;
 
+  const handleAddToWishlist = () => {
+    setWishlistLoading(true);
+    setTimeout(() => {
+      addToWishlist(product); // Add product to the wishlist
+      toast({
+        title: "Added to Wishlist",
+        description: `${product.name} has been added to your wishlist.`,
+        status: "success",
+        duration: 3000,
+        isClosable: true,
+      });
+      setWishlistLoading(false);
+    }, 1000); // Simulating API delay
+  };
+
   return (
-    <Box w="60%" m="auto" py={10}>
-     
+    <Box w="60%" m="auto" py={10} textAlign="center">
       <Image 
         src={product.image_link} 
         alt={product.name} 
@@ -91,16 +107,16 @@ const ProductDetails = () => {
 
       <Text fontSize="24px" fontWeight="bold">{product.name}</Text>
       <Text fontSize="20px">Price: KSH {product.price}</Text>
-
-     
       <Text fontSize="18px" color="green.500">In Stock</Text>
 
-      <HStack mt={4}>
+      {/* Quantity Controls */}
+      <HStack mt={4} justify="center">
         <Button isDisabled={quantity === 1} onClick={() => removeFromCart(product.id)}>-</Button>
         <Text>{quantity}</Text>
         <Button onClick={() => addToCart(product)}>+</Button>
       </HStack>
 
+      {/* Add to Cart Button */}
       <Button 
         mt={4} 
         w="100%" 
@@ -112,6 +128,21 @@ const ProductDetails = () => {
         Add to Cart 🛒
       </Button>
 
+      {/* Add to Wishlist Button */}
+      <Button 
+        mt={2} 
+        w="100%" 
+        bgColor="red.500" 
+        color="white" 
+        _hover={{ bg: "red.600" }} 
+        leftIcon={<FaHeart />} 
+        isLoading={wishlistLoading}
+        onClick={handleAddToWishlist}
+      >
+        Add to Wishlist ❤️
+      </Button>
+
+      {/* Continue Shopping Button */}
       <Button mt={2} w="100%" onClick={() => navigate("/")}>Continue Shopping</Button>
     </Box>
   );

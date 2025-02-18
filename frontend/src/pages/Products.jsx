@@ -74,8 +74,9 @@ const Products = () => {
     
   ];
   const filteredPerfumes = perfumes.filter((product) =>
-    product.name.toLowerCase().includes(search.toLowerCase())
+    product.name.toLowerCase().includes((search || "").toLowerCase())
   );
+  
 
   return (
     <Box w="85%" m="auto" py={6}>
