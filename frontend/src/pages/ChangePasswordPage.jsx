@@ -70,7 +70,7 @@ const ChangePasswordPage = () => {
       <Heading mb={5}>Change Password</Heading>
       <form onSubmit={handleSubmit}>
         <VStack spacing={4}>
-          {/* New Password */}
+         
           <FormControl isRequired>
             <FormLabel>New Password</FormLabel>
             <Input 
@@ -81,7 +81,7 @@ const ChangePasswordPage = () => {
             />
           </FormControl>
 
-          {/* Confirm Password */}
+        
           <FormControl isRequired isInvalid={confirmPassword && password !== confirmPassword}>
             <FormLabel>Confirm New Password</FormLabel>
             <Input 
@@ -95,7 +95,7 @@ const ChangePasswordPage = () => {
             )}
           </FormControl>
 
-          {/* Submit Button */}
+        
           <Button 
             type="submit" 
             colorScheme="blue" 

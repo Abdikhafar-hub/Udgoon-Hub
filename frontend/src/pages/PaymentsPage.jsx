@@ -3,7 +3,7 @@ import { Box, Heading, Table, Thead, Tbody, Tr, Th, Td, Spinner, Text } from "@c
 import axios from "axios";
 
 const PaymentsPage = () => {
-  const [payments, setPayments] = useState([]);  // Ensure initial state is an array
+  const [payments, setPayments] = useState([]);  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -16,14 +16,14 @@ const PaymentsPage = () => {
         if (Array.isArray(response.data)) {
           setPayments(response.data);
         } else {
-          setPayments([]); // Fallback to an empty array
+          setPayments([]); 
         }
       } catch (error) {
         console.error("Error fetching payments:", error);
-        setPayments([]); // Set empty array on error
+        setPayments([]); 
       }
 
-      // Simulate a delay of 3 seconds before removing loading state
+      
       setTimeout(() => {
         setLoading(false);
       }, 3000);

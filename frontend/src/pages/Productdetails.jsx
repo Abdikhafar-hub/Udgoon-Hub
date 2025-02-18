@@ -11,7 +11,7 @@ const ProductDetails = () => {
   const toast = useToast();
   const [wishlistLoading, setWishlistLoading] = useState(false);
 
-  // List of perfumes
+  
   const perfumes = [
     { id: 1, name: "9 PM", price: "8000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739064151/h8lzffi1pmtiakxiamle.jpg" },
     { id: 2, name: "Rasasi La Yuqawam", price: "15000", currency: "KSH", image_link: "https://res.cloudinary.com/ddkkfumkl/image/upload/v1739140695/oqhoht8olnyihtrxffhd.jpg" },
@@ -83,7 +83,7 @@ const ProductDetails = () => {
   const handleAddToWishlist = () => {
     setWishlistLoading(true);
     setTimeout(() => {
-      addToWishlist(product); // Add product to the wishlist
+      addToWishlist(product); 
       toast({
         title: "Added to Wishlist",
         description: `${product.name} has been added to your wishlist.`,
@@ -92,7 +92,7 @@ const ProductDetails = () => {
         isClosable: true,
       });
       setWishlistLoading(false);
-    }, 1000); // Simulating API delay
+    }, 1000); 
   };
 
   return (
@@ -109,14 +109,14 @@ const ProductDetails = () => {
       <Text fontSize="20px">Price: KSH {product.price}</Text>
       <Text fontSize="18px" color="green.500">In Stock</Text>
 
-      {/* Quantity Controls */}
+     
       <HStack mt={4} justify="center">
         <Button isDisabled={quantity === 1} onClick={() => removeFromCart(product.id)}>-</Button>
         <Text>{quantity}</Text>
         <Button onClick={() => addToCart(product)}>+</Button>
       </HStack>
 
-      {/* Add to Cart Button */}
+      
       <Button 
         mt={4} 
         w="100%" 
@@ -128,7 +128,7 @@ const ProductDetails = () => {
         Add to Cart 🛒
       </Button>
 
-      {/* Add to Wishlist Button */}
+      
       <Button 
         mt={2} 
         w="100%" 
@@ -142,7 +142,7 @@ const ProductDetails = () => {
         Add to Wishlist ❤️
       </Button>
 
-      {/* Continue Shopping Button */}
+      
       <Button mt={2} w="100%" onClick={() => navigate("/")}>Continue Shopping</Button>
     </Box>
   );

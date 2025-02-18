@@ -4,7 +4,7 @@ import { UserContext } from "../Contexts/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE_URL = "http://localhost:5000/api/user"; // Ensure correct backend URL
+const API_BASE_URL = "http://localhost:5000/api/user"; 
 
 const EditProfile = () => {
   const { user, setUser } = useContext(UserContext);
@@ -23,10 +23,10 @@ const EditProfile = () => {
     }
   }, [user, navigate]);
 
-  // Handle profile picture upload
+  
  
 
-  // ✅ Handle profile picture upload
+  
   const handleProfilePicUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -35,7 +35,7 @@ const EditProfile = () => {
     formData.append("profilePic", file);
   
     const token = localStorage.getItem("token");
-    console.log("Using Token for Upload:", token); // Debugging token
+    console.log("Using Token for Upload:", token); 
   
     setLoading(true);
     try {
@@ -46,7 +46,7 @@ const EditProfile = () => {
         },
       });
       setProfilePic(response.data.profilePic);
-      setUser({ ...user, profilePic: response.data.profilePic }); // Update global user context
+      setUser({ ...user, profilePic: response.data.profilePic }); 
     } catch (error) {
       console.error("Error uploading profile picture:", error);
       setError("Failed to upload profile picture.");
@@ -55,13 +55,13 @@ const EditProfile = () => {
     }
   };
   
-  // ✅ Handle profile updates (name, email, phone)
+  
   const handleProfileUpdate = async () => {
     setLoading(true);
     setError("");
   
     const token = localStorage.getItem("token");
-    console.log("Using Token for Profile Update:", token); // Debugging token
+    console.log("Using Token for Profile Update:", token); 
   
     try {
       const response = await axios.put(
@@ -72,7 +72,7 @@ const EditProfile = () => {
         }
       );
   
-      setUser(response.data); // Update global user context
+      setUser(response.data); 
       alert("Profile updated successfully!");
       navigate("/useraccount");
     } catch (error) {

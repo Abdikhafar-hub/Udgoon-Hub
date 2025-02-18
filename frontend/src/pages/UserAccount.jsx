@@ -8,7 +8,7 @@ const UserAccount = () => {
   const { user, logout, wishlist } = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log("🔍 User Data:", user); // Debugging user data
+  console.log("🔍 User Data:", user); 
 
   return (
     <Container maxW="container.md" py={10}>
@@ -17,7 +17,7 @@ const UserAccount = () => {
           {user?.status ? `Welcome, ${user?.name || "User"}!` : "Guest Account"}
         </Heading>
 
-        {/* User Profile Section */}
+       
         <VStack spacing={4}>
           <Avatar size="2xl" name={user?.name} src={user?.profilePic || ""} />
           <Text fontSize="lg">📧 Email: {user?.email || "Not Available"}</Text>
@@ -29,7 +29,7 @@ const UserAccount = () => {
 
         <Divider my={6} />
 
-        {/* Order History Section */}
+        
         <Box p={4} border="1px solid #ddd" borderRadius="md">
           <Heading fontSize="xl" mb={3}>
             <HStack>
@@ -51,7 +51,7 @@ const UserAccount = () => {
 
         <Divider my={6} />
 
-        {/* Payment History Section */}
+       
         <Box p={4} border="1px solid #ddd" borderRadius="md">
           <Heading fontSize="xl" mb={3}>
             <HStack>
@@ -73,7 +73,7 @@ const UserAccount = () => {
 
         <Divider my={6} />
 
-        {/* Wishlist Section */}
+       
         <Box p={4} border="1px solid #ddd" borderRadius="md">
           <Heading fontSize="xl" mb={3}>
             <HStack>
@@ -95,7 +95,7 @@ const UserAccount = () => {
 
         <Divider my={6} />
 
-        {/* Security Section */}
+       
         <Box p={4} border="1px solid #ddd" borderRadius="md">
           <Heading fontSize="xl" mb={3}>
             <HStack>
@@ -108,7 +108,7 @@ const UserAccount = () => {
 
         <Divider my={6} />
 
-        {/* Logout */}
+        
         <Button colorScheme="red" leftIcon={<FaSignOutAlt />} mt={5} onClick={() => { logout(); navigate("/"); }}>
           Log Out
         </Button>

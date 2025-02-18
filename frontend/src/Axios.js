@@ -29,13 +29,13 @@ API.interceptors.response.use(
         if (response.status === 200) {
           localStorage.setItem("token", response.data.accessToken);
           axios.defaults.headers.common["Authorization"] = `Bearer ${response.data.accessToken}`;
-          return API(originalRequest); // Retry failed request
+          return API(originalRequest); 
         }
       } catch (err) {
         console.error("Refresh token failed:", err);
         localStorage.removeItem("token");
         localStorage.removeItem("refreshToken");
-        window.location.href = "/login"; // Force re-login
+        window.location.href = "/login"; 
       }
     }
     return Promise.reject(error);
