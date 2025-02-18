@@ -49,19 +49,23 @@ router.post("/login", async (req, res) => {
 
 router.post("/refresh", async (req, res) => {
   const { refreshToken } = req.body;
+  
   if (!refreshToken) {
-      return res.status(403).json({ message: "Refresh token required" });
+    return res.status(403).json({ message: "Refresh token required" });
   }
 
   jwt.verify(refreshToken, process.env.JWT_SECRET, (err, decoded) => {
-      if (err) {
-          return res.status(403).json({ message: "Invalid refresh token" });
-      }
+    if (err) {
+      return res.status(403).json({ message: "Invalid refresh token" });
+    }
 
-      const newAccessToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-      res.json({ accessToken: newAccessToken });
+    // Generate a new access token
+    const newAccessToken = jwt.sign({ id: decoded.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+
+    res.json({ accessToken: newAccessToken });
   });
 });
+
 
 
 module.exports = router;
