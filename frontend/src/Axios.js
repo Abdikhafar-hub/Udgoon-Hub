@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  baseURL: "https://udgoon-hub.onrender.com/api",
 });
 
 API.interceptors.request.use(
@@ -30,13 +30,13 @@ API.interceptors.response.use(
           return Promise.reject(error);
         }
 
-        const response = await axios.post("http://localhost:5000/api/user/refresh-token", { refreshToken });
+        const response = await axios.post("https://udgoon-hub.onrender.com/api/user/refresh-token", { refreshToken });
 
         if (response.status === 200) {
           console.log("✅ Access token refreshed successfully.");
           localStorage.setItem("token", response.data.accessToken);
           API.defaults.headers.common["Authorization"] = `Bearer ${response.data.accessToken}`;
-          return API(originalRequest); // Retry failed request with new token
+          return API(originalRequest); 
         }
       } catch (err) {
         console.error("❌ Refresh token failed or expired:", err);
@@ -48,11 +48,11 @@ API.interceptors.response.use(
   }
 );
 
-// Handle user logout when token refresh fails
+
 const handleLogout = () => {
   localStorage.removeItem("token");
   localStorage.removeItem("refreshToken");
-  window.location.href = "/login"; // Redirect to login page
+  window.location.href = "/login"; 
 };
 
 export default API;
