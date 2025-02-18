@@ -18,7 +18,6 @@ import PaymentsPage from "./PaymentsPage";
 import TrackOrderPage from "./TrackOrderPage";
 import WishlistPage from "./WishlistPage";
 import ChangePasswordPage from "./ChangePasswordPage";
-import Enable2FAPage from "./Enable2FAPage";
 import EditProfile from "./EditProfile";
 
 export default function AllRouter() {
@@ -44,7 +43,7 @@ export default function AllRouter() {
       <Route path="/track-order/:orderId" element={<TrackOrderPage />} />
       <Route path="/wishlist" element={<WishlistPage />} />
       <Route path="/change-password" element={<ChangePasswordPage />} />
-      <Route path="/enable-2fa" element={<Enable2FAPage />} />
+      
     </Routes>
   );
 }
