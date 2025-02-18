@@ -97,6 +97,7 @@ Udgoon Hub is a full-stack web application designed to provide a seamless shoppi
 
 Open your browser and navigate to http://localhost:3000 to access the frontend.
 Use Postman or any API client to interact with the backend at http://localhost:5000.
+View it LIVE here https://udgoon-hub.vercel.app/
 
 ## Folder Structure
 ```
@@ -147,23 +148,29 @@ Udgoon Hub/
 ### API Endpoints
 
 # Authentication
+```
 POST /api/auth/register - Register a new user
 POST /api/auth/login - Login a user
 POST /api/auth/logout - Logout a user
+```
 # User
+```
 GET /api/user/profile - Get user profile
 PUT /api/user/profile - Update user profile
 DELETE /api/user/profile - Delete user profile
+```
 # Orders
+```
 GET /api/orders - Get all orders
 POST /api/orders - Create a new order
 GET /api/orders/:id - Get order by ID
 PUT /api/orders/:id - Update order by ID
 DELETE /api/orders/:id - Delete order by ID
+```
 
-### Contributing
+# Contributing
 Contributions are welcome! Please fork the repository and create a pull request with your changes.
 
-### License
+# License
 This project is licensed under the MIT License.
 
